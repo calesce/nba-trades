@@ -20,6 +20,7 @@ var TeamArea = React.createClass({
       selected = true;
     }
     var teams = this.props.teams
+    var incoming = this.props.incomingPlayers
     
     return (
       <div className={this.props.class} >
@@ -40,6 +41,10 @@ var TeamArea = React.createClass({
           : 
           <div></div>
         }
+            {
+            incoming.map(function(player) {
+              return <div>{player}</div>
+            })}
       </div>
     );
   }
