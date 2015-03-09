@@ -19,19 +19,22 @@ var TeamArea = React.createClass({
     if(this.state.selectedTeam) {
       selected = true;
     }
+    var teams = this.props.teams
     
     return (
       <div className={this.props.class} >
         <select onChange={this.teamSelected}>
           <option value='hey'>Choose a team</option>
-          { Object.keys(this.props.teams).map(function(team, index) {
+          { Object.keys(teams).map(function(team, index) {
               return <option key={team} value={team}>{team}</option>
             })
           }
         </select>
         { selected ? 
           <div>
-            <TeamList team={this.props.teams[this.state.selectedTeam]} />
+            <TeamList team={teams[this.state.selectedTeam]} onPlayerClicked={this.props.onPlayerClicked} />
+            <br />
+            <br />
             <div>Incoming Players:</div>
           </div>
           : 

@@ -1,7 +1,7 @@
 var React = require('react');
 var TradeMachine = require('./TradeMachine.jsx');
 
-var TradeMachineContainer = React.createClass({
+var AppContainer = React.createClass({
   getInitialState: function() {
     return { 
       teams: ''
@@ -33,4 +33,4 @@ var TradeMachineContainer = React.createClass({
   }
 })
 
-module.exports = TradeMachineContainer;
+module.exports = AppContainer;

@@ -1,4 +1,4 @@
 var React = require('react');
-var TradeMachineContainer = require('./components/Container.jsx');
+var AppContainer = require('./components/Container.jsx');
 
-React.render(<TradeMachineContainer />, document.getElementById('tradeMachine'));
+React.render(<AppContainer />, document.getElementById('tradeMachine'));
