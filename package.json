@@ -1,0 +1,22 @@
+{
+  "name": "trade-machine",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "author": "Cale Newman",
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --no-info"
+  },
+  "dependencies": {
+    "jsx-loader": "^0.12.2",
+    "react": "^0.12.2",
+    "webpack": "^1.7.2"
+  },
+  "devDependencies": {
+    "lodash": "^3.4.0"
+  }
+}

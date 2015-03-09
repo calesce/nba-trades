@@ -1,0 +1,19 @@
+/*
+need hex codes for each team's primary/secondary colors
+
+
+
+
+*/
+
+.area1 {
+  position: absolute;
+  left: 0%;
+  top: 1%;
+}
+
+.area2 {
+  position: absolute;
+  left: 50%;
+  top: 1%;
+}
