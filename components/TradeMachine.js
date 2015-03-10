@@ -1,9 +1,9 @@
 var React = require('react');
 var _ = require('lodash');
-var TeamArea = require('./TeamArea.jsx');
+var TeamArea = require('./TeamArea.js');
 
 var TradeMachine = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       selectedTeams: {
         team1: '',
@@ -15,13 +15,22 @@ var TradeMachine = React.createClass({
       }
     };
   },
-  handleTeamSelected: function(team, index) {
+  handleTeamSelected(team, index) {
     var newSelectedTeams = _.assign({}, this.state.selectedTeams);
     newSelectedTeams[index] = team;
-    this.setState({ selectedTeams: newSelectedTeams });
+    
+    // change to new teams and clear out staged players
+    this.setState({ 
+      selectedTeams: newSelectedTeams,
+      incomingPlayers: {
+        team1: [],
+        team2: []
+      }
+    });
   },
-  handlePlayerClicked: function(e) {
-    // TODO if two teams, on a player being clicked, his card should be added to the other team's incoming area
+  handlePlayerClicked(e) {
+    console.log(e.target);
+    
     if(this.state.selectedTeams.team1 === '' || this.state.selectedTeams.team2 === '') {
       return;
     }
@@ -40,33 +49,45 @@ var TradeMachine = React.createClass({
       });
     }
   },
-  getTeamForPlayer: function(playerName) {
+  getTeamForPlayer(playerName) {
     var teams = this.props.teams;
     
-    return _.compact(_.map(teams, function(team, key) {
+    return _.compact(_.map(teams, (team, key) => {
       if(_.findIndex(team.players, 'name', playerName) !== -1) {
         return key;
       }
     }))[0];
   },
-  componentDidMount: function() {
+  componentDidMount() {
     
   },
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     
   },
-  getFilteredTeams: function(index) {
+  getFilteredTeams(index) {
     var teams = _.assign({}, this.props.teams);
     var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
     
     return _.omit(teams, this.state.selectedTeams[filteredIndex]);
   },
-  render: function() {
+  render() {
     if(this.props.teams) {
       return (
         <div className='TradeMachine'>
-          <TeamArea teams={this.getFilteredTeams('team1')} class='area1' number={'team1'} onTeamSelected={this.handleTeamSelected} onPlayerClicked={this.handlePlayerClicked} incomingPlayers={this.state.incomingPlayers.team1} />
-          <TeamArea teams={this.getFilteredTeams('team2')} class='area2' number={'team2'} onTeamSelected={this.handleTeamSelected} onPlayerClicked={this.handlePlayerClicked} incomingPlayers={this.state.incomingPlayers.team2} />
+          <TeamArea
+            teams={this.getFilteredTeams('team1')}
+            class='area1' number={'team1'}
+            onTeamSelected={this.handleTeamSelected}
+            onPlayerClicked={this.handlePlayerClicked}
+            incomingPlayers={this.state.incomingPlayers.team1}
+          />
+          <TeamArea
+            teams={this.getFilteredTeams('team2')}
+            class='area2' number={'team2'}
+            onTeamSelected={this.handleTeamSelected}
+            onPlayerClicked={this.handlePlayerClicked}
+            incomingPlayers={this.state.incomingPlayers.team2}
+          />
         </div>
       );
     }

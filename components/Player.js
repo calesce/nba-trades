@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Player = React.createClass({
-  render:function() {
+  render() {
     return (
       <div ref="player" onClick={this.props.onPlayerClicked}>
         {this.props.name} - {this.props.salary}

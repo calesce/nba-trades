@@ -1,32 +1,33 @@
 var React = require('react');
-var TeamList = require('./TeamList.jsx');
+var TeamList = require('./TeamList.js');
 
 var TeamArea = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       selectedTeam: null,
       outgoingPlayers: null,
       incomingPlayers: null
     };
   },
-  teamSelected: function(event) {
+  teamSelected(event) {
     this.setState({ selectedTeam: event.target.value });
     
     this.props.onTeamSelected(event.target.value, this.props.number);
   },
-  render: function() {
+  render() {
     var selected = false;
     if(this.state.selectedTeam) {
       selected = true;
     }
-    var teams = this.props.teams
-    var incoming = this.props.incomingPlayers
+    var teams = this.props.teams;
+    var incoming = this.props.incomingPlayers;
+    var teamNames = Object.keys(teams);
     
     return (
       <div className={this.props.class} >
         <select onChange={this.teamSelected}>
-          <option value='hey'>Choose a team</option>
-          { Object.keys(teams).map(function(team, index) {
+          <option value='' disabled>Choose a team</option>
+          { teamNames.map((team, index) => {
               return <option key={team} value={team}>{team}</option>
             })
           }
@@ -42,7 +43,7 @@ var TeamArea = React.createClass({
           <div></div>
         }
             {
-            incoming.map(function(player) {
+            incoming.map((player) => {
               return <div>{player}</div>
             })}
       </div>

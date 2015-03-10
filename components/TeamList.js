@@ -1,17 +1,17 @@
 var React = require('react');
-var Player = require('./Player.jsx');
+var Player = require('./Player.js');
 var _ = require('lodash');
 
 var TeamList = React.createClass({
-  render: function() {
+  render() {
     var roster = _.cloneDeep(this.props.team.players);
     
     return (
       <div>
         { 
-          roster.map(function(player) {
+          roster.map((player) => {
             return <Player key={player.name} name={player.name} salary={player.salary} onPlayerClicked={this.props.onPlayerClicked} />;
-          }.bind(this))
+          })
         }
         <br />
         <br />
