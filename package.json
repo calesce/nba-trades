@@ -9,7 +9,7 @@
     "type": "git"
   },
   "scripts": {
-    "start": "webpack-dev-server --no-info"
+    "start": "node server.js"
   },
   "dependencies": {
     "jsx-loader": "^0.12.2",
@@ -17,12 +17,13 @@
     "webpack": "^1.7.2"
   },
   "devDependencies": {
-    "babel": "^4.7.8",
     "babel-core": "^4.7.8",
     "babel-loader": "^4.1.0",
     "css-loader": "^0.9.1",
     "lodash": "^3.4.0",
+    "react-hot-loader": "^1.2.1",
     "style-loader": "^0.8.3",
-    "webpack": "^1.7.2"
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0"
   }
 }
