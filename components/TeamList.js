@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 var TeamList = React.createClass({
   render() {
-    var roster = _.cloneDeep(this.props.team.players);
+    var roster = _.cloneDeep(this.props.roster);
     
     return (
       <div>
@@ -15,7 +15,7 @@ var TeamList = React.createClass({
         }
         <br />
         <br />
-        <div>Team Salary: { this.props.team.totalSalary }</div>
+        <div>Team Salary: { this.props.salary }</div>
       </div>
     );
   }

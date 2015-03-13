@@ -6,8 +6,8 @@ var TradeMachine = React.createClass({
   getInitialState() {
     return {
       selectedTeams: {
-        team1: '',
-        team2: ''
+        team1: [],
+        team2: []
       },
       incomingPlayers: {
         team1: [],
@@ -72,12 +72,6 @@ var TradeMachine = React.createClass({
       return player.name === playerName;
     });
   },
-  componentDidMount() {
-    
-  },
-  componentWillUnmount() {
-    
-  },
   getFilteredTeams(index) {
     var teams = _.assign({}, this.props.teams);
     var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
@@ -89,17 +83,21 @@ var TradeMachine = React.createClass({
         <div className='TradeMachine'>
           <TeamArea
             teams={this.getFilteredTeams('team1')}
+            team={this.state.selectedTeams.team1}
             class='area1' number={'team1'}
             onTeamSelected={this.handleTeamSelected}
             onPlayerClicked={this.handlePlayerClicked}
             incomingPlayers={this.state.incomingPlayers.team1}
+            outgoingPlayers={this.state.incomingPlayers.team2}
           />
           <TeamArea
             teams={this.getFilteredTeams('team2')}
+            team={this.state.selectedTeams.team2}
             class='area2' number={'team2'}
             onTeamSelected={this.handleTeamSelected}
             onPlayerClicked={this.handlePlayerClicked}
             incomingPlayers={this.state.incomingPlayers.team2}
+            outgoingPlayers={this.state.incomingPlayers.team1}
           />
         </div>
       );

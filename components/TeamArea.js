@@ -32,6 +32,18 @@ var TeamArea = React.createClass({
     
     this.props.onTeamSelected(event.target.value, this.props.number);
   },
+  rosterMinusOutgoing() {
+    if(this.props.outgoingPlayers.length === 0) { return this.props.team.players; }
+    
+    var roster = _.cloneDeep(this.props.team.players);
+    var outgoing = _.cloneDeep(this.props.outgoingPlayers);
+  
+    var result = _.filter(roster, (player) => {
+      return _.find(outgoing, { 'name': player.name }) === undefined;
+    });
+    
+    return result;
+  },
   render() {
     var selected = false;
     if(this.state.selectedTeam) {
@@ -41,6 +53,7 @@ var TeamArea = React.createClass({
     var incoming = this.props.incomingPlayers;
     var teamNames = Object.keys(teams);
     var incomingSalary = this.incomingSalary();
+    var roster = this.rosterMinusOutgoing();
     
     return (
       <div className={this.props.class} >
@@ -53,7 +66,7 @@ var TeamArea = React.createClass({
         </select>
         { selected ? 
           <div>
-            <TeamList team={teams[this.state.selectedTeam]} onPlayerClicked={this.props.onPlayerClicked} />
+            <TeamList roster={roster} salary={this.props.team.totalSalary} onPlayerClicked={this.props.onPlayerClicked} />
             <br />
             <br />
             <div>Incoming Players:</div>
