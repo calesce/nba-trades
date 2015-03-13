@@ -17,7 +17,9 @@ var TradeMachine = React.createClass({
   },
   handleTeamSelected(team, index) {
     var newSelectedTeams = _.assign({}, this.state.selectedTeams);
-    newSelectedTeams[index] = team;
+    newSelectedTeams[index] = this.props.teams[team];
+    
+    newSelectedTeams[index].teamName = team;
     
     // change to new teams and clear out staged players
     this.setState({ 
@@ -28,21 +30,26 @@ var TradeMachine = React.createClass({
       }
     });
   },
-  handlePlayerClicked(e) {
-    console.log(e.target);
-    
+  handlePlayerClicked(player) {
     if(this.state.selectedTeams.team1 === '' || this.state.selectedTeams.team2 === '') {
       return;
     }
     
-    var playerName = e.target.innerHTML;
-    var teamGivingPlayer = this.getTeamForPlayer(e.target.innerHTML);
+    var teamGivingPlayer = this.getTeamForPlayer(player.name);
     
-    var teamReceivingPlayer = (teamGivingPlayer === this.state.selectedTeams.team1)? 'team2': 'team1';
+    var teamIndex = (teamGivingPlayer === this.state.selectedTeams.team1.teamName) ? 'team2': 'team1';
+    var teamReceivingPlayer = this.state.selectedTeams[teamIndex];
+    
+    var playerIndex = this.getPlayerIndex(player.name, teamGivingPlayer);
     
     var newIncomingPlayers = _.assign({}, this.state.incomingPlayers);
-    if(_.indexOf(this.state.incomingPlayers[teamReceivingPlayer], playerName) === -1) {
-      newIncomingPlayers[teamReceivingPlayer].push(playerName);
+    
+    var isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
+      return existingPlayer.name === player.name;
+    });
+    
+    if(isPlayerAlreadySelected === -1) {
+      newIncomingPlayers[teamIndex].push(player);
       
       this.setState({
         incomingPlayers: newIncomingPlayers
@@ -58,6 +65,13 @@ var TradeMachine = React.createClass({
       }
     }))[0];
   },
+  getPlayerIndex(playerName, teamName) {
+    var teamPlayers = this.props.teams[teamName].players;
+    
+    return _.findIndex(teamPlayers, (player) => {
+      return player.name === playerName;
+    });
+  },
   componentDidMount() {
     
   },
@@ -67,8 +81,7 @@ var TradeMachine = React.createClass({
   getFilteredTeams(index) {
     var teams = _.assign({}, this.props.teams);
     var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
-    
-    return _.omit(teams, this.state.selectedTeams[filteredIndex]);
+    return _.omit(teams, this.state.selectedTeams[filteredIndex].teamName);
   },
   render() {
     if(this.props.teams) {

@@ -44,7 +44,7 @@ var TeamArea = React.createClass({
         }
             {
             incoming.map((player) => {
-              return <div>{player}</div>
+              return <div>{player.name} - {player.salary}</div>
             })}
       </div>
     );
