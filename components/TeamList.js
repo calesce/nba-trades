@@ -15,7 +15,7 @@ var TeamList = React.createClass({
         }
         <br />
         <br />
-        <div>Team Salary: { this.props.salary }</div>
+        { this.props.salary ? <div>Team Salary: { this.props.salary }</div> : <div></div> }
       </div>
     );
   }

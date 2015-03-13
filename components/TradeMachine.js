@@ -42,7 +42,7 @@ var TradeMachine = React.createClass({
     
     var playerIndex = this.getPlayerIndex(player.name, teamGivingPlayer);
     
-    var newIncomingPlayers = _.assign({}, this.state.incomingPlayers);
+    var newIncomingPlayers = _.cloneDeep(this.state.incomingPlayers);
     
     var isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
       return existingPlayer.name === player.name;
@@ -55,6 +55,20 @@ var TradeMachine = React.createClass({
         incomingPlayers: newIncomingPlayers
       });
     }
+    else {
+      var index = _.findIndex(newIncomingPlayers[teamIndex], 'name', player.name);
+      newIncomingPlayers[teamIndex].splice(index, 1);
+      
+      this.setState({
+        incomingPlayers: newIncomingPlayers
+      });
+    }
+  },
+  addPlayerToOutgoing(player) {
+    
+  },
+  removePlayerFromOutgoing(player) {
+    
   },
   getTeamForPlayer(playerName) {
     var teams = this.props.teams;

@@ -70,12 +70,7 @@ var TeamArea = React.createClass({
             <br />
             <br />
             <div>Incoming Players:</div>
-            {
-            incoming.map((player) => {
-              return <div>{player.name} - {player.salary}</div>
-            })
-            }
-            <br />
+            <TeamList roster={incoming} onPlayerClicked={this.props.onPlayerClicked} />
             <div>Incoming Salary: {incomingSalary}</div>
           </div>
           : 
