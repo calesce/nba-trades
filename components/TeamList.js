@@ -10,7 +10,7 @@ var TeamList = React.createClass({
       <div>
         { 
           roster.map((player, index) => {
-            return <Player key={player.index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
+            return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
           })
         }
         <br />

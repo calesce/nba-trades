@@ -1,13 +1,31 @@
 var React = require('react');
 var TeamList = require('./TeamList.js');
+var _ = require('lodash');
 
 var TeamArea = React.createClass({
   getInitialState() {
     return {
-      selectedTeam: null,
-      outgoingPlayers: null,
-      incomingPlayers: null
+      selectedTeam: null
     };
+  },
+  incomingSalary() {
+    if(this.props.incomingPlayers.length === 0) { return ''; }
+    
+    var players = _.cloneDeep(this.props.incomingPlayers);
+    
+    var total = _.chain(players)
+      .map((player) => {
+        player.salary = player.salary.replace(/\,/g, '');
+        player.salary = player.salary.slice(1);
+        
+        return parseInt(player.salary);
+      })
+      .reduce((sum, salary) => {
+      return sum + salary;
+      })
+      .value();
+    
+    return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
   },
   teamSelected(event) {
     this.setState({ selectedTeam: event.target.value });
@@ -22,6 +40,7 @@ var TeamArea = React.createClass({
     var teams = this.props.teams;
     var incoming = this.props.incomingPlayers;
     var teamNames = Object.keys(teams);
+    var incomingSalary = this.incomingSalary();
     
     return (
       <div className={this.props.class} >
@@ -38,14 +57,17 @@ var TeamArea = React.createClass({
             <br />
             <br />
             <div>Incoming Players:</div>
+            {
+            incoming.map((player) => {
+              return <div>{player.name} - {player.salary}</div>
+            })
+            }
+            <br />
+            <div>Incoming Salary: {incomingSalary}</div>
           </div>
           : 
           <div></div>
         }
-            {
-            incoming.map((player) => {
-              return <div>{player.name} - {player.salary}</div>
-            })}
       </div>
     );
   }
