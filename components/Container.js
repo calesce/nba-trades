@@ -18,9 +18,9 @@ var AppContainer = React.createClass({
         teamsJson[team].players.forEach((player) => {
           var names = player.name.replace(' ', '_');
           names = names.replace(/\.+/g, '');
-          names = names.replace(/\&apos\;/g, '');
+          /*names = names.replace(/\&apos\;/g, '');
           player.name = player.name.replace(/\&apos\;/g, "'");
-          player.name = player.name.replace(/\&\#xEA\;/g, "e");
+          player.name = player.name.replace(/\&\#xEA\;/g, "e");*/
           player.imageUrl = 'http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/${names}.png';
         });
       }
