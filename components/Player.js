@@ -11,14 +11,14 @@ var Player = React.createClass({
     url = url.replace(/\\\'/g, '');
     url = url.replace(/\_iii/g, '');
     url = url.replace(/\_jr/g, '');
-    url = url.replace(/tapher/, '');
-    url = url.replace(/damjam/, 'damjan');
-    url = url.replace(/jakaar/, 'jakarr');
-    url = url.replace(/louis_amundson/, 'lou_amundson');
-    url = url.replace(/matt_dellavedova/, 'matthew_dellavedova');
-    url = url.replace(/mcadoo/, 'michael_mcadoo');
-    url = url.replace(/jarrett/, 'jerrett');
-    url = url.replace(/jeffrey/, 'jeff');
+    url = url.replace('tapher', '');
+    url = url.replace('damjam', 'damjan');
+    url = url.replace('jakaar', 'jakarr');
+    url = url.replace('louis_amundson', 'lou_amundson');
+    url = url.replace('matt_dellavedova', 'matthew_dellavedova');
+    url = url.replace('mcadoo', 'michael_mcadoo');
+    url = url.replace('grant_jarrett', 'grant_jerrett');
+    url = url.replace('jeffrey', 'jeff');
     
     return '/images/' + url + '.jpg';
   },

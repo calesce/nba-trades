@@ -16,10 +16,8 @@ var TradeMachine = React.createClass({
     };
   },
   handleTeamSelected(team, index) {
-    var newSelectedTeams = _.assign({}, this.state.selectedTeams);
+    var newSelectedTeams = _.cloneDeep(this.state.selectedTeams);
     newSelectedTeams[index] = this.props.teams[team];
-    
-    newSelectedTeams[index].teamName = team;
     
     // change to new teams and clear out staged players
     this.setState({ 
@@ -64,12 +62,6 @@ var TradeMachine = React.createClass({
       });
     }
   },
-  addPlayerToOutgoing(player) {
-    
-  },
-  removePlayerFromOutgoing(player) {
-    
-  },
   getTeamForPlayer(playerName) {
     var teams = this.props.teams;
     
@@ -87,7 +79,7 @@ var TradeMachine = React.createClass({
     });
   },
   getFilteredTeams(index) {
-    var teams = _.assign({}, this.props.teams);
+    var teams = _.cloneDeep(this.props.teams);
     var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
     return _.omit(teams, this.state.selectedTeams[filteredIndex].teamName);
   },

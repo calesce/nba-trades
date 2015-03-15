@@ -3,11 +3,6 @@ var TeamList = require('./TeamList.js');
 var _ = require('lodash');
 
 var TeamArea = React.createClass({
-  getInitialState() {
-    return {
-      selectedTeam: null
-    };
-  },
   incomingSalary() {
     if(this.props.incomingPlayers.length === 0) { return ''; }
     
@@ -28,8 +23,6 @@ var TeamArea = React.createClass({
     return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
   },
   teamSelected(event) {
-    this.setState({ selectedTeam: event.target.value });
-    
     this.props.onTeamSelected(event.target.value, this.props.number);
   },
   rosterMinusOutgoing() {
@@ -46,12 +39,11 @@ var TeamArea = React.createClass({
   },
   render() {
     var selected = false;
-    if(this.state.selectedTeam) {
+    if(this.props.team.length !== 0) {
       selected = true;
     }
-    var teams = this.props.teams;
     var incoming = this.props.incomingPlayers;
-    var teamNames = Object.keys(teams);
+    var teamNames = Object.keys(this.props.teams);
     var incomingSalary = this.incomingSalary();
     var roster = this.rosterMinusOutgoing();
     
