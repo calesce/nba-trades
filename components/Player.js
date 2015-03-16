@@ -19,6 +19,8 @@ var Player = React.createClass({
     url = url.replace('mcadoo', 'michael_mcadoo');
     url = url.replace('grant_jarrett', 'grant_jerrett');
     url = url.replace('jeffrey', 'jeff');
+    url = url.replace('jose_juan', 'jose');
+    url = url.replace('tim_hardaway', 'timothy_hardaway');
     
     return '/images/' + url + '.jpg';
   },
