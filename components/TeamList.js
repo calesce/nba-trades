@@ -6,18 +6,23 @@ var TeamList = React.createClass({
   render() {
     var roster = _.cloneDeep(this.props.roster);
     
-    return (
-      <div>
-        { 
-          roster.map((player, index) => {
-            return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
-          })
-        }
-        <br />
-        <br />
-        { this.props.salary ? <div>Team Salary: { this.props.salary }</div> : <div></div> }
-      </div>
-    );
+    if(this.props.roster) {
+      return (
+        <div>
+          { 
+            roster.map((player, index) => {
+              return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
+            })
+          }
+          <br />
+          <br />
+          { this.props.salary ? <div>Team Salary: { this.props.salary }</div> : <div></div> }
+        </div>
+      );
+    }
+    else {
+      return <div></div>
+    }
   }
 });
 

@@ -1,6 +1,7 @@
 var React = require('react');
 var TeamList = require('./TeamList.js');
 var _ = require('lodash');
+var cx = require('classnames');
 
 var TeamArea = React.createClass({
   incomingSalary() {
@@ -37,37 +38,48 @@ var TeamArea = React.createClass({
     
     return result;
   },
-  render() {
-    var selected = false;
-    if(this.props.team.length !== 0) {
-      selected = true;
+  componentWillMount() {
+    if(this.props.number === 'team1') {
+      this.props.onTeamSelected('Pelicans', 'team1');
     }
-    var incoming = this.props.incomingPlayers;
-    var teamNames = Object.keys(this.props.teams);
-    var incomingSalary = this.incomingSalary();
-    var roster = this.rosterMinusOutgoing();
+    else {
+      this.props.onTeamSelected('Grizzlies', 'team2');
+    }
+  },
+  render() {
+    let teamNames = Object.keys(this.props.teams);
+    let incomingSalary = this.incomingSalary();
+    let roster = this.rosterMinusOutgoing();
+    let area = (this.props.number === 'team1') ? 'area1' : 'area2';
+    let classes = cx(area, 'roster');
     
     return (
-      <div className={this.props.class} >
-        <select onChange={this.teamSelected}>
-          <option value='' disabled>Choose a team</option>
-          { teamNames.map((team, index) => {
-              return <option key={team} value={team}>{team}</option>
-            })
-          }
-        </select>
-        { selected ? 
-          <div>
-            <TeamList roster={roster} salary={this.props.team.totalSalary} onPlayerClicked={this.props.onPlayerClicked} />
-            <br />
-            <br />
-            <div>Incoming Players:</div>
-            <TeamList roster={incoming} onPlayerClicked={this.props.onPlayerClicked} />
-            <div>Incoming Salary: {incomingSalary}</div>
-          </div>
-          : 
-          <div></div>
-        }
+      <div>
+        <div className={this.props.number === 'team1' ? 'area1' : 'area2'}>
+          <select 
+            onChange={this.teamSelected}
+            value={this.props.team.teamName ? this.props.team.teamName: ''}
+          >
+            <option value='none' disabled>Choose a team</option>
+            { teamNames.map((team, index) => {
+                return <option key={team} value={team}>{team}</option>
+              })
+            }
+          </select>
+          <br />
+          <br />
+          <TeamList 
+            roster={roster}
+            class={classes}
+            salary={this.props.team.totalSalary}
+            onPlayerClicked={this.props.onPlayerClicked}
+          />
+        </div>
+        <div className={this.props.number === 'team1' ? 'area3' : 'area4'}>
+          <div>Incoming Players:</div>
+          <TeamList roster={this.props.incomingPlayers} onPlayerClicked={this.props.onPlayerClicked} />
+          <div>Incoming Salary: {incomingSalary}</div>
+        </div>
       </div>
     );
   }

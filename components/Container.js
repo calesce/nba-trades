@@ -8,20 +8,16 @@ var AppContainer = React.createClass({
     };
   },
   componentDidMount() {
-    var http = new XMLHttpRequest();
+    let http = new XMLHttpRequest();
     http.open('GET', 'http://nbasalaries.herokuapp.com/', true);
     http.send();
     
     http.onload = () => {
       var teamsJson = JSON.parse(http.responseText);
-      for(var team in teamsJson) {
+      for(let team in teamsJson) {
         teamsJson[team].players.forEach((player) => {
-          var names = player.name.replace(' ', '_');
+          let names = player.name.replace(' ', '_');
           names = names.replace(/\.+/g, '');
-          /*names = names.replace(/\&apos\;/g, '');
-          player.name = player.name.replace(/\&apos\;/g, "'");
-          player.name = player.name.replace(/\&\#xEA\;/g, "e");*/
-          player.imageUrl = 'http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/${names}.png';
         });
       }
       
@@ -29,7 +25,12 @@ var AppContainer = React.createClass({
     };
   },
   render() {
-    return <TradeMachine teams={this.state.teams} />;
+    if(this.state.teams) {
+      return <TradeMachine teams={this.state.teams} />;
+    }
+    else {
+      return <div></div>;
+    }
   }
 })
 

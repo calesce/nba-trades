@@ -4,10 +4,13 @@ var TeamArea = require('./TeamArea.js');
 
 var TradeMachine = React.createClass({
   getInitialState() {
+    let team1 = this.getTeam('Pelicans');
+    let team2 = this.getTeam('Grizzlies');
+    
     return {
       selectedTeams: {
-        team1: [],
-        team2: []
+        team1: team1,
+        team2: team2
       },
       incomingPlayers: {
         team1: [],
@@ -71,6 +74,9 @@ var TradeMachine = React.createClass({
       }
     }))[0];
   },
+  getTeam(teamName) {
+    return this.props.teams[teamName];
+  },
   getPlayerIndex(playerName, teamName) {
     var teamPlayers = this.props.teams[teamName].players;
     
@@ -79,9 +85,14 @@ var TradeMachine = React.createClass({
     });
   },
   getFilteredTeams(index) {
-    var teams = _.cloneDeep(this.props.teams);
-    var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
-    return _.omit(teams, this.state.selectedTeams[filteredIndex].teamName);
+    if(this.state.selectedTeams.team1) {
+      var teams = _.cloneDeep(this.props.teams);
+      var filteredIndex = (index === 'team1') ? 'team2' : 'team1';
+      return _.omit(teams, this.state.selectedTeams[filteredIndex].teamName);
+    }
+    else {
+      return this.props.teams;
+    }
   },
   render() {
     if(this.props.teams) {
@@ -90,7 +101,7 @@ var TradeMachine = React.createClass({
           <TeamArea
             teams={this.getFilteredTeams('team1')}
             team={this.state.selectedTeams.team1}
-            class='area1' number={'team1'}
+            number={'team1'}
             onTeamSelected={this.handleTeamSelected}
             onPlayerClicked={this.handlePlayerClicked}
             incomingPlayers={this.state.incomingPlayers.team1}
@@ -99,7 +110,7 @@ var TradeMachine = React.createClass({
           <TeamArea
             teams={this.getFilteredTeams('team2')}
             team={this.state.selectedTeams.team2}
-            class='area2' number={'team2'}
+            number={'team2'}
             onTeamSelected={this.handleTeamSelected}
             onPlayerClicked={this.handlePlayerClicked}
             incomingPlayers={this.state.incomingPlayers.team2}
