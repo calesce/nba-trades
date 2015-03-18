@@ -46,8 +46,18 @@ var TeamArea = React.createClass({
       this.props.onTeamSelected('Grizzlies', 'team2');
     }
   },
+  getSortedTeams() {
+    return _.chain(this.props.teams)
+      .sortBy( (team) => { return team.location; })
+      .map( (team) => { return  { 
+        teamName: team.teamName,
+        location: team.location
+        } 
+      })
+      .value();
+  },
   render() {
-    let teamNames = Object.keys(this.props.teams);
+    let teamNames = this.getSortedTeams();
     let incomingSalary = this.incomingSalary();
     let roster = this.rosterMinusOutgoing();
     let area = (this.props.number === 'team1') ? 'area1' : 'area2';
@@ -62,7 +72,7 @@ var TeamArea = React.createClass({
           >
             <option value='none' disabled>Choose a team</option>
             { teamNames.map((team, index) => {
-                return <option key={team} value={team}>{team}</option>
+                return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>
               })
             }
           </select>
