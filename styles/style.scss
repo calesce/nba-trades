@@ -30,6 +30,14 @@
   top: 1%;
 }
 
+$pelicans-primary: #002B5C;
+$pelicans-secondary: #B4975A;
+$pelicans-tertiary: #E31836;
+
+.pelicans {
+  background: $pelicans-secondary;
+}
+
 * {
   -webkit-user-select: none;      
   -moz-user-select: none;

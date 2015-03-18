@@ -14,13 +14,6 @@ var AppContainer = React.createClass({
     
     http.onload = () => {
       var teamsJson = JSON.parse(http.responseText);
-      for(let team in teamsJson) {
-        teamsJson[team].players.forEach((player) => {
-          let names = player.name.replace(' ', '_');
-          names = names.replace(/\.+/g, '');
-        });
-      }
-      
       this.setState({ teams: teamsJson });
     };
   },

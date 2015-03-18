@@ -81,6 +81,7 @@ var TeamArea = React.createClass({
           <TeamList 
             roster={roster}
             class={classes}
+            team={this.props.team.teamName}
             salary={this.props.team.totalSalary}
             onPlayerClicked={this.props.onPlayerClicked}
           />

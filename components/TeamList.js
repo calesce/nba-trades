@@ -11,6 +11,7 @@ var TeamList = React.createClass({
         <div>
           { 
             roster.map((player, index) => {
+              player.team = this.props.team;
               return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
             })
           }
