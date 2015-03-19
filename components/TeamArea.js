@@ -61,7 +61,7 @@ var TeamArea = React.createClass({
     let incomingSalary = this.incomingSalary();
     let roster = this.rosterMinusOutgoing();
     let area = (this.props.number === 'team1') ? 'area1' : 'area2';
-    let classes = cx(area, 'roster');
+    let classes = cx(area, this.props.teamName);
     
     return (
       <div>
@@ -88,7 +88,10 @@ var TeamArea = React.createClass({
         </div>
         <div className={this.props.number === 'team1' ? 'area3' : 'area4'}>
           <div>Incoming Players:</div>
-          <TeamList roster={this.props.incomingPlayers} onPlayerClicked={this.props.onPlayerClicked} />
+          <TeamList
+            roster={this.props.incomingPlayers}
+            onPlayerClicked={this.props.onPlayerClicked} 
+          />
           <div>Incoming Salary: {incomingSalary}</div>
         </div>
       </div>

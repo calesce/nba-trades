@@ -4,14 +4,16 @@ var _ = require('lodash');
 
 var TeamList = React.createClass({
   render() {
-    var roster = _.cloneDeep(this.props.roster);
+    let roster = _.cloneDeep(this.props.roster);
     
     if(this.props.roster) {
       return (
-        <div>
+        <div >
           { 
             roster.map((player, index) => {
-              player.team = this.props.team;
+              if(this.props.team) {
+                player.team = this.props.team;
+              }
               return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
             })
           }
