@@ -146,130 +146,183 @@ $wizards-primary: #C60C30;
 $wizards-secondary: #002244;
 $wizards-tertiary: #BCC4CC;
 
+.player {
+  position: relative;
+  // font-family: "Monaco";
+  height: 50px;
+  
+  img {
+    position: absolute;
+    left: 2px;
+  }
+  
+  .playerName {
+    position: absolute;
+    top: 5px;
+    right: 2px;
+  }
+  
+  .playerSalary {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+  }
+}
+
 .pelicans {
   background: $pelicans-primary;
   color: $pelicans-secondary;
+  border: 1px solid $pelicans-tertiary;
 }
 
 .grizzlies {
   background: $grizzlies-primary;
   color: $grizzlies-secondary;
+  border: 1px solid $grizzlies-tertiary;
 }
 
 .suns {
   background: $suns-primary;
   color: $suns-secondary;
+  border: 1px solid #fff;
 }
 
 .wizards {
   background: $wizards-primary;
   color: $wizards-secondary;
+  border: 1px solid $wizards-tertiary;
 }
 
 .nuggets {
   background: $nuggets-primary;
   color: $nuggets-secondary;
+  border: 1px solid $nuggets-tertiary;
 }
 
 .timberwolves {
   background: $timberwolves-primary;
   color: $timberwolves-secondary;
+  border: 1px solid $timberwolves-tertiary;
 }
 .heat {
   background: $heat-primary;
   color: $heat-secondary;
+  border: 1px solid $heat-tertiary;
 }
 .cavaliers {
   background: $cavaliers-primary;
   color: $cavaliers-secondary;
+  border: 1px solid $cavaliers-tertiary;
 }
 .mavericks {
   background: $mavericks-primary;
   color: $mavericks-secondary;
+  border: 1px solid $mavericks-tertiary;
 }
 .spurs {
   background: $spurs-primary;
-  color: $spurs-secondary;
+  color: #fff;
+  border: 1px solid $spurs-secondary;
 }
 .thunder {
   background: $thunder-primary;
-  color: $thunder-secondary;
+  color: $thunder-tertiary;
+  border: 1px solid $thunder-secondary;
 }
 .trailblazers {
   background: $trail-blazers-primary;
-  color: $trail-blazers-secondary;
+  color: $trail-blazers-tertiary;
+  border: 1px solid $trail-blazers-secondary;
 }
 
 .jazz {
   background: $jazz-primary;
   color: $jazz-secondary;
+  border: 1px solid $jazz-quaternary;
 }
 
 .clippers {
   background: $clippers-primary;
-  color: $clippers-secondary;
+  color: #fff;
+  border: 1px solid $clippers-secondary;
 }
 .lakers {
   background: $lakers-primary;
-  color: $lakers-secondary;
+  color: #fff;
+  border: 1px solid $lakers-secondary;
 }
 .warriors {
   background: $warriors-primary;
-  color: $warriors-secondary;
+  color: #fff;
+  border: 1px solid $warriors-secondary;
 }
 .kings {
   background: $kings-primary;
-  color: $kings-secondary;
+  color: #fff;
+  border: 1px solid $kings-secondary;
 }
 .nets {
   background: $nets-primary;
   color: #fff;
+  border: 1px solid #fff;
 }
 .knicks {
   background: $knicks-primary;
   color: $knicks-secondary;
+  border: 1px solid $knicks-tertiary;
 }
 .celtics {
   background: $celtics-primary;
   color: $celtics-secondary;
+  border: 1px solid $celtics-secondary;
 }
 .sixers {
   background: $sixers-primary;
-  color: $sixers-secondary;
+  color: #fff;
+  border: 1px solid $sixers-secondary;
 }
 .raptors {
   background: $raptors-primary;
   color: $raptors-secondary;
+  border: 1px solid $raptors-tertiary;
 }
 .pacers {
   background: $pacers-primary;
   color: $pacers-secondary;
+  border: 1px solid $pacers-tertiary;
 }
 .bucks {
   background: $bucks-primary;
-  color: $bucks-secondary;
+  color: $bucks-tertiary;
+  border: 1px solid $bucks-secondary;
 }
 .bulls {
   background: $bulls-primary;
-  color: $bulls-secondary;
+  color: #fff;
+  border: 1px solid $bulls-secondary;
 }
 .pistons {
   background: $pistons-primary;
   color: $pistons-secondary;
+  border: 1px solid $pistons-tertiary;
 }
 .hornets {
   background: $hornets-primary;
   color: $hornets-secondary;
+  border: 1px solid $hornets-tertiary;
 }
 .magic {
   background: $magic-primary;
   color: $magic-secondary;
+  border: 1px solid $magic-tertiary;
 }
 .hawks {
   background: $hawks-primary;
   color: $hawks-secondary;
+  border: 1px solid $hawks-tertiary;
 }
 .rockets {
   background: $rockets-primary;
-  color: $rockets-secondary;
+  color: #fff;
+  border: 1px solid $rockets-secondary;
 }
