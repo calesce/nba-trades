@@ -18,8 +18,15 @@ var AppContainer = React.createClass({
     };
   },
   render() {
+    let salaryCap = 63065000;
+    let taxLine = 76829000;
+    
     if(this.state.teams) {
-      return <TradeMachine teams={this.state.teams} />;
+      return <TradeMachine
+        teams={this.state.teams}
+        salaryCap={salaryCap}
+        taxLine={taxLine}
+      />;
     }
     else {
       return <div></div>;

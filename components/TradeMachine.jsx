@@ -51,7 +51,6 @@ var TradeMachine = React.createClass({
     
     if(isPlayerAlreadySelected === -1) {
       newIncomingPlayers[teamIndex].push(player);
-      console.log(newIncomingPlayers);
       this.setState({
         incomingPlayers: newIncomingPlayers
       });
