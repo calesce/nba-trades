@@ -1,5 +1,5 @@
 var React = require('react');
-var Player = require('./Player.js');
+var Player = require('./Player.jsx');
 var _ = require('lodash');
 
 var TeamList = React.createClass({

@@ -1,5 +1,5 @@
 var React = require('react');
-var TradeMachine = require('./TradeMachine.js');
+var TradeMachine = require('./TradeMachine.jsx');
 
 var AppContainer = React.createClass({
   getInitialState() {

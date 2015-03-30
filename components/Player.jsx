@@ -11,7 +11,6 @@ var Player = React.createClass({
     className = className.replace('76ers', 'sixers');
     
     className = cx('player', className);
-    console.log(className);
     
     return (
       <div className={className} ref="player" onClick={this.handleClick}>

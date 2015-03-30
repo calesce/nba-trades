@@ -1,6 +1,6 @@
 var React = require('react');
 var _ = require('lodash');
-var TeamArea = require('./TeamArea.js');
+var TeamArea = require('./TeamArea.jsx');
 
 var TradeMachine = React.createClass({
   getInitialState() {

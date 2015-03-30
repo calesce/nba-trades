@@ -1,5 +1,5 @@
 var React = require('react');
-var TeamList = require('./TeamList.js');
+var TeamList = require('./TeamList.jsx');
 var _ = require('lodash');
 var cx = require('classnames');
 
