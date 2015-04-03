@@ -6,20 +6,34 @@
 
 .area3 {
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 1%;
 }
 
 .area2 {
   position: absolute;
-  left: 50%;
+  left: 30%;
   top: 1%;
 }
 
 .area4 {
   position: absolute;
-  left: 75%;
+  left: 45%;
   top: 1%;
+}
+
+.check {
+  position: absolute;
+  left: 60%;
+  top: 1%;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
 }
 
 * {

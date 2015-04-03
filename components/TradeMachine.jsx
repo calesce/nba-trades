@@ -1,6 +1,7 @@
 var React = require('react');
 var _ = require('lodash');
 var TeamArea = require('./TeamArea.jsx');
+var Check = require('./Check.jsx');
 
 var TradeMachine = React.createClass({
   getInitialState() {
@@ -115,6 +116,12 @@ var TradeMachine = React.createClass({
             incomingPlayers={this.state.incomingPlayers.team2}
             outgoingPlayers={this.state.incomingPlayers.team1}
           />
+        <Check 
+          incoming={this.state.incomingPlayers}
+          teams={this.state.selectedTeams}
+          salaryCap={this.props.salaryCap}
+          taxLine={this.props.taxLine}
+        />
         </div>
       );
     }
