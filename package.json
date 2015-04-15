@@ -9,12 +9,15 @@
     "type": "git"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "download": "node scripts/downloadImages"
   },
   "dependencies": {
+    "async": "^0.9.0",
     "classnames": "^1.1.4",
     "jsx-loader": "^0.12.2",
     "react": "^0.12.2",
+    "rimraf": "^2.3.2",
     "webpack": "^1.7.2"
   },
   "devDependencies": {

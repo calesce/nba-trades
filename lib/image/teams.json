@@ -1,0 +1,152 @@
+[
+  {
+    "teamId": 1610612737,
+    "teamName": "Atlanta Hawks",
+    "simpleName": "Hawks"
+  },
+  {
+    "teamId": 1610612738,
+    "teamName": "Boston Celtics",
+    "simpleName": "Celtics"
+  },
+  {
+    "teamId": 1610612751,
+    "teamName": "Brooklyn Nets",
+    "simpleName": "Nets"
+  },
+  {
+    "teamId": 1610612766,
+    "teamName": "Charlotte Bobcats",
+    "simpleName": "Hornets"
+  },
+  {
+    "teamId": 1610612741,
+    "teamName": "Chicago Bulls",
+    "simpleName": "Bulls"
+  },
+  {
+    "teamId": 1610612739,
+    "teamName": "Cleveland Cavaliers",
+    "simpleName": "Cavaliers"
+  },
+  {
+    "teamId": 1610612742,
+    "teamName": "Dallas Mavericks",
+    "simpleName": "Mavericks"
+  },
+  {
+    "teamId": 1610612743,
+    "teamName": "Denver Nuggets",
+    "simpleName": "Nuggets"
+  },
+  {
+    "teamId": 1610612765,
+    "teamName": "Detroit Pistons",
+    "simpleName": "Pistons"
+  },
+  {
+    "teamId": 1610612744,
+    "teamName": "Golden State Warriors",
+    "simpleName": "Warriors"
+  },
+  {
+    "teamId": 1610612745,
+    "teamName": "Houston Rockets",
+    "simpleName": "Rockets"
+  },
+  {
+    "teamId": 1610612754,
+    "teamName": "Indiana Pacers",
+    "simpleName": "Pacers"
+  },
+  {
+    "teamId": 1610612746,
+    "teamName": "Los Angeles Clippers",
+    "simpleName": "Clippers"
+  },
+  {
+    "teamId": 1610612747,
+    "teamName": "Los Angeles Lakers",
+    "simpleName": "Lakers"
+  },
+  {
+    "teamId": 1610612763,
+    "teamName": "Memphis Grizzlies",
+    "simpleName": "Grizzlies"
+  },
+  {
+    "teamId": 1610612748,
+    "teamName": "Miami Heat",
+    "simpleName": "Heat"
+  },
+  {
+    "teamId": 1610612749,
+    "teamName": "Milwaukee Bucks",
+    "simpleName": "Bucks"
+  },
+  {
+    "teamId": 1610612750,
+    "teamName": "Minnesota Timberwolves",
+    "simpleName": "Timberwolves"
+  },
+  {
+    "teamId": 1610612740,
+    "teamName": "New Orleans Pelicans",
+    "simpleName": "Pelicans"
+  },
+  {
+    "teamId": 1610612752,
+    "teamName": "New York Knicks",
+    "simpleName": "Knicks"
+  },
+  {
+    "teamId": 1610612760,
+    "teamName": "Oklahoma City Thunder",
+    "simpleName": "Thunder"
+  },
+  {
+    "teamId": 1610612753,
+    "teamName": "Orlando Magic",
+    "simpleName": "Magic"
+  },
+  {
+    "teamId": 1610612755,
+    "teamName": "Philadelphia 76ers",
+    "simpleName": "76ers"
+  },
+  {
+    "teamId": 1610612756,
+    "teamName": "Phoenix Suns",
+    "simpleName": "Suns"
+  },
+  {
+    "teamId": 1610612757,
+    "teamName": "Portland Trail Blazers",
+    "simpleName": "Trail Blazers"
+  },
+  {
+    "teamId": 1610612758,
+    "teamName": "Sacramento Kings",
+    "simpleName": "Kings"
+  },
+  {
+    "teamId": 1610612759,
+    "teamName": "San Antonio Spurs",
+    "simpleName": "Spurs"
+  },
+  {
+    "teamId": 1610612761,
+    "teamName": "Toronto Raptors",
+    "simpleName": "Raptors"
+  },
+  {
+    "teamId": 1610612762,
+    "teamName": "Utah Jazz",
+    "simpleName": "Jazz"
+  },
+  {
+    "teamId": 1610612764,
+    "teamName": "Washington Wizards",
+    "simpleName": "Wizards"
+  }
+]
