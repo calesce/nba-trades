@@ -9,9 +9,9 @@ var Player = React.createClass({
     let className = this.props.data.team.toLowerCase();
     className = className.replace(/\ /, '');
     className = className.replace('76ers', 'sixers');
-    
+
     className = cx('player', className);
-    
+
     return (
       <div className={className} ref="player" onClick={this.handleClick}>
         <img src={this.props.data.imageUrl} height='45px' width='32px' />
@@ -21,5 +21,5 @@ var Player = React.createClass({
     );
   }
 });
-  
+
 module.exports = Player;

@@ -5,11 +5,11 @@ var _ = require('lodash');
 var TeamList = React.createClass({
   render() {
     let roster = _.cloneDeep(this.props.roster);
-    
+
     if(this.props.roster) {
       return (
         <div >
-          { 
+          {
             roster.map((player, index) => {
               if(this.props.team) {
                 player.team = this.props.team;
@@ -24,7 +24,7 @@ var TeamList = React.createClass({
       );
     }
     else {
-      return <div></div>
+      return <div></div>;
     }
   }
 });

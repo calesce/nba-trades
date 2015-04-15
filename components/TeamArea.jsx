@@ -5,37 +5,41 @@ var cx = require('classnames');
 
 var TeamArea = React.createClass({
   incomingSalary() {
-    if(this.props.incomingPlayers.length === 0) { return ''; }
-    
+    if(this.props.incomingPlayers.length === 0) {
+      return '';
+    }
+
     var players = _.cloneDeep(this.props.incomingPlayers);
-    
+
     var total = _.chain(players)
       .map((player) => {
         player.salary = player.salary.replace(/\,/g, '');
         player.salary = player.salary.slice(1);
-        
+
         return parseInt(player.salary);
       })
       .reduce((sum, salary) => {
-      return sum + salary;
+        return sum + salary;
       })
       .value();
-    
-    return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+
+    return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   },
   teamSelected(event) {
     this.props.onTeamSelected(event.target.value, this.props.number);
   },
   rosterMinusOutgoing() {
-    if(this.props.outgoingPlayers.length === 0) { return this.props.team.players; }
-    
+    if(this.props.outgoingPlayers.length === 0) {
+      return this.props.team.players;
+    }
+
     var roster = _.cloneDeep(this.props.team.players);
     var outgoing = _.cloneDeep(this.props.outgoingPlayers);
-  
+
     var result = _.filter(roster, (player) => {
       return _.find(outgoing, { 'name': player.name }) === undefined;
     });
-    
+
     return result;
   },
   componentWillMount() {
@@ -48,11 +52,14 @@ var TeamArea = React.createClass({
   },
   getSortedTeams() {
     return _.chain(this.props.teams)
-      .sortBy( (team) => { return team.location; })
-      .map( (team) => { return  { 
-        teamName: team.teamName,
-        location: team.location
-        } 
+      .sortBy( (team) => {
+        return team.location;
+      })
+      .map( (team) => {
+        return {
+          teamName: team.teamName,
+          location: team.location
+        };
       })
       .value();
   },
@@ -62,23 +69,24 @@ var TeamArea = React.createClass({
     let roster = this.rosterMinusOutgoing();
     let area = (this.props.number === 'team1') ? 'area1' : 'area2';
     let classes = cx(area, this.props.teamName);
-    
+
     return (
       <div>
         <div className={this.props.number === 'team1' ? 'area1' : 'area2'}>
-          <select 
+          <select
             onChange={this.teamSelected}
-            value={this.props.team.teamName ? this.props.team.teamName: ''}
+            value={this.props.team.teamName ? this.props.team.teamName : ''}
           >
             <option value='none' disabled>Choose a team</option>
-            { teamNames.map((team, index) => {
-                return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>
+            {
+              teamNames.map((team) => {
+                return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>;
               })
             }
           </select>
           <br />
           <br />
-          <TeamList 
+          <TeamList
             roster={roster}
             class={classes}
             team={this.props.team.teamName}
@@ -90,7 +98,7 @@ var TeamArea = React.createClass({
           <div>Incoming Players:</div>
           <TeamList
             roster={this.props.incomingPlayers}
-            onPlayerClicked={this.props.onPlayerClicked} 
+            onPlayerClicked={this.props.onPlayerClicked}
           />
           <div>Incoming Salary: {incomingSalary}</div>
         </div>

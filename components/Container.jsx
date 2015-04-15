@@ -3,7 +3,7 @@ var TradeMachine = require('./TradeMachine.jsx');
 
 var AppContainer = React.createClass({
   getInitialState() {
-    return { 
+    return {
       teams: ''
     };
   },
@@ -11,7 +11,7 @@ var AppContainer = React.createClass({
     let http = new XMLHttpRequest();
     http.open('GET', 'http://nbasalaries.herokuapp.com/', true);
     http.send();
-    
+
     http.onload = () => {
       var teamsJson = JSON.parse(http.responseText);
       this.setState({ teams: teamsJson });
@@ -20,7 +20,7 @@ var AppContainer = React.createClass({
   render() {
     let salaryCap = 63065000;
     let taxLine = 76829000;
-    
+
     if(this.state.teams) {
       return <TradeMachine
         teams={this.state.teams}
@@ -32,6 +32,6 @@ var AppContainer = React.createClass({
       return <div></div>;
     }
   }
-})
+});
 
 module.exports = AppContainer;
