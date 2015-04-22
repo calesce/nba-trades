@@ -1,30 +1,68 @@
-.area1 {
+* {
+  // background: #DBDBDB;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  //font-family:'Consolas',"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",'Monaco',"Courier New",'Courier','monospace';
+}
+
+.team1 {
   position: absolute;
   left: 0%;
   top: 1%;
+  width: 500px;
+  height: 1100px;
 }
 
-.area3 {
+.team2 {
   position: absolute;
-  left: 15%;
+  left: 40%;
   top: 1%;
+  width: 500px;
+  height: 1100px;
 }
+// height: 500;
+// width: 100%;
+// display: flex;
+// flex-direction: column;
+// flex-wrap: wrap;
+// justify-content: flex-start;
+// align-items: flex-start;
+// align-content: flex-start;
 
-.area2 {
-  position: absolute;
-  left: 30%;
-  top: 1%;
-}
+.playerList {
 
-.area4 {
-  position: absolute;
-  left: 45%;
-  top: 1%;
+  .player {
+    height: 50px;
+    width: 160px;
+
+    margin: 3px;
+    display: inline-block;
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 2px;
+      top: 3px
+    }
+
+    .playerName {
+      position: absolute;
+      right: 5px;
+    }
+
+    .playerSalary {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+    }
+  }
 }
 
 .check {
   position: absolute;
-  left: 60%;
+  left: 80%;
   top: 1%;
 }
 
@@ -36,13 +74,6 @@
   color: red;
 }
 
-* {
-  -webkit-user-select: none;      
-  -moz-user-select: none;
-  -ms-user-select: none;
-  cursor: default;
-  //font-family:'Consolas',"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",'Monaco',"Courier New",'Courier','monospace';
-}
 
 $hawks-primary: #000080;
 $hawks-secondary: #FF0000;
@@ -159,29 +190,6 @@ $jazz-quaternary: #B5B5B5;
 $wizards-primary: #C60C30;
 $wizards-secondary: #002244;
 $wizards-tertiary: #BCC4CC;
-
-.player {
-  position: relative;
-  // font-family: "Monaco";
-  height: 50px;
-  
-  img {
-    position: absolute;
-    left: 2px;
-  }
-  
-  .playerName {
-    position: absolute;
-    top: 5px;
-    right: 2px;
-  }
-  
-  .playerSalary {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-  }
-}
 
 .pelicans {
   background: $pelicans-primary;

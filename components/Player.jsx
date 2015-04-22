@@ -7,8 +7,8 @@ var Player = React.createClass({
   },
   render() {
     let className = this.props.data.team.toLowerCase();
-    className = className.replace(/\ /, '');
-    className = className.replace('76ers', 'sixers');
+    className = className.replace(/\ /, '')
+      .replace('76ers', 'sixers');
 
     className = cx('player', className);
 

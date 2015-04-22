@@ -8,12 +8,23 @@
   "ecmaFeatures": {
     "jsx": true
   },
+  "globals": {
+    "AppContainer": true,
+    "TradeMachine": true,
+    "TeamArea": true,
+    "TeamList": true,
+    "Check": true,
+    "Player": true
+  },
   "rules": {
     "quotes": [2, "single"],
     "semi": [2, "always"],
+    "no-unused-vars": [0, { "vars": "local", "args": "after-used" }],
     "indent": [2, 2],
     "brace-style": [2, "stroustrup", { "allowSingleLine": false }],
     "camelcase": [2, { "properties": "always" }],
-    "strict": 0
+    "strict": 0,
+    "comma-dangle": "always",
+    "no-cond-assign": "always"
   }
 }

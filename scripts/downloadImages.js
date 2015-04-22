@@ -6,6 +6,4 @@ download.fetch(function(err) {
     console.log('error: ' + JSON.stringify(err));
     return;
   }
-  
-  process.exit();
 });
