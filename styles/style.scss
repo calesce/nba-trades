@@ -11,15 +11,16 @@
   position: absolute;
   left: 0%;
   top: 1%;
-  width: 500px;
-  height: 1100px;
+  width: 800px;
+  min-height: 0px;
+  max-height: 1100px;
 }
 
 .team2 {
   position: absolute;
-  left: 40%;
+  left: 50%;
   top: 1%;
-  width: 500px;
+  width: 800px;
   height: 1100px;
 }
 // height: 500;

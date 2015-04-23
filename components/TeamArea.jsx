@@ -75,10 +75,9 @@ var TeamArea = React.createClass({
     return (
       <div className={ this.props.number === 'team1' ? 'team1' : 'team2' }>
         <div>
-          <select
-            onChange={this.teamSelected}
-            value={this.props.team.teamName ? this.props.team.teamName : ''}
-          >
+          <select onChange={this.teamSelected}
+                  value={this.props.team.teamName ? this.props.team.teamName : ''} >
+
             <option value='none' disabled>Choose a team</option>
             {
               teamNames.map((team) => {
