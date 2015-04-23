@@ -25,6 +25,7 @@
     "camelcase": [2, { "properties": "always" }],
     "strict": 0,
     "comma-dangle": "always",
-    "no-cond-assign": "always"
+    "no-cond-assign": "always",
+    "no-use-before-define": [2, "nofunc"]
   }
 }

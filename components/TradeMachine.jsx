@@ -37,9 +37,7 @@ var TradeMachine = React.createClass({
       return;
     }
 
-    var teamGivingPlayer = this.getTeamForPlayer(player.name);
-
-    var teamIndex = (teamGivingPlayer === this.state.selectedTeams.team1.teamName) ? 'team2' : 'team1';
+    var teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
 
     var newIncomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
@@ -113,13 +111,14 @@ var TradeMachine = React.createClass({
             incomingPlayers={this.state.incomingPlayers.team2}
             outgoingPlayers={this.state.incomingPlayers.team1}
           />
-        <Check
-          incoming={this.state.incomingPlayers}
-          teams={this.state.selectedTeams}
-          salaryCap={this.props.salaryCap}
-          taxLine={this.props.taxLine}
-        />
         </div>
+        // <Check
+        //   incoming={this.state.incomingPlayers}
+        //   teams={this.state.selectedTeams}
+        //   salaryCap={this.props.salaryCap}
+        //   taxLine={this.props.taxLine}
+        // />
+
       );
     }
     else {
