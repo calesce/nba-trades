@@ -5,7 +5,7 @@ var Check = require('./Check.jsx');
 
 var TradeMachine = React.createClass({
   getInitialState() {
-    let team1 = this.getTeam('Pelicans');
+    let team1 = this.getTeam('Wizards');
     let team2 = this.getTeam('Grizzlies');
 
     return {
@@ -90,9 +90,16 @@ var TradeMachine = React.createClass({
     }
   },
   render() {
+    let style = {
+      WebkitUserSelect: 'none',
+      MozUserSelect: 'none',
+      MsUserSelect: 'none',
+      cursor: 'default'
+    };
+
     if(this.props.teams) {
       return (
-        <div className='TradeMachine'>
+        <div style={style} className='TradeMachine'>
           <TeamArea
             teams={this.getFilteredTeams('team1')}
             team={this.state.selectedTeams.team1}
@@ -118,7 +125,6 @@ var TradeMachine = React.createClass({
         //   salaryCap={this.props.salaryCap}
         //   taxLine={this.props.taxLine}
         // />
-
       );
     }
     else {

@@ -9,7 +9,7 @@ var AppContainer = React.createClass({
   },
   componentDidMount() {
     let http = new XMLHttpRequest();
-    http.open('GET', 'http://localhost:8000/salaries', true);
+    http.open('GET', 'http://nbasalaries.herokuapp.com', true);
     http.send();
 
     http.onload = () => {

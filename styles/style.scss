@@ -1,81 +1,3 @@
-* {
-  // background: #DBDBDB;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  cursor: default;
-  //font-family:'Consolas',"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",'Monaco',"Courier New",'Courier','monospace';
-}
-
-.team1 {
-  position: absolute;
-  left: 0%;
-  top: 1%;
-  width: 800px;
-  min-height: 0px;
-  max-height: 1100px;
-}
-
-.team2 {
-  position: absolute;
-  left: 50%;
-  top: 1%;
-  width: 800px;
-  height: 1100px;
-}
-// height: 500;
-// width: 100%;
-// display: flex;
-// flex-direction: column;
-// flex-wrap: wrap;
-// justify-content: flex-start;
-// align-items: flex-start;
-// align-content: flex-start;
-
-.playerList {
-
-  .player {
-    height: 50px;
-    width: 160px;
-
-    margin: 3px;
-    display: inline-block;
-    position: relative;
-
-    img {
-      position: absolute;
-      left: 2px;
-      top: 3px
-    }
-
-    .playerName {
-      position: absolute;
-      right: 5px;
-    }
-
-    .playerSalary {
-      position: absolute;
-      right: 5px;
-      bottom: 5px;
-    }
-  }
-}
-
-.check {
-  position: absolute;
-  left: 80%;
-  top: 1%;
-}
-
-.valid {
-  color: green;
-}
-
-.invalid {
-  color: red;
-}
-
-
 $hawks-primary: #000080;
 $hawks-secondary: #FF0000;
 $hawks-tertiary: #C0C0C0;
@@ -197,31 +119,26 @@ $wizards-tertiary: #BCC4CC;
   color: $pelicans-secondary;
   border: 1px solid $pelicans-tertiary;
 }
-
 .grizzlies {
   background: $grizzlies-primary;
   color: $grizzlies-secondary;
   border: 1px solid $grizzlies-tertiary;
 }
-
 .suns {
   background: $suns-primary;
   color: $suns-secondary;
   border: 1px solid #fff;
 }
-
 .wizards {
   background: $wizards-primary;
   color: $wizards-secondary;
   border: 1px solid $wizards-tertiary;
 }
-
 .nuggets {
   background: $nuggets-primary;
   color: $nuggets-secondary;
   border: 1px solid $nuggets-tertiary;
 }
-
 .timberwolves {
   background: $timberwolves-primary;
   color: $timberwolves-secondary;

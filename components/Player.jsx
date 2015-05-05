@@ -1,5 +1,4 @@
 var React = require('react');
-var cx = require('classnames');
 
 var Player = React.createClass({
   handleClick(e) {
@@ -10,13 +9,36 @@ var Player = React.createClass({
     className = className.replace(/\ /, '')
       .replace('76ers', 'sixers');
 
-    className = cx('player', className);
+    let style = {
+      height: '50px',
+      width: '160px',
+      margin: '3px',
+      display: 'inline-block',
+      position: 'relative'
+    };
+
+    let imgStyle = {
+      position: 'absolute',
+      left: '2px',
+      top: '3px'
+    };
+
+    let nameStyle = {
+      position: 'absolute',
+      right: '5px'
+    };
+
+    let salaryStyle = {
+      position: 'absolute',
+      right: '5px',
+      bottom: '5px'
+    };
 
     return (
-      <div className={className} ref="player" onClick={this.handleClick}>
-        <img src={this.props.data.imageUrl} height='45px' width='32px' />
-        <span className="playerName">{this.props.data.name}</span>
-        <span className="playerSalary">{this.props.data.salary}</span>
+      <div style={style} className={className} ref="player" onClick={this.handleClick}>
+        <img style={imgStyle} src={this.props.data.imageUrl} height='45px' width='32px' />
+        <span style={nameStyle} className="playerName">{this.props.data.name}</span>
+        <span style={salaryStyle} className="playerSalary">{this.props.data.salary}</span>
       </div>
     );
   }

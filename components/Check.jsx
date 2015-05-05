@@ -62,14 +62,26 @@ var Check = React.createClass({
     let div = <div style={style}>Hidden</div>;
 
     if(this.state.valid === 'valid') {
-      div = <div className='valid'>Trade is valid</div>;
+      style = {
+        color: 'green'
+      };
+      div = <div style={style}>Trade is valid</div>;
     }
     else if(this.state.valid === 'invalid') {
-      div = <div className='invalid'>Trade is invalid</div>;
+      style = {
+        color: 'red'
+      };
+      div = <div style={style}>Trade is invalid</div>;
     }
 
+    let checkStyle = {
+      position: 'absolute',
+      top: '1%',
+      left: '80%'
+    };
+
     return (
-      <div className="check">{div}</div>
+      <div style={checkStyle}>{div}</div>
     );
   }
 });

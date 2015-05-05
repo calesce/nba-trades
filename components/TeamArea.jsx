@@ -63,6 +63,9 @@ var TeamArea = React.createClass({
       })
       .value();
   },
+  getNumTeams() {
+    return 2;
+  },
   render() {
     let teamNames = this.getSortedTeams();
     let incomingSalary = this.incomingSalary();
@@ -70,10 +73,20 @@ var TeamArea = React.createClass({
     let area = (this.props.number === 'team1') ? 'area1' : 'area2';
     let classes = cx(area, this.props.teamName);
 
+    const numTeams = this.getNumTeams();
+    let styles = {
+      position: 'absolute',
+      top: '1%',
+      width: '800px',
+      height: '800px'
+    };
+
+    styles.left = (this.props.number === 'team1') ? '0%' : '50%';
+
     incomingSalary = incomingSalary === '' ? '$0' : incomingSalary;
 
     return (
-      <div className={ this.props.number === 'team1' ? 'team1' : 'team2' }>
+      <div style={styles}>
         <div>
           <select onChange={this.teamSelected}
                   value={this.props.team.teamName ? this.props.team.teamName : ''} >
