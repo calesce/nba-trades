@@ -17,12 +17,11 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
       { test: /\.jsx?$/, loaders: ['babel', 'react-hot', 'jsx-loader'], exclude: /node_modules/ },
-      { test: /\.scss$/, loader: 'style!css!sass', exclude: /node_modules/ },
       { test: /\.jpg$/, loader: 'url' }
     ]
   }

@@ -1,4 +1,5 @@
 var React = require('react');
+var teamStyle = require('./teamStyles');
 
 var Player = React.createClass({
   handleClick(e) {
@@ -9,12 +10,17 @@ var Player = React.createClass({
     className = className.replace(/\ /, '')
       .replace('76ers', 'sixers');
 
+    let teamColors = teamStyle[className];
+
     let style = {
       height: '50px',
       width: '160px',
       margin: '3px',
       display: 'inline-block',
-      position: 'relative'
+      position: 'relative',
+      background: teamColors.background,
+      color: teamColors.color,
+      border: teamColors.border
     };
 
     let imgStyle = {
@@ -35,7 +41,7 @@ var Player = React.createClass({
     };
 
     return (
-      <div style={style} className={className} ref="player" onClick={this.handleClick}>
+      <div style={style} ref="player" onClick={this.handleClick}>
         <img style={imgStyle} src={this.props.data.imageUrl} height='45px' width='32px' />
         <span style={nameStyle} className="playerName">{this.props.data.name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.data.salary}</span>

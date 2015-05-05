@@ -109,180 +109,181 @@ var wizardsPrimary = '#C60C30';
 var wizardsSecondary = '#002244';
 var wizardsTertiary = '#BCC4CC';
 
-var pelicans = {
+exports.pelicans = {
   background: pelicansPrimary,
   color: pelicansSecondary,
   border: '1px solid ${pelicansTertiary}'
 };
 
-var grizzlies = {
+exports.grizzlies = {
   background: grizzliesPrimary,
   color: grizzliesSecondary,
   border: '1px solid ${grizzliesTertiary}'
 };
 
-var suns = {
+exports.suns = {
   background: sunsPrimary,
   color: sunsSecondary,
   border: '1px solid #fff'
 };
 
-var wizards = {
+exports.wizards = {
   background: wizardsPrimary,
   color: wizardsSecondary,
   border: '1px solid ${wizardsTertiary}'
 };
 
-var nuggets = {
+exports.nuggets = {
   background: nuggetsPrimary,
   color: nuggetsSecondary,
   border: '1px solid ${nuggetsTertiary}'
 };
 
-var timberwolves = {
+exports.timberwolves = {
   background: timberwolvesPrimary,
   color: timberwolvesSecondary,
   border: '1px solid ${timberwolvesTertiary}'
 };
 
-var heat = {
+exports.heat = {
   background: heatPrimary,
   color: heatSecondary,
   border: '1px solid ${heatTertiary}'
 };
 
-var cavaliers = {
+exports.cavaliers = {
   background: cavaliersPrimary,
   color: cavaliersSecondary,
   border: '1px solid ${cavaliersTertiary}'
 };
 
-var mavericks = {
+exports.mavericks = {
   background: mavericksPrimary,
   color: mavericksSecondary,
   border: '1px solid ${mavericksTertiary}'
 };
 
-var spurs = {
+exports.spurs = {
   background: spursPrimary,
   color: '#fff',
   border: '1px solid ${spursSecondary}'
 };
 
-var thunder = {
+exports.thunder = {
   background: thunderPrimary,
   color: thunderTertiary,
   border: '1px solid ${thunderSecondary}'
 };
 
-var trailblazers = {
+exports.trailblazers = {
   background: trailBlazersPrimary,
   color: trailBlazersTertiary,
   border: '1px solid ${trailBlazersSecondary}'
 };
 
-var jazz = {
+exports.jazz = {
   background: jazzPrimary,
   color: jazzSecondary,
   border: '1px solid ${jazzTertiary}'
 };
 
-var clippers = {
+exports.clippers = {
   background: clippersPrimary,
   color: '#fff',
   border: '1px solid ${clippersSecondary}'
 };
 
-var lakers = {
+exports.lakers = {
   background: lakersPrimary,
   color: '#fff',
   border: '1px solid ${lakersSecondary}'
 };
 
-var warriors = {
+exports.warriors = {
   background: warriorsPrimary,
   color: '#fff',
   border: '1px solid ${warriorsSecondary}'
 };
 
-var kings = {
+exports.kings = {
   background: kingsPrimary,
   color: '#fff',
   border: '1px solid ${kingsSecondary}'
 };
 
-var nets = {
+exports.nets = {
   background: netsPrimary,
   color: '#fff',
   border: '1px solid #fff'
 };
 
-var knicks = {
+exports.knicks = {
   background: knicksPrimary,
   color: knicksSecondary,
   border: '1px solid ${knicksTertiary}'
 };
 
-var celtics = {
+exports.celtics = {
   background: celticsPrimary,
   color: celticsSecondary,
   border: '1px solid ${celticsSecondary}'
 };
 
-var sixers = {
+exports.sixers = {
   background: sixersPrimary,
   color: '#fff',
   border: '1px solid ${sixersSecondary}'
 };
 
-var raptors = {
+exports.raptors = {
   background: raptorsPrimary,
   color: raptorsSecondary,
   border: '1px solid ${raptorsTertiary}'
 };
-var pacers = {
+
+exports.pacers = {
   background: pacersPrimary,
   color: pacersSecondary,
   border: '1px solid ${pacersTertiary}'
 };
 
-var bucks = {
+exports.bucks = {
   background: bucksPrimary,
   color: bucksTertiary,
   border: '1px solid ${bucksSecondary}'
 };
 
-var bulls = {
+exports.bulls = {
   background: bullsPrimary,
   color: '#fff',
   border: '1px solid ${bullsSecondary}'
 };
 
-var pistons = {
+exports.pistons = {
   background: pistonsPrimary,
   color: pistonsSecondary,
   border: '1px solid ${pistonsTertiary}'
 };
 
-var hornets = {
+exports.hornets = {
   background: hornetsPrimary,
   color: hornetsSecondary,
   border: '1px solid ${hornetsTertiary}'
 };
 
-var magic = {
+exports.magic = {
   background: magicPrimary,
   color: magicSecondary,
   border: '1px solid ${magicTertiary}'
 };
 
-var hawks = {
+exports.hawks = {
   background: hawksPrimary,
   color: hawksSecondary,
   border: '1px solid ${hawksTertiary}'
 };
 
-var rockets = {
+exports.rockets = {
   background: rocketsPrimary,
   color: '#fff',
   border: '1px solid ${rocketsSecondary}'
