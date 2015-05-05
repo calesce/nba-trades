@@ -1,7 +1,6 @@
 var React = require('react');
 var TeamList = require('./TeamList.jsx');
 var _ = require('lodash');
-var cx = require('classnames');
 
 var TeamArea = React.createClass({
   incomingSalary() {
@@ -23,6 +22,7 @@ var TeamArea = React.createClass({
       })
       .value();
 
+    // Pretty up the displayed salary
     return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   },
   teamSelected(event) {
@@ -33,10 +33,10 @@ var TeamArea = React.createClass({
       return this.props.team.players;
     }
 
-    var roster = _.cloneDeep(this.props.team.players);
-    var outgoing = _.cloneDeep(this.props.outgoingPlayers);
+    let roster = _.cloneDeep(this.props.team.players);
+    let outgoing = _.cloneDeep(this.props.outgoingPlayers);
 
-    var result = _.filter(roster, (player) => {
+    let result = _.filter(roster, (player) => {
       return _.find(outgoing, { 'name': player.name }) === undefined;
     });
 
@@ -44,7 +44,7 @@ var TeamArea = React.createClass({
   },
   componentWillMount() {
     if(this.props.number === 'team1') {
-      this.props.onTeamSelected('Pelicans', 'team1');
+      this.props.onTeamSelected('Wizards', 'team1');
     }
     else {
       this.props.onTeamSelected('Grizzlies', 'team2');
@@ -71,7 +71,6 @@ var TeamArea = React.createClass({
     let incomingSalary = this.incomingSalary();
     let roster = this.rosterMinusOutgoing();
     let area = (this.props.number === 'team1') ? 'area1' : 'area2';
-    let classes = cx(area, this.props.teamName);
 
     const numTeams = this.getNumTeams();
     let styles = {
@@ -80,7 +79,6 @@ var TeamArea = React.createClass({
       width: '800px',
       height: '800px'
     };
-
     styles.left = (this.props.number === 'team1') ? '0%' : '50%';
 
     incomingSalary = incomingSalary === '' ? '$0' : incomingSalary;
@@ -101,7 +99,6 @@ var TeamArea = React.createClass({
           <br />
           <TeamList
             roster={roster}
-            class={classes}
             team={this.props.team.teamName}
             salary={this.props.team.totalSalary}
             onPlayerClicked={this.props.onPlayerClicked}

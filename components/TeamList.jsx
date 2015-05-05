@@ -18,28 +18,23 @@ var TeamList = React.createClass({
       alignContent: 'flex-start'
     };
 
-    if(this.props.roster) {
-      return (
-        <div>
-          <div className='playerList' style={flexStyle}>
-            {
-              roster.map((player, index) => {
-                if(this.props.team) {
-                  player.team = this.props.team;
-                }
-                return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
-              })
-            }
-          </div>
-          <div>
-            { this.props.salary ? <div>Team Salary: { this.props.salary }</div> : <div></div> }
-          </div>
+    return (
+      <div>
+        <div style={flexStyle}>
+          {
+            roster.map((player, index) => {
+              if(this.props.team) {
+                player.team = this.props.team;
+              }
+              return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
+            })
+          }
         </div>
-      );
-    }
-    else {
-      return <div></div>;
-    }
+        <div>
+          { this.props.salary ? <div>Team Salary: { this.props.salary }</div> : <div></div> }
+        </div>
+      </div>
+    );
   }
 });
 
