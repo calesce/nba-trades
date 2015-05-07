@@ -1,31 +1,11 @@
 var React = require('react');
-var TeamSelect = require('./TeamSelect.jsx');
-var TeamList = require('./TeamList.jsx');
 var _ = require('lodash');
 
+var TeamSelect = require('./TeamSelect.jsx');
+var TeamList = require('./TeamList.jsx');
+var IncomingArea = require('./IncomingArea.jsx');
+
 var TeamArea = React.createClass({
-  incomingSalary() {
-    if(this.props.incomingPlayers.length === 0) {
-      return '';
-    }
-
-    let players = _.cloneDeep(this.props.incomingPlayers);
-
-    let total = _.chain(players)
-      .map((player) => {
-        player.salary = player.salary.replace(/\,/g, '');
-        player.salary = player.salary.slice(1);
-
-        return parseInt(player.salary);
-      })
-      .reduce((sum, salary) => {
-        return sum + salary;
-      })
-      .value();
-
-    // Pretty up the displayed salary
-    return '$' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  },
   teamSelected(value, number) {
     this.props.onTeamSelected(value, number);
   },
@@ -59,7 +39,6 @@ var TeamArea = React.createClass({
   },
   render() {
     let roster = this.rosterMinusOutgoing();
-    let incomingSalary = this.hasIncoming() ? this.incomingSalary() : '$0';
 
     const numTeams = this.numTeams();
     let styles = {
@@ -94,9 +73,13 @@ var TeamArea = React.createClass({
           onPlayerClicked={this.props.onPlayerClicked}
         />
         { this.props.team.totalSalary ? <div style={nonShrinkStyle}>Team Salary: { this.props.team.totalSalary }</div> : '' }
-        { this.hasIncoming() ? <div style={nonShrinkStyle}>Incoming Players:</div> : '' }
-        { this.hasIncoming() ? <TeamList roster={this.props.incomingPlayers} onPlayerClicked={this.props.onPlayerClicked} /> : '' }
-        { this.hasIncoming() ? <div style={nonShrinkStyle}>Incoming Salary: {incomingSalary}</div> : '' }
+        {
+          this.hasIncoming() ?
+            <IncomingArea
+              players={this.props.incomingPlayers}
+              onPlayerClicked={this.props.onPlayerClicked}
+              /> : ''
+        }
       </div>
     );
   }

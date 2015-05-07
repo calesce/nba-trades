@@ -7,7 +7,6 @@ var TeamList = React.createClass({
     let roster = _.cloneDeep(this.props.roster);
 
     let flexStyle = {
-      flexGrow: 1,
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
