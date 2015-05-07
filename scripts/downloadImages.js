@@ -1,5 +1,4 @@
 var download = require('../lib/image/download');
-var start = new Date();
 
 download.fetch(function(err) {
   if(err) {

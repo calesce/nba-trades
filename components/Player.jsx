@@ -13,6 +13,7 @@ var Player = React.createClass({
     let teamColors = teamStyle[className];
 
     let style = {
+      flexShrink: 0,
       height: '50px',
       width: '160px',
       margin: '3px',
