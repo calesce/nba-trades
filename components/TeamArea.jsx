@@ -2,13 +2,13 @@ var React = require('react');
 var _ = require('lodash');
 
 var TeamSelect = require('./TeamSelect.jsx');
-var TeamList = require('./TeamList.jsx');
+var PlayerList = require('./PlayerList.jsx');
 var IncomingArea = require('./IncomingArea.jsx');
 
-var TeamArea = React.createClass({
+class TeamArea extends React.Component {
   teamSelected(value, number) {
     this.props.onTeamSelected(value, number);
-  },
+  }
   rosterMinusOutgoing() {
     if(this.props.outgoingPlayers.length === 0) {
       return this.props.team.players;
@@ -22,7 +22,7 @@ var TeamArea = React.createClass({
     });
 
     return result;
-  },
+  }
   componentWillMount() {
     if(this.props.number === 'team1') {
       this.props.onTeamSelected('Wizards', 'team1');
@@ -30,13 +30,13 @@ var TeamArea = React.createClass({
     else {
       this.props.onTeamSelected('Grizzlies', 'team2');
     }
-  },
+  }
   hasIncoming() {
     return this.props.incomingPlayers.length !== 0;
-  },
+  }
   numTeams() {
     return 2;
-  },
+  }
   render() {
     let roster = this.rosterMinusOutgoing();
 
@@ -63,11 +63,11 @@ var TeamArea = React.createClass({
       <div style={styles}>
         <TeamSelect
           teams={this.props.teams}
-          team={this.props.team}
+          teamName={this.props.team.teamName}
           number={this.props.number}
           onTeamSelected={this.teamSelected}
         />
-        <TeamList
+        <PlayerList
           roster={roster}
           team={this.props.team.teamName}
           onPlayerClicked={this.props.onPlayerClicked}
@@ -77,12 +77,13 @@ var TeamArea = React.createClass({
           this.hasIncoming() ?
             <IncomingArea
               players={this.props.incomingPlayers}
+              min={400}
               onPlayerClicked={this.props.onPlayerClicked}
               /> : ''
         }
       </div>
     );
   }
-});
+}
 
 module.exports = TeamArea;

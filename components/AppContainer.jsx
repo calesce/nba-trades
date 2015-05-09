@@ -13,8 +13,8 @@ var AppContainer = React.createClass({
     http.send();
 
     http.onload = () => {
-      var teamsJson = JSON.parse(http.responseText);
-      this.setState({ teams: teamsJson });
+      let teams = JSON.parse(http.responseText);
+      this.setState({ teams });
     };
   },
   render() {

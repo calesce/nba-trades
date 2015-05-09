@@ -1,5 +1,4 @@
 var React = require('react');
-var TeamList = require('./TeamList.jsx');
 var _ = require('lodash');
 
 var TeamSelect = React.createClass({
@@ -8,10 +7,10 @@ var TeamSelect = React.createClass({
   },
   getSortedTeams() {
     return _.chain(this.props.teams)
-      .sortBy( (team) => {
+      .sortBy((team) => {
         return team.location;
       })
-      .map( (team) => {
+      .map((team) => {
         return {
           teamName: team.teamName,
           location: team.location
@@ -32,7 +31,7 @@ var TeamSelect = React.createClass({
     return (
       <select style={style}
         onChange={this.teamSelected}
-        value={this.props.team.teamName ? this.props.team.teamName : ''} >
+        value={this.props.teamName ? this.props.teamName : ''} >
 
         <option value='none' disabled>Choose a team</option>
         {

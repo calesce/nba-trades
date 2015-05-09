@@ -1,6 +1,6 @@
 var React = require('react');
 var _ = require('lodash');
-var TeamList = require('./TeamList.jsx');
+var PlayerList = require('./PlayerList.jsx');
 
 var IncomingArea = React.createClass({
   incomingSalary() {
@@ -32,9 +32,10 @@ var IncomingArea = React.createClass({
     return (
       <div style={style}>
         <div>Incoming Players:</div>
-        <TeamList
+        <PlayerList
           roster={this.props.players}
           onPlayerClicked={this.props.onPlayerClicked}
+          min={this.props.min}
         />
         <div>Incoming Salary: {incomingSalary}</div>
       </div>

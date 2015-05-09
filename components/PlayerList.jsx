@@ -1,12 +1,9 @@
 var React = require('react');
 var Player = require('./Player.jsx');
-var _ = require('lodash');
 
-var TeamList = React.createClass({
+var PlayerList = React.createClass({
   render() {
-    let roster = _.cloneDeep(this.props.roster);
-
-    let flexStyle = {
+    let style = {
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -17,9 +14,9 @@ var TeamList = React.createClass({
     };
 
     return (
-      <div style={flexStyle}>
+      <div style={style}>
         {
-          roster.map((player, index) => {
+          this.props.roster.map((player, index) => {
             if(this.props.team) {
               player.team = this.props.team;
             }
@@ -31,4 +28,4 @@ var TeamList = React.createClass({
   }
 });
 
-module.exports = TeamList;
+module.exports = PlayerList;

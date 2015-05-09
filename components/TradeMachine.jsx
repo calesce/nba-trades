@@ -10,8 +10,8 @@ var TradeMachine = React.createClass({
 
     return {
       selectedTeams: {
-        team1: team1,
-        team2: team2
+        team1,
+        team2
       },
       incomingPlayers: {
         team1: [],
@@ -20,12 +20,12 @@ var TradeMachine = React.createClass({
     };
   },
   handleTeamSelected(team, index) {
-    var newSelectedTeams = _.cloneDeep(this.state.selectedTeams);
-    newSelectedTeams[index] = this.props.teams[team];
+    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
+    selectedTeams[index] = this.props.teams[team];
 
     // change to new teams and clear out staged players
     this.setState({
-      selectedTeams: newSelectedTeams,
+      selectedTeams,
       incomingPlayers: {
         team1: [],
         team2: []
@@ -37,27 +37,22 @@ var TradeMachine = React.createClass({
       return;
     }
 
-    var teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
+    let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
+    let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
-    var newIncomingPlayers = _.cloneDeep(this.state.incomingPlayers);
-
-    var isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
+    let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
       return existingPlayer.name === player.name;
     });
 
     if(isPlayerAlreadySelected === -1) {
-      newIncomingPlayers[teamIndex].push(player);
-      this.setState({
-        incomingPlayers: newIncomingPlayers
-      });
+      incomingPlayers[teamIndex].push(player);
+      this.setState({ incomingPlayers });
     }
     else {
-      var index = _.findIndex(newIncomingPlayers[teamIndex], 'name', player.name);
-      newIncomingPlayers[teamIndex].splice(index, 1);
+      var index = _.findIndex(incomingPlayers[teamIndex], 'name', player.name);
+      incomingPlayers[teamIndex].splice(index, 1);
 
-      this.setState({
-        incomingPlayers: newIncomingPlayers
-      });
+      this.setState({ incomingPlayers });
     }
   },
   getTeamForPlayer(playerName) {
@@ -128,7 +123,7 @@ var TradeMachine = React.createClass({
       );
     }
     else {
-      return <div></div>;
+      return <div>Loading</div>;
     }
   }
 });
