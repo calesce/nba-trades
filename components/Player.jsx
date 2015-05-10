@@ -2,8 +2,8 @@ var React = require('react');
 var teamStyle = require('./teamStyles');
 
 var Player = React.createClass({
-  handleClick(e) {
-    this.props.onPlayerClicked(this.props.data);
+  handleClick(player) {
+    this.props.onPlayerClicked(player);
   },
   render() {
     let className = this.props.data.team.toLowerCase();
@@ -42,7 +42,7 @@ var Player = React.createClass({
     };
 
     return (
-      <div style={style} ref="player" onClick={this.handleClick}>
+      <div style={style} ref="player" onClick={this.handleClick.bind(this, this.props.data)}>
         <img style={imgStyle} src={this.props.data.imageUrl} height='45px' width='32px' />
         <span style={nameStyle} className="playerName">{this.props.data.name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.data.salary}</span>
