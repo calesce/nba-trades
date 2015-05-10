@@ -1,113 +1,113 @@
-var hawksPrimary = '#000080';
-var hawksSecondary = '#FF0000';
-var hawksTertiary = '#C0C0C0';
+const hawksPrimary = '#000080';
+const hawksSecondary = '#FF0000';
+const hawksTertiary = '#C0C0C0';
 
-var celticsPrimary = '#009E60';
-var celticsSecondary = '#000000';
+const celticsPrimary = '#009E60';
+const celticsSecondary = '#000000';
 
-var netsPrimary = '#000000';
+const netsPrimary = '#000000';
 
-var hornetsPrimary = '#1D1160';
-var hornetsSecondary = '#008CA8';
-var hornetsTertiary = '#A1A1A4';
+const hornetsPrimary = '#1D1160';
+const hornetsSecondary = '#008CA8';
+const hornetsTertiary = '#A1A1A4';
 
-var bullsPrimary = '#D4001F';
-var bullsSecondary = '#000000';
+const bullsPrimary = '#D4001F';
+const bullsSecondary = '#000000';
 
-var cavaliersPrimary = '#860038';
-var cavaliersSecondary = '#FDBB30';
-var cavaliersTertiary = '#002D62';
+const cavaliersPrimary = '#860038';
+const cavaliersSecondary = '#FDBB30';
+const cavaliersTertiary = '#002D62';
 
-var mavericksPrimary = '#0B60AD';
-var mavericksSecondary = '#072156';
-var mavericksTertiary = '#A9A9A9';
+const mavericksPrimary = '#0B60AD';
+const mavericksSecondary = '#072156';
+const mavericksTertiary = '#A9A9A9';
 
-var nuggetsPrimary = '#4B90CD';
-var nuggetsSecondary = '#FDB827';
-var nuggetsTertiary = '#002D62';
+const nuggetsPrimary = '#4B90CD';
+const nuggetsSecondary = '#FDB827';
+const nuggetsTertiary = '#002D62';
 
-var pistonsPrimary = '#00519A';
-var pistonsSecondary = '#EB003C';
-var pistonsTertiary = '#041E40';
+const pistonsPrimary = '#00519A';
+const pistonsSecondary = '#EB003C';
+const pistonsTertiary = '#041E40';
 
-var warriorsPrimary = '#04529C';
-var warriorsSecondary = '#FFCC33';
+const warriorsPrimary = '#04529C';
+const warriorsSecondary = '#FFCC33';
 
-var rocketsPrimary = '#CE1138';
-var rocketsSecondary = '#CCCCCC';
-var rocketsTertiary = '#000000';
+const rocketsPrimary = '#CE1138';
+const rocketsSecondary = '#CCCCCC';
+const rocketsTertiary = '#000000';
 
-var pacersPrimary = '#092C57';
-var pacersSecondary = '#FFC322';
-var pacersTertiary = '#C0C0C0';
+const pacersPrimary = '#092C57';
+const pacersSecondary = '#FFC322';
+const pacersTertiary = '#C0C0C0';
 
-var clippersPrimary = '#EE2944';
-var clippersSecondary = '#146AA2';
+const clippersPrimary = '#EE2944';
+const clippersSecondary = '#146AA2';
 
-var lakersPrimary = '#4A2583';
-var lakersSecondary = '#F5AF1B';
+const lakersPrimary = '#4A2583';
+const lakersSecondary = '#F5AF1B';
 
-var grizzliesPrimary = '#001F70';
-var grizzliesSecondary = '#7399C6';
-var grizzliesTertiary = '#BED4E9';
+const grizzliesPrimary = '#001F70';
+const grizzliesSecondary = '#7399C6';
+const grizzliesTertiary = '#BED4E9';
 
-var heatPrimary = '#000000';
-var heatSecondary = '#B62630';
-var heatTertiary = '#FF9F00';
+const heatPrimary = '#000000';
+const heatSecondary = '#B62630';
+const heatTertiary = '#FF9F00';
 
-var bucksPrimary = '#003614';
-var bucksSecondary = '#E32636';
-var bucksTertiary = '#C0C0C0';
+const bucksPrimary = '#003614';
+const bucksSecondary = '#E32636';
+const bucksTertiary = '#C0C0C0';
 
-var timberwolvesPrimary = '#0F4D92';
-var timberwolvesSecondary = '#000000';
-var timberwolvesTertiary = '#8C92AC';
+const timberwolvesPrimary = '#0F4D92';
+const timberwolvesSecondary = '#000000';
+const timberwolvesTertiary = '#8C92AC';
 
-var pelicansPrimary = '#002B5C';
-var pelicansSecondary = '#B4975A';
-var pelicansTertiary = '#E31836';
+const pelicansPrimary = '#002B5C';
+const pelicansSecondary = '#B4975A';
+const pelicansTertiary = '#E31836';
 
-var knicksPrimary = '#0953A0';
-var knicksSecondary = '#FF7518';
-var knicksTertiary = '#C0C0C0';
+const knicksPrimary = '#0953A0';
+const knicksSecondary = '#FF7518';
+const knicksTertiary = '#C0C0C0';
 
-var thunderPrimary = '#007DC3';
-var thunderSecondary = '#F05133';
-var thunderTertiary = '#FDBB30';
+const thunderPrimary = '#007DC3';
+const thunderSecondary = '#F05133';
+const thunderTertiary = '#FDBB30';
 
-var magicPrimary = '#0047AB';
-var magicSecondary = '#000000';
-var magicTertiary = '#708090';
+const magicPrimary = '#0047AB';
+const magicSecondary = '#000000';
+const magicTertiary = '#708090';
 
-var sixersPrimary = '#0046AD';
-var sixersSecondary = '#D0103A';
+const sixersPrimary = '#0046AD';
+const sixersSecondary = '#D0103A';
 
-var sunsPrimary = '#1C105E';
-var sunsSecondary = '#E65F20';
-var sunsTertiary = '#000000';
+const sunsPrimary = '#1C105E';
+const sunsSecondary = '#E65F20';
+const sunsTertiary = '#000000';
 
-var trailBlazersPrimary = '#F0163A';
-var trailBlazersSecondary = '#B6BFBF';
-var trailBlazersTertiary = '#000000';
+const trailBlazersPrimary = '#F0163A';
+const trailBlazersSecondary = '#B6BFBF';
+const trailBlazersTertiary = '#000000';
 
-var kingsPrimary = '#753BBD';
-var kingsSecondary = '#000000';
-var kingsTertiary = '#8A8D8F';
+const kingsPrimary = '#753BBD';
+const kingsSecondary = '#000000';
+const kingsTertiary = '#8A8D8F';
 
-var spursPrimary = '#000000';
-var spursSecondary = '#BEC8C9';
+const spursPrimary = '#000000';
+const spursSecondary = '#BEC8C9';
 
-var raptorsPrimary = '#B31B1B';
-var raptorsSecondary = '#000000';
-var raptorsTertiary = '#708090';
+const raptorsPrimary = '#B31B1B';
+const raptorsSecondary = '#000000';
+const raptorsTertiary = '#708090';
 
-var jazzPrimary = '#00275D';
-var jazzSecondary = '#FF9100';
-var jazzTertiary = '#B5B5B5';
+const jazzPrimary = '#00275D';
+const jazzSecondary = '#FF9100';
+const jazzTertiary = '#B5B5B5';
 
-var wizardsPrimary = '#C60C30';
-var wizardsSecondary = '#002244';
-var wizardsTertiary = '#BCC4CC';
+const wizardsPrimary = '#C60C30';
+const wizardsSecondary = '#002244';
+const wizardsTertiary = '#BCC4CC';
 
 exports.pelicans = {
   background: pelicansPrimary,
