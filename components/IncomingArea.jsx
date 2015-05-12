@@ -3,6 +3,11 @@ var _ = require('lodash');
 var PlayerList = require('./PlayerList.jsx');
 
 var IncomingArea = React.createClass({
+  propTypes: {
+    players: React.PropTypes.array,
+    onPlayerClicked: React.PropTypes.func,
+    min: React.PropTypes.string
+  },
   incomingSalary() {
     let players = _.cloneDeep(this.props.players);
 

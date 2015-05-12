@@ -2,6 +2,9 @@ var React = require('react');
 var _ = require('lodash');
 
 var Check = React.createClass({
+  propTypes: {
+    incoming: React.PropTypes.array
+  },
   getInitialState() {
     return {
       valid: 'none'

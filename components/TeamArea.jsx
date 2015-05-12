@@ -6,6 +6,14 @@ var PlayerList = require('./PlayerList.jsx');
 var IncomingArea = require('./IncomingArea.jsx');
 
 var TeamArea = React.createClass({
+  propTypes: {
+    onTeamSelected: React.PropTypes.func,
+    onPlayerClicked: React.PropTypes.func,
+    outgoingPlayers: React.PropTypes.array,
+    incomingPlayers: React.PropTypes.array,
+    team: React.PropTypes.object,
+    number: React.PropTypes.string
+  },
   teamSelected(value, number) {
     this.props.onTeamSelected(value, number);
   },

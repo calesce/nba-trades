@@ -2,14 +2,20 @@ var React = require('react');
 var teamStyle = require('./teamStyles');
 
 var Player = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    salary: React.PropTypes.string.isRequired,
+    imageUrl: React.PropTypes.string.isRequired,
+    handleClick: React.PropTypes.func
+  },
   handleClick(player) {
     this.props.onPlayerClicked(player);
   },
+  formatTeamName() {
+    return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
+  },
   render() {
-    let className = this.props.data.team.toLowerCase();
-    className = className.replace(/\ /, '')
-      .replace('76ers', 'sixers');
-
+    let className = this.formatTeamName();
     let teamColors = teamStyle[className];
 
     let style = {
@@ -42,10 +48,10 @@ var Player = React.createClass({
     };
 
     return (
-      <div style={style} ref="player" onClick={this.handleClick.bind(this, this.props.data)}>
-        <img style={imgStyle} src={this.props.data.imageUrl} height='45px' width='32px' />
-        <span style={nameStyle} className="playerName">{this.props.data.name}</span>
-        <span style={salaryStyle} className="playerSalary">{this.props.data.salary}</span>
+      <div style={style} ref="player" onClick={this.handleClick.bind(this, this.props.player)}>
+        <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
+        <span style={nameStyle} className="playerName">{this.props.name}</span>
+        <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>
       </div>
     );
   }

@@ -2,6 +2,11 @@ var React = require('react');
 var Player = require('./Player.jsx');
 
 var PlayerList = React.createClass({
+  propTypes: {
+    roster: React.PropTypes.array,
+    team: React.PropTypes.string,
+    onPlayerClicked: React.PropTypes.func
+  },
   render() {
     let style = {
       width: '100%',
@@ -20,7 +25,17 @@ var PlayerList = React.createClass({
             if(this.props.team) {
               player.team = this.props.team;
             }
-            return <Player key={index} data={player} onPlayerClicked={this.props.onPlayerClicked} />;
+            return (
+              <Player
+                key={index}
+                player={player}
+                name={player.name}
+                salary={player.salary}
+                imageUrl={player.imageUrl}
+                teamName={player.team}
+                onPlayerClicked={this.props.onPlayerClicked}
+              />
+            );
           })
         }
       </div>

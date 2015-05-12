@@ -4,6 +4,9 @@ var TeamArea = require('./TeamArea.jsx');
 var Check = require('./Check.jsx');
 
 var TradeMachine = React.createClass({
+  propTypes: {
+    teams: React.PropTypes.object
+  },
   getInitialState() {
     let team1 = this.getTeam('Wizards');
     let team2 = this.getTeam('Grizzlies');

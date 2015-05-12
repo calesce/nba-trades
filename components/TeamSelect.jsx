@@ -2,6 +2,11 @@ var React = require('react');
 var _ = require('lodash');
 
 var TeamSelect = React.createClass({
+  propTypes: {
+    teamName: React.PropTypes.string,
+    teams: React.PropTypes.object,
+    onTeamSelected: React.PropTypes.func
+  },
   teamSelected(event) {
     this.props.onTeamSelected(event.target.value, this.props.number);
   },
