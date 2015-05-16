@@ -1,19 +1,23 @@
-var React = require('react');
-var teamStyle = require('./teamStyles');
+import React, { PropTypes } from 'react';
+const teamStyle = require('./teamStyles');
 
-var Player = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    salary: React.PropTypes.string.isRequired,
-    imageUrl: React.PropTypes.string.isRequired,
-    handleClick: React.PropTypes.func
-  },
+export default class Player extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+    this.formatTeamName = this.formatTeamName.bind(this);
+  }
+
   handleClick(player) {
     this.props.onPlayerClicked(player);
-  },
+  }
+
   formatTeamName() {
     return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
-  },
+  }
+
   render() {
     let className = this.formatTeamName();
     let teamColors = teamStyle[className];
@@ -55,6 +59,12 @@ var Player = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Player;
+Player.propTypes = {
+  name: PropTypes.string.isRequired,
+  salary: PropTypes.string.isRequired,
+  teamName: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  handleClick: PropTypes.func
+};

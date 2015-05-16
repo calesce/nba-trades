@@ -1,12 +1,14 @@
-var React = require('react');
-var Player = require('./Player.jsx');
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
-var PlayerList = React.createClass({
-  propTypes: {
-    roster: React.PropTypes.array,
-    team: React.PropTypes.string,
-    onPlayerClicked: React.PropTypes.func
-  },
+import Player from './PlayerList.jsx';
+
+export default class PlayerList extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     let style = {
       width: '100%',
@@ -41,6 +43,10 @@ var PlayerList = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = PlayerList;
+PlayerList.propTypes = {
+  roster: PropTypes.array.isRequired,
+  team: PropTypes.string.isRequired,
+  onPlayerClicked: PropTypes.func.isRequired
+};

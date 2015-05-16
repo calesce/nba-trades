@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
 
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3000',
@@ -21,8 +20,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['babel', 'react-hot', 'jsx-loader'], exclude: /node_modules/ },
-      { test: /\.jpg$/, loader: 'url' }
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ }
     ]
   }
 };

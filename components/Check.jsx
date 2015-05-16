@@ -1,15 +1,21 @@
-var React = require('react');
-var _ = require('lodash');
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
-var Check = React.createClass({
-  propTypes: {
-    incoming: React.PropTypes.array
-  },
-  getInitialState() {
-    return {
+export default class Check extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
       valid: 'none'
     };
-  },
+
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.isTrade = this.isTrade.bind(this);
+    this.determineValidity = this.determineValidity.bind(this);
+    this.salaryToNumber = this.salaryToNumber.bind(this);
+  }
+
   componentWillReceiveProps(nextProps) {
     if(!this.isTrade(nextProps.incoming)) {
       this.setState({
@@ -27,7 +33,8 @@ var Check = React.createClass({
         });
       }
     }
-  },
+  }
+
   isTrade(incoming) {
     let check = 0;
 
@@ -38,7 +45,8 @@ var Check = React.createClass({
     });
 
     return check > 1;
-  },
+  }
+
   determineValidity(props) {
     // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
     let teamOneIncoming = _.reduce(props.incoming.team1, (sum, player) => {
@@ -56,10 +64,12 @@ var Check = React.createClass({
       return false;
     }
     return true;
-  },
+  }
+
   salaryToNumber(salaryString) {
     return parseInt(salaryString.replace(/\$|\,/g, ''));
-  },
+  }
+
   render() {
     let style = { visibility: 'hidden' };
     let div = <div style={style}>Hidden</div>;
@@ -87,6 +97,8 @@ var Check = React.createClass({
       <div style={checkStyle}>{div}</div>
     );
   }
-});
+}
 
-module.exports = Check;
+Check.propTypes = {
+  incoming: PropTypes.array
+};

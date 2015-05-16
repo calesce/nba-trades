@@ -6,15 +6,16 @@
     "es6": true
   },
   "ecmaFeatures": {
+    "modules": true,
     "jsx": true
   },
+  "parser": "babel-eslint",
   "globals": {
     "AppContainer": true,
     "TradeMachine": true,
     "TeamArea": true,
     "TeamList": true,
-    "Check": true,
-    "Player": true
+    "Check": true
   },
   "rules": {
     "quotes": [2, "single"],

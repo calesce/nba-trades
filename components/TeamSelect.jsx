@@ -1,15 +1,19 @@
-var React = require('react');
-var _ = require('lodash');
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
-var TeamSelect = React.createClass({
-  propTypes: {
-    teamName: React.PropTypes.string,
-    teams: React.PropTypes.object,
-    onTeamSelected: React.PropTypes.func
-  },
+export default class TeamSelect extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.teamSelected = this.teamSelected.bind(this);
+    this.getSortedTeams = this.getSortedTeams.bind(this);
+  }
+
   teamSelected(event) {
     this.props.onTeamSelected(event.target.value, this.props.number);
-  },
+  }
+
   getSortedTeams() {
     return _.chain(this.props.teams)
       .sortBy((team) => {
@@ -22,7 +26,8 @@ var TeamSelect = React.createClass({
         };
       })
       .value();
-  },
+  }
+
   render() {
     let teamNames = this.getSortedTeams();
 
@@ -47,6 +52,10 @@ var TeamSelect = React.createClass({
       </select>
     );
   }
-});
+}
 
-module.exports = TeamSelect;
+TeamSelect.propTypes = {
+  teamName: PropTypes.string,
+  teams: PropTypes.object.isRequired,
+  onTeamSelected: PropTypes.func.isRequired
+};

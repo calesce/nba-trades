@@ -1,22 +1,26 @@
-var React = require('react');
-var _ = require('lodash');
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
-var TeamSelect = require('./TeamSelect.jsx');
-var PlayerList = require('./PlayerList.jsx');
-var IncomingArea = require('./IncomingArea.jsx');
+import TeamSelect from './TeamSelect.jsx';
+import PlayerList from './PlayerList.jsx';
+import IncomingArea from './IncomingArea.jsx';
 
-var TeamArea = React.createClass({
-  propTypes: {
-    onTeamSelected: React.PropTypes.func,
-    onPlayerClicked: React.PropTypes.func,
-    outgoingPlayers: React.PropTypes.array,
-    incomingPlayers: React.PropTypes.array,
-    team: React.PropTypes.object,
-    number: React.PropTypes.string
-  },
+export default class TeamArea extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.teamSelected = this.teamSelected.bind(this);
+    this.rosterMinusOutgoing = this.rosterMinusOutgoing.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
+    this.hasIncoming = this.hasIncoming.bind(this);
+    this.numTeams = this.numTeams.bind(this);
+  }
+
   teamSelected(value, number) {
     this.props.onTeamSelected(value, number);
-  },
+  }
+
   rosterMinusOutgoing() {
     if(this.props.outgoingPlayers.length === 0) {
       return this.props.team.players;
@@ -30,7 +34,8 @@ var TeamArea = React.createClass({
     });
 
     return result;
-  },
+  }
+
   componentWillMount() {
     if(this.props.number === 'team1') {
       this.props.onTeamSelected('Wizards', 'team1');
@@ -38,13 +43,16 @@ var TeamArea = React.createClass({
     else {
       this.props.onTeamSelected('Grizzlies', 'team2');
     }
-  },
+  }
+
   hasIncoming() {
     return this.props.incomingPlayers.length !== 0;
-  },
+  }
+
   numTeams() {
     return 2;
-  },
+  }
+
   render() {
     let roster = this.rosterMinusOutgoing();
 
@@ -92,6 +100,13 @@ var TeamArea = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = TeamArea;
+TeamArea.propTypes = {
+  onTeamSelected: PropTypes.func.isRequired,
+  onPlayerClicked: PropTypes.func.isRequired,
+  outgoingPlayers: PropTypes.array.isRequired,
+  incomingPlayers: PropTypes.array.isRequired,
+  team: PropTypes.object.isRequired,
+  number: PropTypes.string.isRequired
+};

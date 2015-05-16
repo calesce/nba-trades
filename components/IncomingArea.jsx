@@ -1,13 +1,16 @@
-var React = require('react');
-var _ = require('lodash');
-var PlayerList = require('./PlayerList.jsx');
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
-var IncomingArea = React.createClass({
-  propTypes: {
-    players: React.PropTypes.array,
-    onPlayerClicked: React.PropTypes.func,
-    min: React.PropTypes.string
-  },
+import PlayerList from './PlayerList.jsx';
+
+export default class IncomingArea extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.incomingSalary = this.incomingSalary.bind(this);
+  }
+
   incomingSalary() {
     let players = _.cloneDeep(this.props.players);
 
@@ -25,7 +28,8 @@ var IncomingArea = React.createClass({
 
     // Pretty up the displayed salary
     return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  },
+  }
+
   render() {
     let style = {
       flexBasis: '40px',
@@ -46,6 +50,10 @@ var IncomingArea = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = IncomingArea;
+IncomingArea.propTypes = {
+  players: React.array,
+  onPlayerClicked: React.func,
+  min: React.string
+};
