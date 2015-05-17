@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TradeMachine from './TradeMachine.jsx';
 
-export default class AppContainer extends React.Component {
+export default class AppContainer extends Component {
   constructor() {
     super();
 

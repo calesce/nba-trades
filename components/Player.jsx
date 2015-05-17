@@ -16,8 +16,7 @@ export default class Player extends Component {
   }
 
   render() {
-    let className = this.formatTeamName();
-    let teamColors = teamStyle[className];
+    const className = this.formatTeamName();
 
     let style = {
       flexShrink: 0,
@@ -26,9 +25,9 @@ export default class Player extends Component {
       margin: '3px',
       display: 'inline-block',
       position: 'relative',
-      background: teamColors.background,
-      color: teamColors.color,
-      border: teamColors.border
+      background: teamStyle[className].background,
+      color: teamStyle[className].color,
+      border: teamStyle[className].border
     };
 
     let imgStyle = {

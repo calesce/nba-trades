@@ -60,8 +60,8 @@ export default class TeamArea extends React.Component {
     let styles = {
       position: 'absolute',
       top: '1%',
-      width: '400px',
-      height: '500px',
+      width: '500px',
+      height: '800px',
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',
@@ -89,14 +89,11 @@ export default class TeamArea extends React.Component {
           onPlayerClicked={this.props.onPlayerClicked}
         />
         { this.props.team.totalSalary ? <div style={nonShrinkStyle}>Team Salary: { this.props.team.totalSalary }</div> : '' }
-        {
-          this.hasIncoming() ?
-            <IncomingArea
-              players={this.props.incomingPlayers}
-              min={400}
-              onPlayerClicked={this.props.onPlayerClicked}
-              /> : ''
-        }
+        <IncomingArea
+          players={this.props.incomingPlayers}
+          min={400}
+          onPlayerClicked={this.props.onPlayerClicked}
+        />
       </div>
     );
   }

@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
 import TeamArea from './TeamArea.jsx';
 import Check from './Check.jsx';
 
-export default class TradeMachine extends React.Component {
+export default class TradeMachine extends Component {
 
   constructor(props) {
     super(props);
@@ -22,16 +22,9 @@ export default class TradeMachine extends React.Component {
         team2: []
       }
     };
-
-    this.handleTeamSelected = this.handleTeamSelected.bind(this);
-    this.handlePlayerClicked = this.handlePlayerClicked.bind(this);
-    this.getTeamForPlayer = this.getTeamForPlayer.bind(this);
-    this.getTeam = this.getTeam.bind(this);
-    this.getPlayerIndex = this.getPlayerIndex.bind(this);
-    this.getFilteredTeams = this.getFilteredTeams.bind(this);
   }
 
-  handleTeamSelected(team, index) {
+  handleTeamSelected = (team, index) => {
     let selectedTeams = _.cloneDeep(this.state.selectedTeams);
     selectedTeams[index] = this.props.teams[team];
 
@@ -45,11 +38,7 @@ export default class TradeMachine extends React.Component {
     });
   }
 
-  handlePlayerClicked(player) {
-    if(this.state.selectedTeams.team1 === '' || this.state.selectedTeams.team2 === '') {
-      return;
-    }
-
+  handlePlayerClicked = (player) => {
     let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
@@ -62,14 +51,14 @@ export default class TradeMachine extends React.Component {
       this.setState({ incomingPlayers });
     }
     else {
-      var index = _.findIndex(incomingPlayers[teamIndex], 'name', player.name);
+      let index = _.findIndex(incomingPlayers[teamIndex], 'name', player.name);
       incomingPlayers[teamIndex].splice(index, 1);
 
       this.setState({ incomingPlayers });
     }
   }
 
-  getTeamForPlayer(playerName) {
+  getTeamForPlayer = (playerName) => {
     let teams = this.props.teams;
 
     return _.compact(_.map(teams, (team, key) => {
@@ -79,19 +68,19 @@ export default class TradeMachine extends React.Component {
     }))[0];
   }
 
-  getTeam(teamName) {
+  getTeam = (teamName) => {
     return this.props.teams[teamName];
   }
 
-  getPlayerIndex(playerName, teamName) {
-    let teamPlayers = this.props.teams[teamName].players;
+  getPlayerIndex = (playerName, teamName) => {
+    const [players] = this.props.teams[teamName];
 
-    return _.findIndex(teamPlayers, (player) => {
+    return _.findIndex(players, (player) => {
       return player.name === playerName;
     });
   }
 
-  getFilteredTeams(index) {
+  getFilteredTeams = (index) => {
     if(this.state.selectedTeams.team1) {
       let teams = _.cloneDeep(this.props.teams);
       let filteredIndex = (index === 'team1') ? 'team2' : 'team1';

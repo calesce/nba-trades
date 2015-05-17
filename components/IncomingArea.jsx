@@ -28,25 +28,40 @@ export default class IncomingArea extends Component {
     return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
+  getDropSize = () => {
+    const len = Math.ceil(this.props.players.length / 4) * 150;
+
+    return this.props.players.length ? (len + 'px') : '150px';
+  }
+
   render() {
+    const flexBasis = this.getDropSize();
     let style = {
-      flexBasis: '40px',
+      background: 'grey',
+      flexBasis,
+      width: '700px',
       flexShrink: 0
     };
 
-    let incomingSalary = this.incomingSalary();
+    if(this.props.players.length) {
+      const incomingSalary = this.incomingSalary();
 
-    return (
-      <div style={style}>
-        <div>Incoming Players:</div>
-        <PlayerList
-          roster={this.props.players}
-          onPlayerClicked={this.props.onPlayerClicked}
-          min={this.props.min}
-        />
-        <div>Incoming Salary: {incomingSalary}</div>
-      </div>
-    );
+      return (
+        <div style={style}>
+          <div>Incoming Players:</div>
+          <PlayerList
+            roster={this.props.players}
+            onPlayerClicked={this.props.onPlayerClicked}
+            min={this.props.min}
+          />
+          <div>Incoming Salary: {incomingSalary}</div>
+        </div>
+      );
+    }
+    else {
+      return <div style={style}></div>;
+    }
+
   }
 }
 

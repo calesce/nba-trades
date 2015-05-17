@@ -1,20 +1,17 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
-export default class TeamSelect extends React.Component {
+export default class TeamSelect extends Component {
 
   constructor(props) {
     super(props);
-
-    this.teamSelected = this.teamSelected.bind(this);
-    this.getSortedTeams = this.getSortedTeams.bind(this);
   }
 
-  teamSelected(event) {
+  teamSelected = (event) => {
     this.props.onTeamSelected(event.target.value, this.props.number);
   }
 
-  getSortedTeams() {
+  getSortedTeams = () => {
     return _.chain(this.props.teams)
       .sortBy((team) => {
         return team.location;

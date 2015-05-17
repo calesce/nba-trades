@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
-export default class Check extends React.Component {
+export default class Check extends Component {
 
   constructor(props) {
     super(props);
@@ -11,9 +11,6 @@ export default class Check extends React.Component {
     };
 
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-    this.isTrade = this.isTrade.bind(this);
-    this.determineValidity = this.determineValidity.bind(this);
-    this.salaryToNumber = this.salaryToNumber.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +32,7 @@ export default class Check extends React.Component {
     }
   }
 
-  isTrade(incoming) {
+  isTrade = (incoming) => {
     let check = 0;
 
     _.forEach(incoming, (incomingPlayer) => {
@@ -47,7 +44,7 @@ export default class Check extends React.Component {
     return check > 1;
   }
 
-  determineValidity(props) {
+  determineValidity = (props) => {
     // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
     let teamOneIncoming = _.reduce(props.incoming.team1, (sum, player) => {
       return sum + this.salaryToNumber(player.salary);
@@ -66,7 +63,7 @@ export default class Check extends React.Component {
     return true;
   }
 
-  salaryToNumber(salaryString) {
+  salaryToNumber = (salaryString) => {
     return parseInt(salaryString.replace(/\$|\,/g, ''));
   }
 
