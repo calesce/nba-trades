@@ -1,20 +1,17 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 const teamStyle = require('./teamStyles');
 
-export default class Player extends React.Component {
+export default class Player extends Component {
 
   constructor(props) {
     super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.formatTeamName = this.formatTeamName.bind(this);
   }
 
-  handleClick(player) {
+  handleClick = (player) => {
     this.props.onPlayerClicked(player);
   }
 
-  formatTeamName() {
+  formatTeamName = () => {
     return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
   }
 

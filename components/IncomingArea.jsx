@@ -1,17 +1,15 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
 import PlayerList from './PlayerList.jsx';
 
-export default class IncomingArea extends React.Component {
+export default class IncomingArea extends Component {
 
   constructor(props) {
     super(props);
-
-    this.incomingSalary = this.incomingSalary.bind(this);
   }
 
-  incomingSalary() {
+  incomingSalary = () => {
     let players = _.cloneDeep(this.props.players);
 
     let salary = _.chain(players)
@@ -53,7 +51,7 @@ export default class IncomingArea extends React.Component {
 }
 
 IncomingArea.propTypes = {
-  players: React.array,
-  onPlayerClicked: React.func,
-  min: React.string
+  players: PropTypes.array.isRequired,
+  onPlayerClicked: PropTypes.func.isRequired,
+  min: PropTypes.number
 };

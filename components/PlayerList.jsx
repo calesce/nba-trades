@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
-import Player from './PlayerList.jsx';
+import Player from './Player.jsx';
 
-export default class PlayerList extends React.Component {
+export default class PlayerList extends Component {
 
   constructor(props) {
     super(props);
@@ -47,6 +47,6 @@ export default class PlayerList extends React.Component {
 
 PlayerList.propTypes = {
   roster: PropTypes.array.isRequired,
-  team: PropTypes.string.isRequired,
+  team: PropTypes.string,
   onPlayerClicked: PropTypes.func.isRequired
 };
