@@ -31,8 +31,7 @@ export default class TeamSelect extends Component {
     let style = {
       width: '200px',
       flexBasis: '30px',
-      flexShrink: 0,
-      order: -1
+      flexShrink: 0
     };
 
     return (

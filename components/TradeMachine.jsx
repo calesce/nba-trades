@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
+import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import { DragDropContext } from 'react-dnd';
+
 import TeamArea from './TeamArea.jsx';
 import Check from './Check.jsx';
 
+@DragDropContext(HTML5Backend)
 export default class TradeMachine extends Component {
 
   constructor(props) {
@@ -39,6 +43,7 @@ export default class TradeMachine extends Component {
   }
 
   handlePlayerClicked = (player) => {
+    console.log(player.name);
     let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 

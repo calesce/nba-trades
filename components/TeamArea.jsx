@@ -75,8 +75,52 @@ export default class TeamArea extends React.Component {
       flexShrink: 0
     };
 
+    let nonShrinkRedStyle = {
+      flexBasis: '20px',
+      flexShrink: 0,
+      color: 'red'
+    };
+
+    console.log(this.props.outgoingPlayers);
+    let teamSalary;
+    if(this.props.outgoingPlayers.length) {
+      let outgoingSalary = _.cloneDeep(this.props.outgoingPlayers);
+
+      outgoingSalary = _.chain(outgoingSalary)
+        .map((player) => {
+          player.salary = player.salary.replace(/\,/g, '');
+          player.salary = player.salary.slice(1);
+
+          return parseInt(player.salary);
+        })
+        .reduce((sum, nextSalary) => {
+          return sum + nextSalary;
+        })
+        .value();
+
+      // Pretty up the displayed salary
+      outgoingSalary = '$' + outgoingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      teamSalary = (
+        <div style={nonShrinkStyle}>Team Salary: {this.props.team.totalSalary}
+        - <span style={nonShrinkRedStyle}>{outgoingSalary}</span>
+        </div>
+      );
+    }
+    else {
+      teamSalary = (
+        <div style={nonShrinkStyle}>Team Salary: {this.props.team.totalSalary}</div>
+      );
+    }
+
     return (
       <div style={styles}>
+        <IncomingArea
+          players={this.props.incomingPlayers}
+          teamName={this.props.team.teamName}
+          min={400}
+          onPlayerClicked={this.props.onPlayerClicked}
+        />
+        {teamSalary}
         <TeamSelect
           teams={this.props.teams}
           teamName={this.props.team.teamName}
@@ -86,12 +130,6 @@ export default class TeamArea extends React.Component {
         <PlayerList
           roster={roster}
           team={this.props.team.teamName}
-          onPlayerClicked={this.props.onPlayerClicked}
-        />
-        { this.props.team.totalSalary ? <div style={nonShrinkStyle}>Team Salary: { this.props.team.totalSalary }</div> : '' }
-        <IncomingArea
-          players={this.props.incomingPlayers}
-          min={400}
           onPlayerClicked={this.props.onPlayerClicked}
         />
       </div>

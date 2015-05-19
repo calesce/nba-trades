@@ -1,6 +1,33 @@
 import React, { Component, PropTypes } from 'react';
+import { DragSource } from 'react-dnd';
+
 const teamStyle = require('./teamStyles');
 
+const Types = {
+  PLAYER: 'player'
+};
+
+const playerSource = {
+  beginDrag(props) {
+    const item = { id: props.name, team: props.teamName };
+    return item;
+  },
+
+  endDrag(props, monitor, component) {
+    if(!monitor.didDrop()) {
+      return;
+    }
+
+    const item = monitor.getItem();
+    const dropResult = monitor.getDropResult();
+    props.onPlayerClicked(props.player);
+  }
+};
+
+@DragSource(Types.PLAYER, playerSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))
 export default class Player extends Component {
 
   constructor(props) {
@@ -17,6 +44,7 @@ export default class Player extends Component {
 
   render() {
     const className = this.formatTeamName();
+    const { isDragging, connectDragSource } = this.props;
 
     let style = {
       flexShrink: 0,
@@ -27,7 +55,8 @@ export default class Player extends Component {
       position: 'relative',
       background: teamStyle[className].background,
       color: teamStyle[className].color,
-      border: teamStyle[className].border
+      border: teamStyle[className].border,
+      cursor: '-webkit-grab'
     };
 
     let imgStyle = {
@@ -47,8 +76,8 @@ export default class Player extends Component {
       bottom: '5px'
     };
 
-    return (
-      <div style={style} ref="player" onClick={this.handleClick.bind(this, this.props.player)}>
+    return connectDragSource(
+      <div style={style} onClick={this.handleClick.bind(this, this.props.player)}>
         <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
         <span style={nameStyle} className="playerName">{this.props.name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>

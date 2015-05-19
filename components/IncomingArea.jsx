@@ -1,8 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
+import { DropTarget } from 'react-dnd';
 
 import PlayerList from './PlayerList.jsx';
 
+const playerTarget = {
+  canDrop(props, monitor) {
+    return monitor.getItem().team !== props.teamName;
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+  };
+}
+
+@DropTarget('player', playerTarget, collect)
 export default class IncomingArea extends Component {
 
   constructor(props) {
@@ -36,6 +52,7 @@ export default class IncomingArea extends Component {
 
   render() {
     const flexBasis = this.getDropSize();
+    const { connectDropTarget, isOver, canDrop } = this.props;
     let style = {
       background: 'grey',
       flexBasis,
@@ -43,10 +60,17 @@ export default class IncomingArea extends Component {
       flexShrink: 0
     };
 
+    if(canDrop && isOver) {
+      style.background = 'green';
+    }
+    if(!canDrop && isOver) {
+      style.background = 'red';
+    }
+
     if(this.props.players.length) {
       const incomingSalary = this.incomingSalary();
 
-      return (
+      return connectDropTarget(
         <div style={style}>
           <div>Incoming Players:</div>
           <PlayerList
@@ -59,7 +83,7 @@ export default class IncomingArea extends Component {
       );
     }
     else {
-      return <div style={style}></div>;
+      return connectDropTarget(<div style={style}></div>);
     }
 
   }
