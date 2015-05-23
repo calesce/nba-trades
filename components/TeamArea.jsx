@@ -81,7 +81,6 @@ export default class TeamArea extends React.Component {
       color: 'red'
     };
 
-    console.log(this.props.outgoingPlayers);
     let teamSalary;
     if(this.props.outgoingPlayers.length) {
       let outgoingSalary = _.cloneDeep(this.props.outgoingPlayers);
@@ -102,7 +101,7 @@ export default class TeamArea extends React.Component {
       outgoingSalary = '$' + outgoingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       teamSalary = (
         <div style={nonShrinkStyle}>Team Salary: {this.props.team.totalSalary}
-        - <span style={nonShrinkRedStyle}>{outgoingSalary}</span>
+        &nbsp;- <span style={nonShrinkRedStyle}>{outgoingSalary}</span>
         </div>
       );
     }

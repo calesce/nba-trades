@@ -28,10 +28,9 @@ const playerSource = {
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))
-export default class Player extends Component {
+export default class Player {
 
   constructor(props) {
-    super(props);
   }
 
   handleClick = (player) => {

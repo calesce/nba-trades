@@ -72,13 +72,11 @@ export default class IncomingArea extends Component {
 
       return connectDropTarget(
         <div style={style}>
-          <div>Incoming Players:</div>
           <PlayerList
             roster={this.props.players}
             onPlayerClicked={this.props.onPlayerClicked}
             min={this.props.min}
           />
-          <div>Incoming Salary: {incomingSalary}</div>
         </div>
       );
     }

@@ -12,7 +12,7 @@ export default class AppContainer extends Component {
 
   componentDidMount() {
     let http = new XMLHttpRequest();
-    http.open('GET', 'http://nbasalaries.herokuapp.com', true);
+    http.open('GET', 'http://localhost:8080/api', true);
     http.send();
 
     http.onload = () => {

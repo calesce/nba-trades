@@ -28,5 +28,8 @@
     "comma-dangle": "always",
     "no-cond-assign": "always",
     "no-use-before-define": [2, "nofunc"]
-  }
+  },
+  "plugins": [
+    "react"
+  ]
 }
