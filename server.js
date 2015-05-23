@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var express = require('express');
-var parse = require('./lib/salaries');
+var salaries = require('./lib/salaries');
 var proxy = require('proxy-middleware');
 var url = require('url');
 
@@ -18,7 +18,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-app.get('/api', allowCrossDomain, parse.getTeams);
+app.get('/api', allowCrossDomain, salaries);
 
 var server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
