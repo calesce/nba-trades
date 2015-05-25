@@ -1,8 +1,5 @@
-var download = require('../lib/image/download');
-
-download.fetch(function(err) {
-  if(err) {
+require('../lib/image/download')().then(function() {
+    console.log('success');
+  }).catch(function(err) {
     console.log('error: ' + JSON.stringify(err));
-    return;
-  }
-});
+  });
