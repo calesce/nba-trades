@@ -3,11 +3,11 @@ import AppContainer from './components/AppContainer';
 import FluxComponent from 'flummox/component';
 import Flux from './Flux';
 
-const flux = new Flux();
-
 async function initialize() {
-  const payloadAction = flux.getActions('payload');
-  let data = await payloadAction.getData();
+  const flux = new Flux();
+
+  const tradeActions = flux.getActions('trade');
+  let data = await tradeActions.getData();
 
   return React.render(
     <FluxComponent flux={flux}>

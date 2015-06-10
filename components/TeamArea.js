@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import FluxComponent from 'flummox/component';
 
 import TeamSelect from './TeamSelect';
 import PlayerList from './PlayerList';
@@ -120,12 +121,14 @@ export default class TeamArea extends React.Component {
           onPlayerClicked={this.props.onPlayerClicked}
         />
         {teamSalary}
-        <TeamSelect
+        <FluxComponent>
+          <TeamSelect
           teams={this.props.teams}
           teamName={this.props.team.teamName}
           number={this.props.number}
           onTeamSelected={this.teamSelected}
-        />
+          />
+        </FluxComponent>
         <PlayerList
           roster={roster}
           team={this.props.team.teamName}

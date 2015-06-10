@@ -5,16 +5,16 @@ export default class TradeStore extends Store {
   constructor(flux) {
     super();
 
-    const payloadActionIds = flux.getActionIds('payload');
-    this.register(payloadActionIds.getData, this.handlePayload);
+    const tradeActionIds = flux.getActionIds('trade');
+    this.register(tradeActionIds.getData, this.handleInitialPayload);
 
     this.state = {
-      teams: []
+      teams: [],
+      selectedTeams: {}
     };
   }
 
-  handlePayload = (teams) => {
-    console.log(this);
+  handleInitialPayload = (teams) => {
     this.setState({ teams: teams });
   }
 

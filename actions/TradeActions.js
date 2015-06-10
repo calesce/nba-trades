@@ -1,6 +1,6 @@
 import { Actions } from 'flummox';
 
-export default class PayloadActions extends Actions {
+export default class TradeActions extends Actions {
   async getData() {
     let response;
 

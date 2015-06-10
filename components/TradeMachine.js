@@ -43,7 +43,6 @@ export default class TradeMachine extends Component {
   }
 
   handlePlayerClicked = (player) => {
-    console.log(player.name);
     let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
@@ -132,4 +131,8 @@ export default class TradeMachine extends Component {
 
 TradeMachine.propTypes = {
   teams: PropTypes.object
+};
+
+TradeMachine.contextTypes = {
+  flux: PropTypes.object
 };

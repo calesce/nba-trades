@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TradeMachine from './TradeMachine';
 import FluxComponent from 'flummox/component';
 import Flux from '../Flux';
@@ -13,7 +13,7 @@ export default class AppContainer extends Component {
     let taxLine = 76829000;
 
     return (
-      <FluxComponent connectToStores={'payload'}>
+      <FluxComponent connectToStores={'trade'}>
         <TradeMachine
           salaryCap = {salaryCap}
           taxLine = {taxLine}
@@ -22,3 +22,11 @@ export default class AppContainer extends Component {
     );
   }
 }
+
+AppContainer.contextTypes = {
+  flux: PropTypes.object
+};
+
+AppContainer.childContextTypes = {
+  flux: PropTypes.object
+};
