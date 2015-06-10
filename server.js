@@ -3,7 +3,6 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var express = require('express');
 var salaries = require('./lib/salaries');
-var proxy = require('proxy-middleware');
 var url = require('url');
 
 var app = express();

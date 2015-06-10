@@ -27,7 +27,10 @@
     "strict": 0,
     "comma-dangle": "always",
     "no-cond-assign": "always",
-    "no-use-before-define": [2, "nofunc"]
+    "no-use-before-define": [2, "nofunc"],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
   },
   "plugins": [
     "react"
