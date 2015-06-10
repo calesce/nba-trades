@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
-import Player from './Player.jsx';
+import Player from './Player';
 
 export default class PlayerList extends Component {
 

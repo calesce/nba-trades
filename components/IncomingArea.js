@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import { DropTarget } from 'react-dnd';
 
-import PlayerList from './PlayerList.jsx';
+import PlayerList from './PlayerList';
 
 const playerTarget = {
   canDrop(props, monitor) {

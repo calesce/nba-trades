@@ -1,11 +1,11 @@
 var webpack = require('webpack');
 
 module.exports = {
-
+  devtool: 'inline-source-map',
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3000',
     'webpack/hot/only-dev-server',
-    './app.jsx'
+    './app.js'
   ],
   output: {
     filename: 'bundle.js',
@@ -20,7 +20,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ }
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel-loader?experimental&externalHelpers'], exclude: /node_modules/ }
     ]
   }
 };

@@ -9,11 +9,16 @@ export default class TradeStore extends Store {
     this.register(payloadActionIds.getData, this.handlePayload);
 
     this.state = {
-      teams: ''
+      teams: []
     };
   }
 
-  getPayload(teams) {
-    this.setState({ teams });
+  handlePayload = (teams) => {
+    console.log(this);
+    this.setState({ teams: teams });
+  }
+
+  getTeams = () => {
+    return this.state.teams;
   }
 }

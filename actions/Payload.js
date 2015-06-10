@@ -2,11 +2,12 @@ import { Actions } from 'flummox';
 
 export default class PayloadActions extends Actions {
   async getData() {
-    console.log('hi!');
+    let response;
+
     try {
       const url = 'http://localhost:8080/api';
-      let data = await fetch(url);
-      return JSON.parse(data.json());
+      response = await fetch(url);
+      return await response.json();
     }
     catch(err) {
       console.log('ERROR: ' + err);

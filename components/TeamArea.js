@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import TeamSelect from './TeamSelect.jsx';
-import PlayerList from './PlayerList.jsx';
-import IncomingArea from './IncomingArea.jsx';
+import TeamSelect from './TeamSelect';
+import PlayerList from './PlayerList';
+import IncomingArea from './IncomingArea';
 
 export default class TeamArea extends React.Component {
 
