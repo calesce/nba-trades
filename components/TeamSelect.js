@@ -8,7 +8,7 @@ export default class TeamSelect extends Component {
   }
 
   teamSelected = (event) => {
-    this.props.onTeamSelected(event.target.value, this.props.number);
+    this.context.flux.getActions('trade').teamSelected(event.target.value, this.props.number);
   }
 
   getSortedTeams = () => {
@@ -52,6 +52,9 @@ export default class TeamSelect extends Component {
 
 TeamSelect.propTypes = {
   teamName: PropTypes.string,
-  teams: PropTypes.object.isRequired,
-  onTeamSelected: PropTypes.func.isRequired
+  teams: PropTypes.object.isRequired
+};
+
+TeamSelect.contextTypes = {
+  flux: PropTypes.object
 };

@@ -13,4 +13,8 @@ export default class TradeActions extends Actions {
       console.log('ERROR: ' + err);
     }
   }
+
+  teamSelected(teamName, teamNumber) {
+    return { teamName, teamNumber };
+  }
 }

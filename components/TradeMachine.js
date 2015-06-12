@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
-
+import FluxComponent from 'flummox/component';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext } from 'react-dnd';
 
@@ -13,14 +13,7 @@ export default class TradeMachine extends Component {
   constructor(props) {
     super(props);
 
-    let team1 = this.getTeam('Wizards');
-    let team2 = this.getTeam('Grizzlies');
-
     this.state = {
-      selectedTeams: {
-        team1,
-        team2
-      },
       incomingPlayers: {
         team1: [],
         team2: []
@@ -29,12 +22,8 @@ export default class TradeMachine extends Component {
   }
 
   handleTeamSelected = (team, index) => {
-    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
-    selectedTeams[index] = this.props.teams[team];
-
     // change to new teams and clear out staged players
     this.setState({
-      selectedTeams,
       incomingPlayers: {
         team1: [],
         team2: []
@@ -43,7 +32,7 @@ export default class TradeMachine extends Component {
   }
 
   handlePlayerClicked = (player) => {
-    let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
+    let teamIndex = this.getTeamForPlayer(player.name) === this.props.selectedTeams.team1.teamName ? 'team2' : 'team1';
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
     let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
@@ -85,10 +74,10 @@ export default class TradeMachine extends Component {
   }
 
   getFilteredTeams = (index) => {
-    if(this.state.selectedTeams.team1) {
+    if(this.props.selectedTeams.team1) {
       let teams = _.cloneDeep(this.props.teams);
       let filteredIndex = (index === 'team1') ? 'team2' : 'team1';
-      return _.omit(teams, this.state.selectedTeams[filteredIndex].teamName);
+      return _.omit(teams, this.props.selectedTeams[filteredIndex].teamName);
     }
     else {
       return this.props.teams;
@@ -96,7 +85,6 @@ export default class TradeMachine extends Component {
   }
 
   render() {
-
     let style = {
       WebkitUserSelect: 'none',
       MozUserSelect: 'none',
@@ -108,7 +96,7 @@ export default class TradeMachine extends Component {
       <div style={style} className='TradeMachine'>
         <TeamArea
           teams={this.getFilteredTeams('team1')}
-          team={this.state.selectedTeams.team1}
+          team={this.props.selectedTeams.team1}
           number={'team1'}
           onTeamSelected={this.handleTeamSelected}
           onPlayerClicked={this.handlePlayerClicked}
@@ -117,7 +105,7 @@ export default class TradeMachine extends Component {
         />
         <TeamArea
           teams={this.getFilteredTeams('team2')}
-          team={this.state.selectedTeams.team2}
+          team={this.props.selectedTeams.team2}
           number={'team2'}
           onTeamSelected={this.handleTeamSelected}
           onPlayerClicked={this.handlePlayerClicked}
@@ -131,8 +119,4 @@ export default class TradeMachine extends Component {
 
 TradeMachine.propTypes = {
   teams: PropTypes.object
-};
-
-TradeMachine.contextTypes = {
-  flux: PropTypes.object
 };

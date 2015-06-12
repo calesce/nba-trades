@@ -26,7 +26,3 @@ export default class AppContainer extends Component {
 AppContainer.contextTypes = {
   flux: PropTypes.object
 };
-
-AppContainer.childContextTypes = {
-  flux: PropTypes.object
-};

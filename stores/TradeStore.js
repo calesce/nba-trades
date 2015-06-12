@@ -1,4 +1,5 @@
 import { Store } from 'flummox';
+import _ from 'lodash';
 
 export default class TradeStore extends Store {
 
@@ -7,6 +8,7 @@ export default class TradeStore extends Store {
 
     const tradeActionIds = flux.getActionIds('trade');
     this.register(tradeActionIds.getData, this.handleInitialPayload);
+    this.register(tradeActionIds.teamSelected, this.handleTeamSelected);
 
     this.state = {
       teams: [],
@@ -15,7 +17,20 @@ export default class TradeStore extends Store {
   }
 
   handleInitialPayload = (teams) => {
-    this.setState({ teams: teams });
+    this.setState({
+      teams,
+      selectedTeams: {
+        team1: teams.Warriors,
+        team2: teams.Cavaliers
+      }
+    });
+  }
+
+  handleTeamSelected = ({ teamName, teamNumber }) => {
+    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
+    selectedTeams[teamNumber] = this.state.teams[teamName];
+
+    this.setState({ selectedTeams });
   }
 
   getTeams = () => {

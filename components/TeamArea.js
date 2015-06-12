@@ -11,15 +11,9 @@ export default class TeamArea extends React.Component {
   constructor(props) {
     super(props);
 
-    this.teamSelected = this.teamSelected.bind(this);
     this.rosterMinusOutgoing = this.rosterMinusOutgoing.bind(this);
-    this.componentWillMount = this.componentWillMount.bind(this);
     this.hasIncoming = this.hasIncoming.bind(this);
     this.numTeams = this.numTeams.bind(this);
-  }
-
-  teamSelected(value, number) {
-    this.props.onTeamSelected(value, number);
   }
 
   rosterMinusOutgoing() {
@@ -35,15 +29,6 @@ export default class TeamArea extends React.Component {
     });
 
     return result;
-  }
-
-  componentWillMount() {
-    if(this.props.number === 'team1') {
-      this.props.onTeamSelected('Wizards', 'team1');
-    }
-    else {
-      this.props.onTeamSelected('Grizzlies', 'team2');
-    }
   }
 
   hasIncoming() {
@@ -121,14 +106,11 @@ export default class TeamArea extends React.Component {
           onPlayerClicked={this.props.onPlayerClicked}
         />
         {teamSalary}
-        <FluxComponent>
-          <TeamSelect
+        <TeamSelect
           teams={this.props.teams}
           teamName={this.props.team.teamName}
           number={this.props.number}
-          onTeamSelected={this.teamSelected}
-          />
-        </FluxComponent>
+        />
         <PlayerList
           roster={roster}
           team={this.props.team.teamName}
@@ -140,10 +122,13 @@ export default class TeamArea extends React.Component {
 }
 
 TeamArea.propTypes = {
-  onTeamSelected: PropTypes.func.isRequired,
   onPlayerClicked: PropTypes.func.isRequired,
   outgoingPlayers: PropTypes.array.isRequired,
   incomingPlayers: PropTypes.array.isRequired,
   team: PropTypes.object.isRequired,
   number: PropTypes.string.isRequired
+};
+
+TeamArea.contextTypes = {
+  flux: PropTypes.object
 };

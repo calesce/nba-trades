@@ -25,6 +25,7 @@
     "brace-style": [2, "stroustrup", { "allowSingleLine": false }],
     "camelcase": [2, { "properties": "always" }],
     "strict": 0,
+    "new-cap": 0,
     "comma-dangle": "always",
     "no-cond-assign": "always",
     "no-use-before-define": [2, "nofunc"],
