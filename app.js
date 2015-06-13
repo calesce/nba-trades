@@ -1,5 +1,5 @@
 import React from 'react';
-import AppContainer from './components/AppContainer';
+import TradeMachine from './components/TradeMachine';
 import FluxComponent from 'flummox/component';
 import Flux from './Flux';
 
@@ -10,8 +10,8 @@ async function initialize() {
   let data = await tradeActions.getData();
 
   return React.render(
-    <FluxComponent flux={flux}>
-      <AppContainer />
+    <FluxComponent flux={flux} connectToStores={'trade'}>
+      <TradeMachine />
     </FluxComponent>,
     document.getElementById('trades')
   );
