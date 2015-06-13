@@ -35,7 +35,7 @@ export default class PlayerList extends Component {
                 salary={player.salary}
                 imageUrl={player.imageUrl}
                 teamName={player.team}
-                onPlayerClicked={this.props.onPlayerClicked}
+                flux={this.props.flux}
               />
             );
           })
@@ -47,6 +47,5 @@ export default class PlayerList extends Component {
 
 PlayerList.propTypes = {
   roster: PropTypes.array.isRequired,
-  team: PropTypes.string,
-  onPlayerClicked: PropTypes.func.isRequired
+  team: PropTypes.string
 };

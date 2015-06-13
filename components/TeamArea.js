@@ -103,7 +103,7 @@ export default class TeamArea extends React.Component {
           players={this.props.incomingPlayers}
           teamName={this.props.team.teamName}
           min={400}
-          onPlayerClicked={this.props.onPlayerClicked}
+          flux={this.context.flux}
         />
         {teamSalary}
         <TeamSelect
@@ -111,18 +111,13 @@ export default class TeamArea extends React.Component {
           teamName={this.props.team.teamName}
           number={this.props.number}
         />
-        <PlayerList
-          roster={roster}
-          team={this.props.team.teamName}
-          onPlayerClicked={this.props.onPlayerClicked}
-        />
+        <PlayerList roster={roster} team={this.props.team.teamName} flux={this.context.flux} />
       </div>
     );
   }
 }
 
 TeamArea.propTypes = {
-  onPlayerClicked: PropTypes.func.isRequired,
   outgoingPlayers: PropTypes.array.isRequired,
   incomingPlayers: PropTypes.array.isRequired,
   team: PropTypes.object.isRequired,

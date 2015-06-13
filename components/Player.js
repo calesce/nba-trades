@@ -20,7 +20,7 @@ const playerSource = {
 
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    props.onPlayerClicked(props.player);
+    props.flux.getActions('trade').playerSelected(props.player);
   }
 };
 
@@ -34,7 +34,7 @@ export default class Player {
   }
 
   handleClick = (player) => {
-    this.props.onPlayerClicked(player);
+    this.props.flux.getActions('trade').playerSelected(player);
   }
 
   formatTeamName = () => {
@@ -89,6 +89,5 @@ Player.propTypes = {
   name: PropTypes.string.isRequired,
   salary: PropTypes.string.isRequired,
   teamName: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  handleClick: PropTypes.func
+  imageUrl: PropTypes.string.isRequired
 };
