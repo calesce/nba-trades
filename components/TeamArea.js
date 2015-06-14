@@ -45,7 +45,7 @@ export default class TeamArea extends React.Component {
     const numTeams = this.numTeams();
     let styles = {
       position: 'absolute',
-      top: '1%',
+      top: '10%',
       width: '500px',
       height: '800px',
       display: 'flex',
@@ -106,11 +106,6 @@ export default class TeamArea extends React.Component {
           flux={this.context.flux}
         />
         {teamSalary}
-        <TeamSelect
-          teams={this.props.teams}
-          teamName={this.props.team.teamName}
-          number={this.props.number}
-        />
         <PlayerList roster={roster} team={this.props.team.teamName} flux={this.context.flux} />
       </div>
     );

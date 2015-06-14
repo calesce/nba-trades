@@ -3,7 +3,7 @@ import TradeMachine from './components/TradeMachine';
 import FluxComponent from 'flummox/component';
 import Flux from './Flux';
 
-async function initialize() {
+(async function initialize() {
   const flux = new Flux();
 
   const tradeActions = flux.getActions('trade');
@@ -15,6 +15,4 @@ async function initialize() {
     </FluxComponent>,
     document.getElementById('trades')
   );
-}
-
-initialize();
+})();

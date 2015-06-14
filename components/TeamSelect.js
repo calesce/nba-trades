@@ -52,7 +52,7 @@ export default class TeamSelect extends Component {
 
 TeamSelect.propTypes = {
   teamName: PropTypes.string,
-  teams: PropTypes.object.isRequired
+  teams: PropTypes.array.isRequired
 };
 
 TeamSelect.contextTypes = {

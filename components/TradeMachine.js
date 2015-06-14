@@ -3,6 +3,7 @@ import _ from 'lodash';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext } from 'react-dnd';
 
+import TopBar from './TopBar';
 import TeamArea from './TeamArea';
 import Check from './Check';
 
@@ -34,6 +35,10 @@ export default class TradeMachine extends Component {
 
     return (
       <div style={style} className='TradeMachine'>
+        <TopBar
+          teams={this.props.teams}
+          selectedTeams={this.props.selectedTeams}
+        />
         <TeamArea
           teams={this.getFilteredTeams('team1')}
           team={this.props.selectedTeams.team1}
