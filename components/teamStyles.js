@@ -109,46 +109,16 @@ const wizardsPrimary = '#C60C30';
 const wizardsSecondary = '#002244';
 const wizardsTertiary = '#BCC4CC';
 
-var pelicans = {
-  background: pelicansPrimary,
+var bucks = {
+  background: bucksPrimary,
   color: '#fff',
-  border: '1px solid ${pelicansTertiary}'
+  border: `1px solid ${bucksSecondary}`
 };
 
-var grizzlies = {
-  background: grizzliesPrimary,
-  color: grizzliesSecondary,
-  border: '1px solid ${grizzliesTertiary}'
-};
-
-var suns = {
-  background: sunsPrimary,
-  color: sunsSecondary,
-  border: '1px solid #fff'
-};
-
-var wizards = {
-  background: wizardsPrimary,
+var bulls = {
+  background: bullsPrimary,
   color: '#fff',
-  border: '1px solid ${wizardsTertiary}'
-};
-
-var nuggets = {
-  background: nuggetsPrimary,
-  color: nuggetsSecondary,
-  border: '1px solid ${nuggetsTertiary}'
-};
-
-var timberwolves = {
-  background: timberwolvesPrimary,
-  color: '#fff',
-  border: '1px solid ${timberwolvesTertiary}'
-};
-
-var heat = {
-  background: heatPrimary,
-  color: heatSecondary,
-  border: '1px solid ${heatTertiary}'
+  border: `1px solid ${bullsSecondary}`
 };
 
 var cavaliers = {
@@ -157,58 +127,76 @@ var cavaliers = {
   border: '1px solid ${cavaliersTertiary}'
 };
 
-var mavericks = {
-  background: mavericksPrimary,
+var celtics = {
+  background: celticsPrimary,
   color: '#fff',
-  border: '1px solid ${mavericksTertiary}'
-};
-
-var spurs = {
-  background: spursPrimary,
-  color: '#fff',
-  border: '1px solid ${spursSecondary}'
-};
-
-var thunder = {
-  background: thunderPrimary,
-  color: thunderTertiary,
-  border: '1px solid ${thunderSecondary}'
-};
-
-var trailblazers = {
-  background: trailBlazersPrimary,
-  color: '#fff',
-  border: '1px solid ${trailBlazersSecondary}'
-};
-
-var jazz = {
-  background: jazzPrimary,
-  color: jazzSecondary,
-  border: '1px solid ${jazzTertiary}'
+  border: '1px solid #fff'
 };
 
 var clippers = {
   background: clippersPrimary,
   color: '#fff',
-  border: '1px solid ${clippersSecondary}'
+  border: `1px solid ${clippersSecondary}`
 };
 
-var lakers = {
-  background: lakersPrimary,
+var grizzlies = {
+  background: grizzliesPrimary,
   color: '#fff',
-  border: '1px solid ${lakersSecondary}'
+  border: `1px solid ${grizzliesSecondary}`
 };
 
-var warriors = {
-  background: warriorsPrimary,
+var hawks = {
+  background: hawksPrimary,
   color: '#fff',
-  border: '1px solid ${warriorsSecondary}'
+  border: `1px solid ${hawksTertiary}`
+};
+
+var heat = {
+  background: heatPrimary,
+  color: '#fff',
+  border: `1px solid ${heatSecondary}`
+};
+
+var hornets = {
+  background: hornetsPrimary,
+  color: '#fff',
+  border: `1px solid ${hornetsSecondary}`
+};
+
+var jazz = {
+  background: jazzPrimary,
+  color: '#fff',
+  border: `1px solid ${jazzSecondary}`
 };
 
 var kings = {
   background: kingsPrimary,
   color: '#fff',
-  border: '1px solid ${kingsSecondary}'
+  border: `1px solid ${kingsSecondary}`
+};
+
+var knicks = {
+  background: knicksPrimary,
+  color: knicksSecondary,
+  border: `1px solid ${knicksTertiary}`
+};
+
+var lakers = {
+  background: lakersPrimary,
+  color: '#fff',
+  border: `1px solid ${lakersSecondary}`
+};
+
+var magic = {
+  background: magicPrimary,
+  color: '#fff',
+  border: `1px solid ${magicTertiary}`
+};
+
+var mavericks = {
+  background: mavericksPrimary,
+  color: '#fff',
+  border: `1px solid ${mavericksTertiary}`
 };
 
 var nets = {
@@ -217,76 +205,88 @@ var nets = {
   border: '1px solid #fff'
 };
 
-var knicks = {
-  background: knicksPrimary,
-  color: knicksSecondary,
-  border: '1px solid ${knicksTertiary}'
-};
-
-var celtics = {
-  background: celticsPrimary,
+var nuggets = {
+  background: nuggetsPrimary,
   color: '#fff',
-  border: '1px solid ${celticsSecondary}'
-};
-
-var sixers = {
-  background: sixersPrimary,
-  color: '#fff',
-  border: '1px solid ${sixersSecondary}'
-};
-
-var raptors = {
-  background: raptorsPrimary,
-  color: '#fff',
-  border: '1px solid ${raptorsTertiary}'
+  border: `1px solid ${nuggetsSecondary}`
 };
 
 var pacers = {
   background: pacersPrimary,
   color: pacersSecondary,
-  border: '1px solid ${pacersTertiary}'
+  border: `1px solid ${pacersSecondary}`
 };
 
-var bucks = {
-  background: bucksPrimary,
+var pelicans = {
+  background: pelicansPrimary,
   color: '#fff',
-  border: '1px solid ${bucksSecondary}'
-};
-
-var bulls = {
-  background: bullsPrimary,
-  color: '#fff',
-  border: '1px solid ${bullsSecondary}'
+  border: `1px solid ${pelicansSecondary}`
 };
 
 var pistons = {
   background: pistonsPrimary,
   color: '#fff',
-  border: '1px solid ${pistonsTertiary}'
+  border: `1px solid ${pistonsSecondary}`
 };
 
-var hornets = {
-  background: hornetsPrimary,
+var raptors = {
+  background: raptorsPrimary,
   color: '#fff',
-  border: '1px solid ${hornetsTertiary}'
-};
-
-var magic = {
-  background: magicPrimary,
-  color: '#fff',
-  border: '1px solid ${magicTertiary}'
-};
-
-var hawks = {
-  background: hawksPrimary,
-  color: '#fff',
-  border: '1px solid ${hawksTertiary}'
+  border: `1px solid ${raptorsTertiary}`
 };
 
 var rockets = {
   background: rocketsPrimary,
   color: '#fff',
-  border: '1px solid ${rocketsSecondary}'
+  border: `1px solid ${rocketsSecondary}`
+};
+
+var sixers = {
+  background: sixersPrimary,
+  color: '#fff',
+  border: `1px solid ${sixersSecondary}`
+};
+
+var spurs = {
+  background: spursPrimary,
+  color: '#fff',
+  border: `1px solid ${spursSecondary}`
+};
+
+var suns = {
+  background: sunsPrimary,
+  color: sunsSecondary,
+  border: `1px solid ${sunsTertiary}`
+};
+
+var thunder = {
+  background: thunderPrimary,
+  color: '#fff',
+  border: `1px solid ${thunderSecondary}`
+};
+
+var timberwolves = {
+  background: timberwolvesPrimary,
+  color: '#fff',
+  border: `1px solid ${timberwolvesSecondary}`
+};
+
+var trailblazers = {
+  background: trailBlazersPrimary,
+  color: '#fff',
+  border: `1px solid ${trailBlazersTertiary}`
+};
+
+var warriors = {
+  background: warriorsPrimary,
+  color: warriorsSecondary,
+  border: '1px solid #fff'
+};
+
+var wizards = {
+  background: wizardsPrimary,
+  color: '#fff',
+  border: `1px solid ${wizardsTertiary}`
 };
 
 export default {

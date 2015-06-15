@@ -68,9 +68,34 @@ export default class TeamArea extends React.Component {
       color: 'red'
     };
 
-    let teamSalary;
+    let nonShrinkGreenStyle = {
+      flexBasis: '20px',
+      flexShrink: 0,
+      color: 'green'
+    };
+
+    let incomingSalary, outgoingSalary;
+    let teamSalary = 'Team Salary: ' + this.props.team.totalSalary;
+
+    if(this.props.incomingPlayers.length) {
+      incomingSalary = _.cloneDeep(this.props.incomingPlayers);
+
+      incomingSalary = _.chain(incomingSalary)
+        .map((player) => {
+          player.salary = player.salary.replace(/\,/g, '');
+          player.salary = player.salary.slice(1);
+
+          return parseInt(player.salary);
+        })
+        .reduce((sum, nextSalary) => {
+          return sum + nextSalary;
+        })
+        .value();
+
+      incomingSalary = '+ $' + incomingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
     if(this.props.outgoingPlayers.length) {
-      let outgoingSalary = _.cloneDeep(this.props.outgoingPlayers);
+      outgoingSalary = _.cloneDeep(this.props.outgoingPlayers);
 
       outgoingSalary = _.chain(outgoingSalary)
         .map((player) => {
@@ -85,17 +110,7 @@ export default class TeamArea extends React.Component {
         .value();
 
       // Pretty up the displayed salary
-      outgoingSalary = '$' + outgoingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      teamSalary = (
-        <div style={nonShrinkStyle}>Team Salary: {this.props.team.totalSalary}
-        &nbsp;- <span style={nonShrinkRedStyle}>{outgoingSalary}</span>
-        </div>
-      );
-    }
-    else {
-      teamSalary = (
-        <div style={nonShrinkStyle}>Team Salary: {this.props.team.totalSalary}</div>
-      );
+      outgoingSalary = '- $' + outgoingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     return (
@@ -106,7 +121,11 @@ export default class TeamArea extends React.Component {
           min={400}
           flux={this.context.flux}
         />
-        {teamSalary}
+        <div style={nonShrinkStyle}>
+          <span>{teamSalary} </span>
+          { incomingSalary ? <span style={nonShrinkGreenStyle}>{incomingSalary} </span> : <span></span> }
+          { outgoingSalary ? <span style={nonShrinkRedStyle}>{outgoingSalary}</span> : <span></span> }
+        </div>
         <PlayerList roster={roster} team={this.props.team.teamName} flux={this.context.flux} />
       </div>
     );
