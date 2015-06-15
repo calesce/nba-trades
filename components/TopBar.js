@@ -18,7 +18,10 @@ export default class TopBar extends Component {
       top: '0%',
       left: '0%',
       height: '70px',
-      width: '100%'
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
     };
 
     return (

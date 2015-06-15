@@ -111,7 +111,7 @@ const wizardsTertiary = '#BCC4CC';
 
 var pelicans = {
   background: pelicansPrimary,
-  color: pelicansSecondary,
+  color: '#fff',
   border: '1px solid ${pelicansTertiary}'
 };
 
@@ -129,7 +129,7 @@ var suns = {
 
 var wizards = {
   background: wizardsPrimary,
-  color: wizardsSecondary,
+  color: '#fff',
   border: '1px solid ${wizardsTertiary}'
 };
 
@@ -141,7 +141,7 @@ var nuggets = {
 
 var timberwolves = {
   background: timberwolvesPrimary,
-  color: timberwolvesSecondary,
+  color: '#fff',
   border: '1px solid ${timberwolvesTertiary}'
 };
 
@@ -159,7 +159,7 @@ var cavaliers = {
 
 var mavericks = {
   background: mavericksPrimary,
-  color: mavericksSecondary,
+  color: '#fff',
   border: '1px solid ${mavericksTertiary}'
 };
 
@@ -177,7 +177,7 @@ var thunder = {
 
 var trailblazers = {
   background: trailBlazersPrimary,
-  color: trailBlazersTertiary,
+  color: '#fff',
   border: '1px solid ${trailBlazersSecondary}'
 };
 
@@ -225,7 +225,7 @@ var knicks = {
 
 var celtics = {
   background: celticsPrimary,
-  color: celticsSecondary,
+  color: '#fff',
   border: '1px solid ${celticsSecondary}'
 };
 
@@ -237,7 +237,7 @@ var sixers = {
 
 var raptors = {
   background: raptorsPrimary,
-  color: raptorsSecondary,
+  color: '#fff',
   border: '1px solid ${raptorsTertiary}'
 };
 
@@ -249,7 +249,7 @@ var pacers = {
 
 var bucks = {
   background: bucksPrimary,
-  color: bucksTertiary,
+  color: '#fff',
   border: '1px solid ${bucksSecondary}'
 };
 
@@ -261,25 +261,25 @@ var bulls = {
 
 var pistons = {
   background: pistonsPrimary,
-  color: pistonsSecondary,
+  color: '#fff',
   border: '1px solid ${pistonsTertiary}'
 };
 
 var hornets = {
   background: hornetsPrimary,
-  color: hornetsSecondary,
+  color: '#fff',
   border: '1px solid ${hornetsTertiary}'
 };
 
 var magic = {
   background: magicPrimary,
-  color: magicSecondary,
+  color: '#fff',
   border: '1px solid ${magicTertiary}'
 };
 
 var hawks = {
   background: hawksPrimary,
-  color: hawksSecondary,
+  color: '#fff',
   border: '1px solid ${hawksTertiary}'
 };
 

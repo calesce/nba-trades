@@ -29,8 +29,7 @@ export default class TeamSelect extends Component {
     let teamNames = this.getSortedTeams();
 
     let style = {
-      width: '200px',
-      flexBasis: '30px',
+      flexBasis: '165px',
       flexShrink: 0
     };
 

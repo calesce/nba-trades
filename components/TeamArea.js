@@ -58,7 +58,8 @@ export default class TeamArea extends React.Component {
 
     let nonShrinkStyle = {
       flexBasis: '20px',
-      flexShrink: 0
+      flexShrink: 0,
+      textShadow: '0 0 0 white'
     };
 
     let nonShrinkRedStyle = {

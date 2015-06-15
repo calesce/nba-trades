@@ -47,7 +47,7 @@ export default class Player {
 
     let style = {
       flexShrink: 0,
-      height: '50px',
+      height: '55px',
       width: '160px',
       margin: '3px',
       display: 'inline-block',
@@ -55,7 +55,8 @@ export default class Player {
       background: teamStyle[className].background,
       color: teamStyle[className].color,
       border: teamStyle[className].border,
-      cursor: '-webkit-grab'
+      cursor: '-webkit-grab',
+      boxShadow: '0 1px 1px rgba(0,0,0,0.4)',
     };
 
     let imgStyle = {
@@ -66,13 +67,16 @@ export default class Player {
 
     let nameStyle = {
       position: 'absolute',
-      right: '5px'
+      right: '3px',
+      width: '100px',
+      height: '30px'
     };
 
     let salaryStyle = {
       position: 'absolute',
-      right: '5px',
-      bottom: '5px'
+      right: '3px',
+      bottom: '5px',
+      width: '100px'
     };
 
     return connectDragSource(

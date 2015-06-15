@@ -27,6 +27,9 @@ export default class TradeMachine extends Component {
 
   render() {
     let style = {
+      fontFamily: 'Gill Sans, Gill Sans MT, Calibri, sans-serif',
+      fontSize: '15',
+      textShadow: '0 1px 1px rgba(0,0,0,0.4)',
       WebkitUserSelect: 'none',
       MozUserSelect: 'none',
       MsUserSelect: 'none',
