@@ -14,7 +14,8 @@ export default class TradeStore extends Store {
     this.state = {
       teams: [],
       selectedTeams: [],
-      incomingPlayers: [[], [], [], []]
+      incomingPlayers: [[], [], [], []],
+      outgoingPlayers: [[], [], [], []]
     };
   }
 
@@ -22,7 +23,8 @@ export default class TradeStore extends Store {
     this.setState({
       teams,
       selectedTeams: [ teams.Warriors, teams.Cavaliers, teams.Grizzlies, teams.Hornets ],
-      incomingPlayers: [[], [], [], []]
+      incomingPlayers: [[], [], [], []],
+      outgoingPlayers: [[], [], [], []]
     });
   }
 
@@ -41,31 +43,31 @@ export default class TradeStore extends Store {
 
     this.setState({ selectedTeams });
     this.setState({
-      incomingPlayers: [[], [], [], []]
+      incomingPlayers: [[], [], [], []],
+      outgoingPlayers: [[], [], [], []]
     });
   }
 
-  handlePlayerSelected = (player) => {
-
-    // TODO fix this to return a number from 0-3
-    let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
-
+  handlePlayerSelected = ({ player, teamName }) => {
+    const teamIndex = _.findIndex(this.state.selectedTeams, (team) => team.teamName === teamName);
+    const playerTeamIndex = _.findIndex(this.state.selectedTeams, (team) => team.teamName === player.team);
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
+    let outgoingPlayers = _.cloneDeep(this.state.outgoingPlayers);
 
-    let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
+    incomingPlayers[teamIndex].push(player);
+    outgoingPlayers[playerTeamIndex].push(player);
+
+    this.setState({ incomingPlayers, outgoingPlayers });
+
+    /*let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
       return existingPlayer.name === player.name;
     });
 
     if(isPlayerAlreadySelected === -1) {
       incomingPlayers[teamIndex].push(player);
       this.setState({ incomingPlayers });
-    }
-    else {
-      let index = _.findIndex(incomingPlayers[teamIndex], 'name', player.name);
-      incomingPlayers[teamIndex].splice(index, 1);
-
-      this.setState({ incomingPlayers });
-    }
+    }*/
+    // TODO handle case where player is removed
   }
 
   getTeamForPlayer = (playerName) => {

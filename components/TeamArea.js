@@ -73,7 +73,7 @@ export default class TeamArea extends React.Component {
         break;
       case 4:
         style.width = '250px';
-        style.height = '700px';
+        style.height = '800px';
         style.left = (this.props.index * 25) + '%';
         break;
     }
@@ -93,6 +93,16 @@ export default class TeamArea extends React.Component {
       cursor: 'text'
     };
 
+    if(this.props.numTeams === 2) {
+      nonShrinkStyle.width = '700px';
+    }
+    else if(this.props.numTeams === 3) {
+      nonShrinkStyle.width = '530px';
+    }
+    else {
+      nonShrinkStyle.width = '400px';
+    }
+
     let nonShrinkRedStyle = _.cloneDeep(nonShrinkStyle);
     nonShrinkRedStyle.color = 'red';
 
@@ -111,9 +121,11 @@ export default class TeamArea extends React.Component {
 
     return (
       <div style={styles}>
+        <span style={nonShrinkStyle}>{this.props.team.location}&nbsp;{this.props.team.teamName}</span>
         <IncomingArea
           players={this.props.incomingPlayers}
           teamName={this.props.team.teamName}
+          teamIndex={this.props.index}
           numTeams={this.props.numTeams}
           flux={this.context.flux}
         />

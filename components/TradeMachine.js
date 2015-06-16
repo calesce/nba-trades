@@ -40,7 +40,7 @@ export default class TradeMachine extends Component {
                 key={index}
                 numTeams={this.props.selectedTeams.length}
                 incomingPlayers={this.props.incomingPlayers[index]}
-                outgoingPlayers={this.props.incomingPlayers[1]}
+                outgoingPlayers={this.props.outgoingPlayers[index]}
               />
             );
           })

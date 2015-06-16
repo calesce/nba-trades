@@ -7,6 +7,9 @@ import PlayerList from './PlayerList';
 const playerTarget = {
   canDrop(props, monitor) {
     return monitor.getItem().team !== props.teamName;
+  },
+  drop(props, monitor, component) {
+    props.flux.getActions('trade').playerSelected(monitor.getItem(), props.teamName);
   }
 };
 

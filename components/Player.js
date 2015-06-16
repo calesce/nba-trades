@@ -9,7 +9,7 @@ const Types = {
 
 const playerSource = {
   beginDrag(props) {
-    const item = { id: props.name, team: props.teamName };
+    const item = { id: props.name, team: props.teamName, salary: props.salary, imageUrl: props.imageUrl, name: props.name };
     return item;
   },
 
@@ -17,10 +17,6 @@ const playerSource = {
     if(!monitor.didDrop()) {
       return;
     }
-
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult();
-    props.flux.getActions('trade').playerSelected(props.player);
   }
 };
 
@@ -31,10 +27,6 @@ const playerSource = {
 export default class Player {
 
   constructor(props) {
-  }
-
-  handleClick = (player) => {
-    this.props.flux.getActions('trade').playerSelected(player);
   }
 
   formatTeamName = () => {
@@ -79,8 +71,12 @@ export default class Player {
       width: '100px'
     };
 
+    if(isDragging) {
+      style.opacity = 0;
+    }
+
     return connectDragSource(
-      <div style={style} onClick={this.handleClick.bind(this, this.props.player)}>
+      <div style={style}>
         <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
         <span style={nameStyle} className="playerName">{this.props.name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>
