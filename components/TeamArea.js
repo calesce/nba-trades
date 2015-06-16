@@ -57,7 +57,7 @@ export default class TeamArea extends React.Component {
       position: 'absolute',
       top: '10%',
       width: '500px',
-      height: '700px',
+      height: '550px',
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',

@@ -26,13 +26,14 @@ export default class IncomingArea extends Component {
   }
 
   getDropSize = () => {
-    const len = Math.ceil(this.props.players.length / 4) * 150;
+    const len = Math.ceil(this.props.players.length / 8) * 150;
 
     return this.props.players.length ? (len + 'px') : '150px';
   }
 
   render() {
     const flexBasis = this.getDropSize();
+
     const { connectDropTarget, isOver, canDrop } = this.props;
     let style = {
       background: 'grey',
