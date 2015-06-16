@@ -36,8 +36,9 @@ export default class TradeMachine extends Component {
             return (
               <TeamArea
                 team={team}
-                number={index}
+                index={index}
                 key={index}
+                numTeams={this.props.selectedTeams.length}
                 incomingPlayers={this.props.incomingPlayers[index]}
                 outgoingPlayers={this.props.incomingPlayers[1]}
               />

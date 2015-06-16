@@ -49,15 +49,10 @@ export default class TeamArea extends React.Component {
     return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
-  render() {
-    let roster = this.rosterMinusOutgoing();
-
-    const numTeams = 2;
-    let styles = {
+  getStyle = () => {
+    let style = {
       position: 'absolute',
       top: '10%',
-      width: '500px',
-      height: '550px',
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',
@@ -65,18 +60,30 @@ export default class TeamArea extends React.Component {
       alignContent: 'flex-start'
     };
 
-    if(this.props.number === 0) {
-      styles.left = '0%';
+    switch(this.props.numTeams) {
+      case 2:
+        style.width = '500px';
+        style.height = '550px';
+        style.left = (this.props.index * 50) + '%';
+        break;
+      case 3:
+        style.width = '400px';
+        style.height = '650px';
+        style.left = (this.props.index * 33) + '%';
+        break;
+      case 4:
+        style.width = '250px';
+        style.height = '700px';
+        style.left = (this.props.index * 25) + '%';
+        break;
     }
-    if(this.props.number === 1) {
-      styles.left = '25%';
-    }
-    if(this.props.number === 2) {
-      styles.left = '50%';
-    }
-    if(this.props.number === 3) {
-      styles.left = '75%';
-    }
+
+    return style;
+  }
+
+  render() {
+    let roster = this.rosterMinusOutgoing();
+    const styles = this.getStyle();
 
     let nonShrinkStyle = {
       flexBasis: '20px',
@@ -107,6 +114,7 @@ export default class TeamArea extends React.Component {
         <IncomingArea
           players={this.props.incomingPlayers}
           teamName={this.props.team.teamName}
+          numTeams={this.props.numTeams}
           flux={this.context.flux}
         />
         <div style={nonShrinkStyle}>
@@ -124,7 +132,7 @@ TeamArea.propTypes = {
   outgoingPlayers: PropTypes.array.isRequired,
   incomingPlayers: PropTypes.array.isRequired,
   team: PropTypes.object.isRequired,
-  number: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired
 };
 
 TeamArea.contextTypes = {
