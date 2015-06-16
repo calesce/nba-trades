@@ -14,17 +14,6 @@ export default class TradeMachine extends Component {
     super(props);
   }
 
-  getFilteredTeams = (index) => {
-    if(this.props.selectedTeams.team1) {
-      let teams = _.cloneDeep(this.props.teams);
-      let filteredIndex = (index === 'team1') ? 'team2' : 'team1';
-      return _.omit(teams, this.props.selectedTeams[filteredIndex].teamName);
-    }
-    else {
-      return this.props.teams;
-    }
-  }
-
   render() {
     let style = {
       fontFamily: 'Gill Sans, Gill Sans MT, Calibri, sans-serif',
@@ -42,20 +31,20 @@ export default class TradeMachine extends Component {
           teams={this.props.teams}
           selectedTeams={this.props.selectedTeams}
         />
-        <TeamArea
-          teams={this.getFilteredTeams('team1')}
-          team={this.props.selectedTeams.team1}
-          number={'team1'}
-          incomingPlayers={this.props.incomingPlayers.team1}
-          outgoingPlayers={this.props.incomingPlayers.team2}
-        />
-        <TeamArea
-          teams={this.getFilteredTeams('team2')}
-          team={this.props.selectedTeams.team2}
-          number={'team2'}
-          incomingPlayers={this.props.incomingPlayers.team2}
-          outgoingPlayers={this.props.incomingPlayers.team1}
-        />
+        {
+          this.props.selectedTeams.map((team, index) => {
+            return (
+              <TeamArea
+                team={team}
+                number={index}
+                key={index}
+                incomingPlayers={this.props.incomingPlayers[index]}
+                outgoingPlayers={this.props.incomingPlayers[1]}
+              />
+            );
+          })
+        }
+
       </div>
     );
   }

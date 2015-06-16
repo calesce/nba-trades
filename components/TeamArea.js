@@ -64,7 +64,19 @@ export default class TeamArea extends React.Component {
       justifyContent: 'flex-start',
       alignContent: 'flex-start'
     };
-    styles.left = (this.props.number === 'team1') ? '0%' : '50%';
+
+    if(this.props.number === 0) {
+      styles.left = '0%';
+    }
+    if(this.props.number === 1) {
+      styles.left = '25%';
+    }
+    if(this.props.number === 2) {
+      styles.left = '50%';
+    }
+    if(this.props.number === 3) {
+      styles.left = '75%';
+    }
 
     let nonShrinkStyle = {
       flexBasis: '20px',
@@ -95,7 +107,6 @@ export default class TeamArea extends React.Component {
         <IncomingArea
           players={this.props.incomingPlayers}
           teamName={this.props.team.teamName}
-          min={400}
           flux={this.context.flux}
         />
         <div style={nonShrinkStyle}>
@@ -113,7 +124,7 @@ TeamArea.propTypes = {
   outgoingPlayers: PropTypes.array.isRequired,
   incomingPlayers: PropTypes.array.isRequired,
   team: PropTypes.object.isRequired,
-  number: PropTypes.string.isRequired
+  number: PropTypes.number.isRequired
 };
 
 TeamArea.contextTypes = {

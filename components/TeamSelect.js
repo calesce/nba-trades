@@ -13,14 +13,14 @@ export default class TeamSelect extends Component {
 
   getSortedTeams = () => {
     return _.chain(this.props.teams)
-      .sortBy((team) => {
-        return team.location;
-      })
       .map((team) => {
         return {
           teamName: team.teamName,
           location: team.location
         };
+      })
+      .sortBy((team) => {
+        return team.location;
       })
       .value();
   }
@@ -38,7 +38,7 @@ export default class TeamSelect extends Component {
         onChange={this.teamSelected}
         value={this.props.teamName ? this.props.teamName : ''} >
 
-        <option value='none' disabled>Choose a team</option>
+        <option value='none'>Choose a team</option>
         {
           teamNames.map((team) => {
             return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>;
@@ -51,7 +51,7 @@ export default class TeamSelect extends Component {
 
 TeamSelect.propTypes = {
   teamName: PropTypes.string,
-  teams: PropTypes.array.isRequired
+  teams: PropTypes.object.isRequired
 };
 
 TeamSelect.contextTypes = {

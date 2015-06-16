@@ -27,16 +27,18 @@ export default class TopBar extends Component {
     return (
       <div style={styles}>
         NBA Trade Machine&nbsp;
-        <TeamSelect
-          teamName={this.props.selectedTeams.team1.teamName}
-          teams={ _.filter(this.props.teams, team => team.teamName !== this.props.selectedTeams.team2.teamName ) }
-          number="team1"
-        />
-        <TeamSelect
-          teamName={this.props.selectedTeams.team2.teamName}
-          teams={ _.filter(this.props.teams, team => team.teamName !== this.props.selectedTeams.team1.teamName ) }
-          number="team2"
-        />
+        {
+          this.props.selectedTeams.map((team, index) => {
+            return (
+              <TeamSelect
+                teamName={team.teamName}
+                teams={this.props.teams}
+                number={index}
+                key={index}
+              />
+            );
+          })
+        }
       </div>
     );
   }

@@ -13,40 +13,43 @@ export default class TradeStore extends Store {
 
     this.state = {
       teams: [],
-      selectedTeams: {},
-      incomingPlayers: {}
+      selectedTeams: [],
+      incomingPlayers: [[], [], [], []]
     };
   }
 
   handleInitialPayload = (teams) => {
     this.setState({
       teams,
-      selectedTeams: {
-        team1: teams.Warriors,
-        team2: teams.Cavaliers
-      },
-      incomingPlayers: {
-        team1: [],
-        team2: []
-      }
+      selectedTeams: [ teams.Warriors, teams.Cavaliers, teams.Grizzlies, teams.Hornets ],
+      incomingPlayers: [[], [], [], []]
     });
   }
 
   handleTeamSelected = ({ teamName, teamNumber }) => {
     let selectedTeams = _.cloneDeep(this.state.selectedTeams);
-    selectedTeams[teamNumber] = this.state.teams[teamName];
+    if(teamName === 'none') {
+      if(this.state.selectedTeams.length < 3) {
+        return;
+      }
+
+      selectedTeams = _.filter(selectedTeams, (name, index) => index !== teamNumber );
+    }
+    else {
+      selectedTeams[teamNumber] = this.state.teams[teamName];
+    }
 
     this.setState({ selectedTeams });
     this.setState({
-      incomingPlayers: {
-        team1: [],
-        team2: []
-      }
+      incomingPlayers: [[], [], [], []]
     });
   }
 
   handlePlayerSelected = (player) => {
+
+    // TODO fix this to return a number from 0-3
     let teamIndex = this.getTeamForPlayer(player.name) === this.state.selectedTeams.team1.teamName ? 'team2' : 'team1';
+
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
 
     let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {

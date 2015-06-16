@@ -60,7 +60,6 @@ export default class IncomingArea extends Component {
         <div style={style}>
           <PlayerList
             roster={this.props.players}
-            min={this.props.min}
             flux={this.props.flux}
           />
         </div>
@@ -74,6 +73,5 @@ export default class IncomingArea extends Component {
 }
 
 IncomingArea.propTypes = {
-  players: PropTypes.array.isRequired,
-  min: PropTypes.number
+  players: PropTypes.array.isRequired
 };
