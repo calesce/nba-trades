@@ -25,25 +25,6 @@ export default class IncomingArea extends Component {
     super(props);
   }
 
-  incomingSalary = () => {
-    let players = _.cloneDeep(this.props.players);
-
-    let salary = _.chain(players)
-      .map((player) => {
-        player.salary = player.salary.replace(/\,/g, '');
-        player.salary = player.salary.slice(1);
-
-        return parseInt(player.salary);
-      })
-      .reduce((sum, nextSalary) => {
-        return sum + nextSalary;
-      })
-      .value();
-
-    // Pretty up the displayed salary
-    return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-
   getDropSize = () => {
     const len = Math.ceil(this.props.players.length / 4) * 150;
 
@@ -56,8 +37,14 @@ export default class IncomingArea extends Component {
     let style = {
       background: 'grey',
       flexBasis,
+      height: flexBasis,
       width: '700px',
-      flexShrink: 0
+      flexShrink: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      justifyContent: 'flex-start',
+      alignContent: 'flex-start'
     };
 
     if(canDrop && isOver) {
@@ -68,8 +55,6 @@ export default class IncomingArea extends Component {
     }
 
     if(this.props.players.length) {
-      const incomingSalary = this.incomingSalary();
-
       return connectDropTarget(
         <div style={style}>
           <PlayerList

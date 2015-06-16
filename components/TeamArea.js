@@ -10,13 +10,9 @@ export default class TeamArea extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.rosterMinusOutgoing = this.rosterMinusOutgoing.bind(this);
-    this.hasIncoming = this.hasIncoming.bind(this);
-    this.numTeams = this.numTeams.bind(this);
   }
 
-  rosterMinusOutgoing() {
+  rosterMinusOutgoing = () => {
     if(this.props.outgoingPlayers.length === 0) {
       return this.props.team.players;
     }
@@ -31,23 +27,37 @@ export default class TeamArea extends React.Component {
     return result;
   }
 
-  hasIncoming() {
+  hasIncoming = () => {
     return this.props.incomingPlayers.length !== 0;
   }
 
-  numTeams() {
-    return 2;
+  getSalary = (incoming) => {
+    let players = incoming ? _.cloneDeep(this.props.incomingPlayers) : _.cloneDeep(this.props.outgoingPlayers);
+
+    let salary = _.chain(players)
+      .map((player) => {
+        player.salary = player.salary.replace(/\,/g, '');
+        player.salary = player.salary.slice(1);
+
+        return parseInt(player.salary);
+      })
+      .reduce((sum, nextSalary) => {
+        return sum + nextSalary;
+      })
+      .value();
+
+    return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   render() {
     let roster = this.rosterMinusOutgoing();
 
-    const numTeams = this.numTeams();
+    const numTeams = 2;
     let styles = {
       position: 'absolute',
       top: '10%',
       width: '500px',
-      height: '800px',
+      height: '700px',
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',
@@ -59,58 +69,25 @@ export default class TeamArea extends React.Component {
     let nonShrinkStyle = {
       flexBasis: '20px',
       flexShrink: 0,
-      textShadow: '0 0 0 white'
+      textShadow: '0 0 0 white',
+      WebkitUserSelect: 'text',
+      cursor: 'text'
     };
 
-    let nonShrinkRedStyle = {
-      flexBasis: '20px',
-      flexShrink: 0,
-      color: 'red'
-    };
+    let nonShrinkRedStyle = _.cloneDeep(nonShrinkStyle);
+    nonShrinkRedStyle.color = 'red';
 
-    let nonShrinkGreenStyle = {
-      flexBasis: '20px',
-      flexShrink: 0,
-      color: 'green'
-    };
+    let nonShrinkGreenStyle = _.cloneDeep(nonShrinkStyle);
+    nonShrinkGreenStyle.color = 'green';
 
     let incomingSalary, outgoingSalary;
     let teamSalary = 'Team Salary: ' + this.props.team.totalSalary;
 
     if(this.props.incomingPlayers.length) {
-      incomingSalary = _.cloneDeep(this.props.incomingPlayers);
-
-      incomingSalary = _.chain(incomingSalary)
-        .map((player) => {
-          player.salary = player.salary.replace(/\,/g, '');
-          player.salary = player.salary.slice(1);
-
-          return parseInt(player.salary);
-        })
-        .reduce((sum, nextSalary) => {
-          return sum + nextSalary;
-        })
-        .value();
-
-      incomingSalary = '+ $' + incomingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      incomingSalary = '+ ' + this.getSalary(true);
     }
     if(this.props.outgoingPlayers.length) {
-      outgoingSalary = _.cloneDeep(this.props.outgoingPlayers);
-
-      outgoingSalary = _.chain(outgoingSalary)
-        .map((player) => {
-          player.salary = player.salary.replace(/\,/g, '');
-          player.salary = player.salary.slice(1);
-
-          return parseInt(player.salary);
-        })
-        .reduce((sum, nextSalary) => {
-          return sum + nextSalary;
-        })
-        .value();
-
-      // Pretty up the displayed salary
-      outgoingSalary = '- $' + outgoingSalary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      outgoingSalary = '- ' + this.getSalary(false);
     }
 
     return (

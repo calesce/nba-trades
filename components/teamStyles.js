@@ -124,7 +124,7 @@ var bulls = {
 var cavaliers = {
   background: cavaliersPrimary,
   color: cavaliersSecondary,
-  border: '1px solid ${cavaliersTertiary}'
+  border: `1px solid ${cavaliersPrimary}`
 };
 
 var celtics = {
