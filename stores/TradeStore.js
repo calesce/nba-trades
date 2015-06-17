@@ -54,20 +54,34 @@ export default class TradeStore extends Store {
     let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
     let outgoingPlayers = _.cloneDeep(this.state.outgoingPlayers);
 
-    incomingPlayers[teamIndex].push(player);
-    outgoingPlayers[playerTeamIndex].push(player);
+    let alreadyAddedIndex = _.findIndex(this.state.incomingPlayers, (players) => {
+      var selected = false;
 
-    this.setState({ incomingPlayers, outgoingPlayers });
+      players.forEach((existingPlayer) => {
+        if(existingPlayer.name === player.name) {
+          selected = true;
+        }
+      });
 
-    /*let isPlayerAlreadySelected = _.findIndex(this.state.incomingPlayers[teamIndex], (existingPlayer) => {
-      return existingPlayer.name === player.name;
+      return selected;
     });
 
-    if(isPlayerAlreadySelected === -1) {
-      incomingPlayers[teamIndex].push(player);
-      this.setState({ incomingPlayers });
-    }*/
-    // TODO handle case where player is removed
+    if(alreadyAddedIndex !== -1) {
+      if(alreadyAddedIndex === teamIndex) {
+        return;
+      }
+      else {
+        const alreadyAddedPlayerIndex = _.findIndex(incomingPlayers[alreadyAddedIndex], (thePlayer) => thePlayer.name === player.name);
+        incomingPlayers[alreadyAddedIndex].splice(alreadyAddedPlayerIndex, 1);
+      }
+    }
+    else {
+      outgoingPlayers[playerTeamIndex].push(player);
+    }
+
+    incomingPlayers[teamIndex].push(player);
+
+    this.setState({ incomingPlayers, outgoingPlayers });
   }
 
   getTeamForPlayer = (playerName) => {

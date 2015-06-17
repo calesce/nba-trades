@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
-import { DragDropContext } from 'react-dnd';
+import { DragDropContext, DropTarget } from 'react-dnd';
+
+// TODO make droptarget
 
 import TopBar from './TopBar';
 import TeamArea from './TeamArea';
@@ -22,7 +24,10 @@ export default class TradeMachine extends Component {
       WebkitUserSelect: 'none',
       MozUserSelect: 'none',
       MsUserSelect: 'none',
-      cursor: 'default'
+      cursor: 'default',
+      position: 'absolute',
+      width: '100%',
+      height: '100%'
     };
 
     return (
