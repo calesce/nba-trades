@@ -77,6 +77,11 @@ export default class TradeStore extends Store {
       }
     }
     else {
+      // max length of 15 players
+      if(incomingPlayers[teamIndex].length === 15) {
+        return;
+      }
+
       outgoingPlayers[playerTeamIndex].push(player);
     }
 
@@ -90,7 +95,7 @@ export default class TradeStore extends Store {
     let outgoingPlayers = _.cloneDeep(this.state.outgoingPlayers);
 
     const playerTeamIndex = _.findIndex(this.state.selectedTeams, (team) => team.teamName === player.team);
-    const outgoingPlayerIndex = _.findIndex(outgoingPlayers[playerTeamIndex], (outgoingPlayer) => player.playerName === outgoingPlayer.playerName);
+    const outgoingPlayerIndex = _.findIndex(outgoingPlayers[playerTeamIndex], (outgoingPlayer) => player.name === outgoingPlayer.playerName);
     let incomingPlayerIndex;
     const incomingTeamIndex = _.findIndex(incomingPlayers, (players) => {
       var selected = false;
