@@ -10,6 +10,7 @@ export default class TradeStore extends Store {
     this.register(tradeActionIds.getData, this.handleInitialPayload);
     this.register(tradeActionIds.teamSelected, this.handleTeamSelected);
     this.register(tradeActionIds.playerSelected, this.handlePlayerSelected);
+    this.register(tradeActionIds.playerRemoved, this.handlePlayerRemoved);
 
     this.state = {
       teams: [],
@@ -80,6 +81,34 @@ export default class TradeStore extends Store {
     }
 
     incomingPlayers[teamIndex].push(player);
+
+    this.setState({ incomingPlayers, outgoingPlayers });
+  }
+
+  handlePlayerRemoved = (player) => {
+    let incomingPlayers = _.cloneDeep(this.state.incomingPlayers);
+    let outgoingPlayers = _.cloneDeep(this.state.outgoingPlayers);
+
+    const playerTeamIndex = _.findIndex(this.state.selectedTeams, (team) => team.teamName === player.team);
+    const outgoingPlayerIndex = _.findIndex(outgoingPlayers[playerTeamIndex], (outgoingPlayer) => player.playerName === outgoingPlayer.playerName);
+    let incomingPlayerIndex;
+    const incomingTeamIndex = _.findIndex(incomingPlayers, (players) => {
+      var selected = false;
+
+      players.forEach((existingPlayer, index) => {
+        if(existingPlayer.name === player.name) {
+          selected = true;
+          incomingPlayerIndex = index;
+        }
+      });
+
+      return selected;
+    });
+
+    if(outgoingPlayerIndex !== -1) {
+      outgoingPlayers[playerTeamIndex].splice(outgoingPlayerIndex, 1);
+      incomingPlayers[incomingTeamIndex].splice(incomingPlayerIndex, 1);
+    }
 
     this.setState({ incomingPlayers, outgoingPlayers });
   }

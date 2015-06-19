@@ -3,13 +3,31 @@ import _ from 'lodash';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext, DropTarget } from 'react-dnd';
 
-// TODO make droptarget
-
 import TopBar from './TopBar';
 import TeamArea from './TeamArea';
 import Check from './Check';
 
+const playerTarget = {
+  canDrop(props, monitor) {
+    return monitor.getItem().team !== props.teamName;
+  },
+  drop(props, monitor, component) {
+    if(!monitor.didDrop()) {
+      props.flux.getActions('trade').playerRemoved(monitor.getItem());
+    }
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver({ shallow: true }),
+    canDrop: monitor.canDrop()
+  };
+}
+
 @DragDropContext(HTML5Backend)
+@DropTarget('player', playerTarget, collect)
 export default class TradeMachine extends Component {
 
   constructor(props) {
@@ -17,6 +35,8 @@ export default class TradeMachine extends Component {
   }
 
   render() {
+    const { connectDropTarget } = this.props;
+
     let style = {
       fontFamily: 'Gill Sans, Gill Sans MT, Calibri, sans-serif',
       fontSize: '15',
@@ -30,7 +50,7 @@ export default class TradeMachine extends Component {
       height: '100%'
     };
 
-    return (
+    return connectDropTarget(
       <div style={style} className='TradeMachine'>
         <TopBar
           teams={this.props.teams}

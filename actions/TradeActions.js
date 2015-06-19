@@ -21,4 +21,8 @@ export default class TradeActions extends Actions {
   playerSelected(player, teamName) {
     return { player, teamName };
   }
+
+  playerRemoved(player) {
+    return player;
+  }
 }
