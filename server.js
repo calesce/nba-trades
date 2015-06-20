@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var config = require('./webpack.config');
+
 var express = require('express');
 var salaries = require('./lib/salaries');
 var url = require('url');
@@ -22,6 +22,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 app.get('/api', allowCrossDomain, salaries);
 
 if(isProduction) {
+  var config = require('./webpack.prod');
   var server = express();
 
   server.use(express.static(path.join(__dirname, '/dist')));
@@ -29,6 +30,7 @@ if(isProduction) {
   server.listen(3000);
 }
 else {
+  var config = require('./webpack.config');
   var WebpackDevServer = require('webpack-dev-server');
 
   var server = new WebpackDevServer(webpack(config), {
