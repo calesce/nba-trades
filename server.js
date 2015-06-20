@@ -22,7 +22,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 app.get('/api', allowCrossDomain, salaries);
 
 if(isProduction) {
-  var config = require('./webpack.prod');
+  var config = require('./webpack.production');
   var server = express();
 
   server.use(express.static(path.join(__dirname, '/dist')));
