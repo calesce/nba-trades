@@ -13,7 +13,7 @@
     "prod": "NODE_ENV=production webpack -p --config webpack.production.js",
     "start-server": "node lib/salaries/start.js",
     "download": "node scripts/downloadImages",
-    "postinstall": "npm run prod"
+    "postinstall": "NODE_ENV=production webpack -p --config webpack.production.js"
   },
   "dependencies": {
     "babel": "^5.5.6",
