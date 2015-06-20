@@ -110,8 +110,6 @@ export default class TradeStore extends Store {
       return selected;
     });
 
-    console.log(outgoingPlayerIndex);
-
     if(outgoingPlayerIndex !== -1) {
       outgoingPlayers[playerTeamIndex].splice(outgoingPlayerIndex, 1);
       incomingPlayers[incomingTeamIndex].splice(incomingPlayerIndex, 1);
