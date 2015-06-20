@@ -14,7 +14,7 @@ if(isProduction) {
 
   server.get('/api', salaries);
 
-  server.listen(8080);
+  server.listen(process.env.PORT);
 }
 else {
   var app = express();
