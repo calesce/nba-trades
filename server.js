@@ -7,13 +7,10 @@ var path = require('path');
 var isProduction = process.env.NODE_ENV === 'production';
 
 if(isProduction) {
-  var config = require('./webpack.production');
   var server = express();
 
   server.use(express.static(path.join(__dirname, '/dist')));
-
   server.get('/api', salaries);
-
   server.listen(process.env.PORT);
 }
 else {
