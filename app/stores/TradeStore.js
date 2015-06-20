@@ -95,7 +95,7 @@ export default class TradeStore extends Store {
     let outgoingPlayers = _.cloneDeep(this.state.outgoingPlayers);
 
     const playerTeamIndex = _.findIndex(this.state.selectedTeams, (team) => team.teamName === player.team);
-    const outgoingPlayerIndex = _.findIndex(outgoingPlayers[playerTeamIndex], (outgoingPlayer) => player.name === outgoingPlayer.playerName);
+    const outgoingPlayerIndex = _.findIndex(outgoingPlayers[playerTeamIndex], (outgoingPlayer) => player.name === outgoingPlayer.name);
     let incomingPlayerIndex;
     const incomingTeamIndex = _.findIndex(incomingPlayers, (players) => {
       var selected = false;
@@ -109,6 +109,8 @@ export default class TradeStore extends Store {
 
       return selected;
     });
+
+    console.log(outgoingPlayerIndex);
 
     if(outgoingPlayerIndex !== -1) {
       outgoingPlayers[playerTeamIndex].splice(outgoingPlayerIndex, 1);
