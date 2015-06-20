@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var express = require('express');
 var salaries = require('./lib/salaries');
@@ -30,6 +29,8 @@ if(isProduction) {
   server.listen(3000);
 }
 else {
+  var WebpackDevServer = require('webpack-dev-server');
+
   var server = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     hot: true,
