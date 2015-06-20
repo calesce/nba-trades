@@ -5,7 +5,7 @@ export default class TradeActions extends Actions {
     let response;
 
     try {
-      const url = 'http://localhost:8080/api';
+      const url = '/api';
       response = await fetch(url);
       return await response.json();
     }
