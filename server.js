@@ -4,6 +4,7 @@ var config = require('./webpack.config');
 var express = require('express');
 var salaries = require('./lib/salaries');
 var url = require('url');
+var path = require('path');
 
 var app = express();
 
@@ -17,20 +18,29 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
+var isProduction = process.env.NODE_ENV === 'production';
+
 app.get('/api', allowCrossDomain, salaries);
 
-var server = new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
-});
+if(isProduction) {
+  var server = express();
 
-server.listen(3000, 'localhost', function (err, result) {
-  if (err) {
-    console.log(err);
-  }
+  server.use(express.static(path.join(__dirname, '/dist')));
 
-  console.log('Listening at localhost:3000');
-});
+  server.listen(3000);
+}
+else {
+  var server = new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
+    hot: true,
+    historyApiFallback: true
+  });
+
+  server.listen(3000, 'localhost', function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
 
 app.listen(8080);

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "prod": "NODE_ENV=production webpack -p --config webpack.production.js",
     "start-server": "node lib/salaries/start.js",
     "download": "node scripts/downloadImages"
   },
