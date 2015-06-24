@@ -5,7 +5,7 @@ export default class TradeActions extends Actions {
     let response;
 
     try {
-      const url = '/api';
+      const url = 'http://localhost:8080/api';
       response = await fetch(url);
       return await response.json();
     }
@@ -16,6 +16,13 @@ export default class TradeActions extends Actions {
 
   teamSelected(teamName, teamNumber) {
     return { teamName, teamNumber };
+  }
+
+  teamAdded() {
+  }
+
+  teamRemoved() {
+
   }
 
   playerSelected(player, teamName) {

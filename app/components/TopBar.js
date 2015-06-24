@@ -10,13 +10,12 @@ export default class TopBar extends Component {
   }
 
   render() {
-
-    let styles = {
+    let barStyle = {
       position: 'absolute',
       background: '#EB6625',
       color: 'white',
-      top: '0%',
-      left: '0%',
+      top: 0,
+      left: 0,
       height: '70px',
       width: '100%',
       display: 'flex',
@@ -24,21 +23,28 @@ export default class TopBar extends Component {
       alignItems: 'center'
     };
 
+    let flexStyle = {
+      position: 'relative',
+      left: 50
+    };
+
     return (
-      <div style={styles}>
-        NBA Trade Machine&nbsp;
-        {
-          this.props.selectedTeams.map((team, index) => {
-            return (
-              <TeamSelect
-                teamName={team.teamName}
-                teams={this.props.teams}
-                number={index}
-                key={index}
-              />
-            );
-          })
-        }
+      <div style={barStyle}>
+        <div style={flexStyle}>
+          NBA Trade Machine&nbsp;
+          {
+            this.props.selectedTeams.map((team, index) => {
+              return (
+                <TeamSelect
+                  teamName={team.teamName}
+                  teams={this.props.teams}
+                  number={index}
+                  key={index}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

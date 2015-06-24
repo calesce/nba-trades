@@ -52,7 +52,7 @@ export default class TeamArea extends React.Component {
   getStyle = () => {
     let style = {
       position: 'absolute',
-      top: '10%',
+      top: 100,
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',

@@ -28,6 +28,8 @@ else {
 
   app.get('/api', allowCrossDomain, salaries);
 
+  app.listen(8080);
+
   var config = require('./webpack.config');
   var WebpackDevServer = require('webpack-dev-server');
 
@@ -42,6 +44,4 @@ else {
       console.log(err);
     }
   });
-
-  app.listen(8080);
 }
