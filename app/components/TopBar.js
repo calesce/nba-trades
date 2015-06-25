@@ -9,6 +9,14 @@ export default class TopBar extends Component {
     super(props);
   }
 
+  filteredTeams = (index) => {
+    let notMyTeam = this.props.selectedTeams.filter((team, i) => index !== i);
+
+    return _.filter(this.props.teams, (team, i) => {
+      return _.findIndex(notMyTeam, 'teamName', team.teamName) === -1;
+    });
+  }
+
   render() {
     let barStyle = {
       position: 'absolute',
@@ -37,7 +45,7 @@ export default class TopBar extends Component {
               return (
                 <TeamSelect
                   teamName={team.teamName}
-                  teams={this.props.teams}
+                  teams={this.filteredTeams(index)}
                   number={index}
                   key={index}
                 />

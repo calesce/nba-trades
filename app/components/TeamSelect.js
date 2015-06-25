@@ -26,7 +26,7 @@ export default class TeamSelect extends Component {
   }
 
   render() {
-    let teamNames = this.getSortedTeams();
+    let teams = this.getSortedTeams();
 
     let style = {
       flexBasis: '165px',
@@ -40,7 +40,7 @@ export default class TeamSelect extends Component {
 
         <option value='none'>Choose a team</option>
         {
-          teamNames.map((team) => {
+          teams.map((team) => {
             return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>;
           })
         }
@@ -51,7 +51,7 @@ export default class TeamSelect extends Component {
 
 TeamSelect.propTypes = {
   teamName: PropTypes.string,
-  teams: PropTypes.object.isRequired
+  teams: PropTypes.array.isRequired
 };
 
 TeamSelect.contextTypes = {
