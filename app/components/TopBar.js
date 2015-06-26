@@ -33,7 +33,10 @@ export default class TopBar extends Component {
 
     let flexStyle = {
       position: 'relative',
-      left: 50
+      left: 50,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
     };
 
     return (

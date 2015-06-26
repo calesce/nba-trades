@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
+import Select from 'react-select';
 
 export default class TeamSelect extends Component {
 
@@ -7,8 +8,8 @@ export default class TeamSelect extends Component {
     super(props);
   }
 
-  teamSelected = (event) => {
-    this.context.flux.getActions('trade').teamSelected(event.target.value, this.props.number);
+  teamSelected = (name) => {
+    this.context.flux.getActions('trade').teamSelected(name, this.props.number);
   }
 
   getSortedTeams = () => {
@@ -29,22 +30,27 @@ export default class TeamSelect extends Component {
     let teams = this.getSortedTeams();
 
     let style = {
-      flexBasis: '165px',
+      flexBasis: '210px',
       flexShrink: 0
     };
 
-    return (
-      <select style={style}
-        onChange={this.teamSelected}
-        value={this.props.teamName ? this.props.teamName : ''} >
+    let options = teams.map((team) => {
+      return {
+        label: `${team.location} ${team.teamName}`,
+        value: team.teamName
+      };
+    });
 
-        <option value='none'>Choose a team</option>
-        {
-          teams.map((team) => {
-            return <option key={team.teamName} value={team.teamName}>{team.location} {team.teamName}</option>;
-          })
-        }
-      </select>
+
+    return (
+      <Select
+        style={style}
+        onChange={this.teamSelected}
+        value={this.props.teamName ? this.props.teamName : ''}
+        options={options}
+        clearable={false}
+        searchable={false}
+      />
     );
   }
 }
