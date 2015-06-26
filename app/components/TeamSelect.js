@@ -30,8 +30,7 @@ export default class TeamSelect extends Component {
     let teams = this.getSortedTeams();
 
     let style = {
-      flexBasis: '210px',
-      flexShrink: 0
+      width: '10px'
     };
 
     let options = teams.map((team) => {

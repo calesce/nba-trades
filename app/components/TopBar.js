@@ -22,27 +22,31 @@ export default class TopBar extends Component {
       position: 'absolute',
       background: '#EB6625',
       color: 'white',
-      top: 0,
+      top: '0%',
       left: 0,
       height: '70px',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center'
+      width: '100%'
     };
 
     let flexStyle = {
       position: 'relative',
-      left: 50,
+      top: 17,
+      left: 20,
+      width: '70%',
       display: 'flex',
       flexDirection: 'row',
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    };
+
+    let titleStyle = {
+      fontSize: 22
     };
 
     return (
       <div style={barStyle}>
         <div style={flexStyle}>
-          NBA Trade Machine&nbsp;
+          <span style={titleStyle}>NBA Trade Machine</span>
           {
             this.props.selectedTeams.map((team, index) => {
               return (

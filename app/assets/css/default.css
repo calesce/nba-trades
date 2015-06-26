@@ -7,6 +7,7 @@
 */
 .Select {
   width: 210px;
+  text-shadow: 0 0 0 rgba(0,0,0,0);
 }
 .Select-control {
   position: relative;
@@ -174,7 +175,7 @@
 }
 .Select-item-icon:hover,
 .Select-item-icon:focus {
-  background-color: #ddeff7;
+  background-color: #f9d1bd;
   color: #0077b3;
 }
 .Select-item-icon:active {

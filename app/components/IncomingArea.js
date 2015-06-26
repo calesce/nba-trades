@@ -57,7 +57,7 @@ export default class IncomingArea extends Component {
       style.width = '530px';
     }
     else {
-      style.width = '400px';
+      style.width = '370px';
     }
 
     if(canDrop && isOver) {

@@ -64,17 +64,17 @@ export default class TeamArea extends React.Component {
       case 2:
         style.width = '500px';
         style.height = '550px';
-        style.left = (this.props.index * 50) + '%';
+        style.left = (this.props.index * 50 + 2) + '%';
         break;
       case 3:
         style.width = '400px';
         style.height = '650px';
-        style.left = (this.props.index * 33) + '%';
+        style.left = (this.props.index * 33 + 2) + '%';
         break;
       case 4:
         style.width = '250px';
         style.height = '800px';
-        style.left = (this.props.index * 25) + '%';
+        style.left = (this.props.index * 25 + 2) + '%';
         break;
     }
 
