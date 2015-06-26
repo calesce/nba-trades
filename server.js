@@ -34,9 +34,11 @@ else {
   var WebpackDevServer = require('webpack-dev-server');
 
   var server = new WebpackDevServer(webpack(config), {
+    contentBase: 'app',
     publicPath: config.output.publicPath,
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    stats: { colors: true }
   });
 
   server.listen(3000, 'localhost', function (err, result) {
