@@ -46,6 +46,8 @@ export default class TradeMachine extends Component {
       MsUserSelect: 'none',
       cursor: 'default',
       position: 'absolute',
+      left: '0%',
+      right: '0%',
       width: '100%',
       height: '100%'
     };
