@@ -12,6 +12,10 @@ export default class TeamSelect extends Component {
     this.context.flux.getActions('trade').teamSelected(name, this.props.number);
   }
 
+  buttonClicked = (event) => {
+    this.context.flux.getActions('trade').teamRemoved(this.props.number);
+  }
+
   getSortedTeams = () => {
     return _.chain(this.props.teams)
       .map((team) => {
@@ -30,7 +34,10 @@ export default class TeamSelect extends Component {
     let teams = this.getSortedTeams();
 
     let style = {
-      width: '10px'
+      width: '10px',
+      flexBasis: 230,
+      display: 'flex',
+      flexDirection: 'row'
     };
 
     let options = teams.map((team) => {
@@ -42,14 +49,16 @@ export default class TeamSelect extends Component {
 
 
     return (
-      <Select
-        style={style}
-        onChange={this.teamSelected}
-        value={this.props.teamName ? this.props.teamName : ''}
-        options={options}
-        clearable={false}
-        searchable={false}
-      />
+      <div style={style}>
+        <Select
+          onChange={this.teamSelected}
+          value={this.props.teamName ? this.props.teamName : ''}
+          options={options}
+          clearable={false}
+          searchable={false}
+        />
+        <button onClick={this.buttonClicked}>x</button>
+      </div>
     );
   }
 }

@@ -19,10 +19,11 @@ export default class TradeActions extends Actions {
   }
 
   teamAdded() {
+    return null;
   }
 
-  teamRemoved() {
-
+  teamRemoved(teamNumber) {
+    return teamNumber;
   }
 
   playerSelected(player, teamName) {

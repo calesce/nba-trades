@@ -11,6 +11,8 @@ export default class TradeStore extends Store {
     this.register(tradeActionIds.teamSelected, this.handleTeamSelected);
     this.register(tradeActionIds.playerSelected, this.handlePlayerSelected);
     this.register(tradeActionIds.playerRemoved, this.handlePlayerRemoved);
+    this.register(tradeActionIds.teamRemoved, this.handleTeamRemoved);
+    this.register(tradeActionIds.teamAdded, this.handleTeamAdded);
 
     this.state = {
       teams: [],
@@ -23,7 +25,7 @@ export default class TradeStore extends Store {
   handleInitialPayload = (teams) => {
     this.setState({
       teams,
-      selectedTeams: [ teams.Warriors, teams.Cavaliers, teams.Grizzlies, teams.Hornets ],
+      selectedTeams: [ teams.Warriors, teams.Cavaliers ],
       incomingPlayers: [[], [], [], []],
       outgoingPlayers: [[], [], [], []]
     });
@@ -130,5 +132,44 @@ export default class TradeStore extends Store {
 
   getTeams = () => {
     return this.state.teams;
+  }
+
+  handleTeamRemoved = (teamNumber) => {
+    if(this.state.selectedTeams.length <= 2) {
+      return;
+    }
+
+    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
+    selectedTeams.splice(teamNumber, 1);
+
+    this.setState({ selectedTeams });
+    this.setState({
+      incomingPlayers: [[], [], [], []],
+      outgoingPlayers: [[], [], [], []]
+    });
+  }
+
+  handleTeamAdded = () => {
+    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
+    let teamToAdd = this.getFirstTeamNotSelected();
+
+    selectedTeams.push(teamToAdd);
+    this.setState({ selectedTeams });
+  }
+
+  getFirstTeamNotSelected = () => {
+    let selectedTeams = _.cloneDeep(this.state.selectedTeams);
+    let existingTeamNames = _.map(selectedTeams, (team) => team.teamName);
+
+    let teams = _.cloneDeep(this.state.teams);
+    let allTeamNames = _.chain(teams)
+      .sortBy((team) => team.location)
+      .map((team) => team.teamName)
+      .filter((teamName) => {
+        return _.findIndex(existingTeamNames, (name) => teamName === name) === -1;
+      })
+      .value();
+
+    return this.state.teams[allTeamNames[0]];
   }
 }

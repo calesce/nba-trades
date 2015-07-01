@@ -9,6 +9,10 @@ export default class TopBar extends Component {
     super(props);
   }
 
+  addTeam = () => {
+    this.context.flux.getActions('trade').teamAdded();
+  }
+
   filteredTeams = (index) => {
     let notMyTeam = this.props.selectedTeams.filter((team, i) => index !== i);
 
@@ -32,7 +36,7 @@ export default class TopBar extends Component {
       position: 'relative',
       top: 17,
       left: 20,
-      width: '70%',
+      width: '80%',
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
@@ -42,6 +46,8 @@ export default class TopBar extends Component {
     let titleStyle = {
       fontSize: 22
     };
+
+    let teamCount = this.props.selectedTeams.length;
 
     return (
       <div style={barStyle}>
@@ -59,8 +65,13 @@ export default class TopBar extends Component {
               );
             })
           }
+          { teamCount < 4 ? <button onClick={this.addTeam}>+</button> : <div></div> }
         </div>
       </div>
     );
   }
 }
+
+TopBar.contextTypes = {
+  flux: PropTypes.object
+};
