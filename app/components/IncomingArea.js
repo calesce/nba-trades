@@ -29,7 +29,7 @@ export default class IncomingArea extends Component {
   }
 
   getDropSize = () => {
-    const len = Math.ceil(this.props.players.length / 8) * 150;
+    const len = Math.ceil(this.props.players.length / 4) * 150;
 
     return this.props.players.length ? (len + 'px') : '150px';
   }
@@ -42,6 +42,7 @@ export default class IncomingArea extends Component {
       background: 'grey',
       flexBasis,
       height: flexBasis,
+      width: '100%',
       flexShrink: 0,
       display: 'flex',
       flexDirection: 'column',
@@ -49,16 +50,6 @@ export default class IncomingArea extends Component {
       justifyContent: 'flex-start',
       alignContent: 'flex-start'
     };
-
-    if(this.props.numTeams === 2) {
-      style.width = '700px';
-    }
-    else if(this.props.numTeams === 3) {
-      style.width = '530px';
-    }
-    else {
-      style.width = '370px';
-    }
 
     if(canDrop && isOver) {
       style.background = 'green';

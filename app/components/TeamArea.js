@@ -62,46 +62,41 @@ export default class TeamArea extends React.Component {
 
     switch(this.props.numTeams) {
       case 2:
-        style.width = '500px';
+        style.width = '40%';
         style.height = '550px';
         style.left = (this.props.index * 50 + 2) + '%';
         break;
       case 3:
-        style.width = '400px';
-        style.height = '650px';
+        style.width = '28%';
+        style.height = '700px';
         style.left = (this.props.index * 33 + 2) + '%';
         break;
       case 4:
-        style.width = '250px';
+        style.width = '24%';
         style.height = '800px';
-        style.left = (this.props.index * 25 + 2) + '%';
+        style.left = (this.props.index * 25) + '%';
         break;
     }
 
     return style;
   }
 
-  render() {
-    let roster = this.rosterMinusOutgoing();
-    const styles = this.getStyle();
-
-    let nonShrinkStyle = {
-      flexBasis: '20px',
+  getNonShrinkStyle = () => {
+    return {
+      flexBasis: '23px',
+      width: '100%',
       flexShrink: 0,
       textShadow: '0 0 0 white',
       WebkitUserSelect: 'text',
-      cursor: 'text'
+      cursor: 'text',
+      textAlign: 'center'
     };
+  }
 
-    if(this.props.numTeams === 2) {
-      nonShrinkStyle.width = '700px';
-    }
-    else if(this.props.numTeams === 3) {
-      nonShrinkStyle.width = '530px';
-    }
-    else {
-      nonShrinkStyle.width = '400px';
-    }
+  render() {
+    let roster = this.rosterMinusOutgoing();
+    const style = this.getStyle();
+    const nonShrinkStyle = this.getNonShrinkStyle();
 
     let nonShrinkRedStyle = _.cloneDeep(nonShrinkStyle);
     nonShrinkRedStyle.color = 'red';
@@ -120,7 +115,7 @@ export default class TeamArea extends React.Component {
     }
 
     return (
-      <div style={styles}>
+      <div style={style}>
         <span style={nonShrinkStyle}>{this.props.team.location}&nbsp;{this.props.team.teamName}</span>
         <IncomingArea
           players={this.props.incomingPlayers}

@@ -34,7 +34,6 @@ export default class TeamSelect extends Component {
     let teams = this.getSortedTeams();
 
     let style = {
-      width: '10px',
       flexBasis: 230,
       display: 'flex',
       flexDirection: 'row'
