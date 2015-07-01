@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 
 import TeamSelect from './TeamSelect';
+import Check from './Check';
 
 export default class TopBar extends Component {
 
@@ -65,8 +66,12 @@ export default class TopBar extends Component {
               );
             })
           }
-          { teamCount < 4 ? <button onClick={this.addTeam}>+</button> : <div></div> }
+          { teamCount < 4 ? <button onClick={this.addTeam}>➕</button> : <div></div> }
         </div>
+        <Check
+          incomingPlayers={this.props.incomingPlayers}
+          selectedTeams={this.props.selectedTeams}
+        />
       </div>
     );
   }
@@ -74,4 +79,9 @@ export default class TopBar extends Component {
 
 TopBar.contextTypes = {
   flux: PropTypes.object
+};
+
+TopBar.propTypes = {
+  incomingPlayers: PropTypes.array,
+  selectedTeams: PropTypes.array
 };

@@ -7,41 +7,8 @@ export default class Check extends Component {
     super(props);
 
     this.state = {
-      valid: 'none'
+      validity: 'valid'
     };
-
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(!this.isTrade(nextProps.incoming)) {
-      this.setState({
-        valid: 'hidden'
-      });
-    }
-    else {
-      this.setState({
-        valid: 'valid'
-      });
-
-      if(!this.determineValidity(nextProps)) {
-        this.setState({
-          valid: 'invalid'
-        });
-      }
-    }
-  }
-
-  isTrade = (incoming) => {
-    let check = 0;
-
-    _.forEach(incoming, (incomingPlayer) => {
-      if(incomingPlayer.length > 0) {
-        ++check;
-      }
-    });
-
-    return check > 1;
   }
 
   determineValidity = (props) => {
@@ -63,39 +30,51 @@ export default class Check extends Component {
     return true;
   }
 
-  salaryToNumber = (salaryString) => {
-    return parseInt(salaryString.replace(/\$|\,/g, ''));
-  }
-
   render() {
     let style = { visibility: 'hidden' };
     let div = <div style={style}>Hidden</div>;
 
-    if(this.state.valid === 'valid') {
+    if(this.state.validity === 'valid') {
       style = {
-        color: 'green'
+        position: 'relative',
+        color: 'green',
+        top: 3
       };
-      div = <div style={style}>Trade is valid</div>;
+      div = <div style={style}>Valid Trade ✓</div>;
     }
-    else if(this.state.valid === 'invalid') {
+    else if(this.state.validity === 'invalid') {
       style = {
-        color: 'red'
+        position: 'relative',
+        color: 'red',
+        top: 3
       };
-      div = <div style={style}>Trade is invalid</div>;
+      div = <div style={style}>Invalid Trade ✕</div>;
     }
 
     let checkStyle = {
       position: 'absolute',
-      top: '1%',
-      left: '80%'
+      right: '1%',
+      top: 22,
+      width: 150,
+      height: 30,
+      paddingRight: 5,
+      textShadow: '0 0 0 rgba(0,0,0,0)',
+      fontSize: 20,
+      backgroundColor: '#e1e1e1',
+      borderRadius: 4,
+      textAlign: 'center'
     };
 
-    return (
-      <div style={checkStyle}>{div}</div>
-    );
+    if(this.state.validity) {
+      return <div style={checkStyle}>{div}</div>;
+    }
+    else {
+      return <div></div>;
+    }
   }
 }
 
 Check.propTypes = {
-  incoming: PropTypes.array
+  incomingPlayers: PropTypes.array,
+  selectedTeams: PropTypes.array
 };

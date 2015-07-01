@@ -57,6 +57,7 @@ export default class TradeMachine extends Component {
         <TopBar
           teams={this.props.teams}
           selectedTeams={this.props.selectedTeams}
+          incomingPlayers={this.props.incomingPlayers}
         />
         {
           this.props.selectedTeams.map((team, index) => {

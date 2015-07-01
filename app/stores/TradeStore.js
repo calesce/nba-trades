@@ -27,7 +27,8 @@ export default class TradeStore extends Store {
       teams,
       selectedTeams: [ teams.Warriors, teams.Cavaliers ],
       incomingPlayers: [[], [], [], []],
-      outgoingPlayers: [[], [], [], []]
+      outgoingPlayers: [[], [], [], []],
+      validity: undefined
     });
   }
 
@@ -171,5 +172,21 @@ export default class TradeStore extends Store {
       .value();
 
     return this.state.teams[allTeamNames[0]];
+  }
+
+  salaryToNumber = (salaryString) => {
+    return parseInt(salaryString.replace(/\$|\,/g, ''));
+  }
+
+  isTrade = (incoming) => {
+    let check = 0;
+
+    _.forEach(incoming, (incomingPlayer) => {
+      if(incomingPlayer.length > 0) {
+        ++check;
+      }
+    });
+
+    return check > 0;
   }
 }
