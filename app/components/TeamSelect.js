@@ -34,7 +34,7 @@ export default class TeamSelect extends Component {
     let teams = this.getSortedTeams();
 
     let style = {
-      flexBasis: 230,
+      flexBasis: '22%',
       display: 'flex',
       flexDirection: 'row'
     };
@@ -46,6 +46,7 @@ export default class TeamSelect extends Component {
       };
     });
 
+    let count = this.props.count;
 
     return (
       <div style={style}>
@@ -56,7 +57,7 @@ export default class TeamSelect extends Component {
           clearable={false}
           searchable={false}
         />
-        <button onClick={this.buttonClicked}>x</button>
+        { count > 2 ? <button onClick={this.buttonClicked}>x</button> : <div></div> }
       </div>
     );
   }

@@ -78,7 +78,7 @@ export default class Player {
     return connectDragSource(
       <div style={style}>
         <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
-        <span style={nameStyle} className="playerName">{this.props.name}</span>
+        <span style={nameStyle} className="playerName">{this.props.name.replace('\\', '')}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>
       </div>
     );

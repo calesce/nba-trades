@@ -36,16 +36,16 @@ export default class TopBar extends Component {
     let flexStyle = {
       position: 'relative',
       top: 17,
-      left: 20,
-      width: '80%',
+      left: '1%',
+      width: '88%',
       display: 'flex',
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between'
+      alignItems: 'center'
     };
 
     let titleStyle = {
-      fontSize: 22
+      fontSize: 22,
+      flexBasis: '12%'
     };
 
     let teamCount = this.props.selectedTeams.length;
@@ -53,7 +53,7 @@ export default class TopBar extends Component {
     return (
       <div style={barStyle}>
         <div style={flexStyle}>
-          <span style={titleStyle}>NBA Trade Machine</span>
+          <span style={titleStyle}>Trade Machine</span>
           {
             this.props.selectedTeams.map((team, index) => {
               return (
@@ -61,12 +61,13 @@ export default class TopBar extends Component {
                   teamName={team.teamName}
                   teams={this.filteredTeams(index)}
                   number={index}
+                  count={teamCount}
                   key={index}
                 />
               );
             })
           }
-          { teamCount < 4 ? <button onClick={this.addTeam}>➕</button> : <div></div> }
+          { teamCount < 4 ? <button onClick={this.addTeam}>Add Team ➕</button> : <div></div> }
         </div>
         <Check
           incomingPlayers={this.props.incomingPlayers}
