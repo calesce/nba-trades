@@ -11,30 +11,58 @@ export default class Check extends Component {
     };
   }
 
-  determineValidity = (props) => {
-    // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
-    let teamOneIncoming = _.reduce(props.incoming.team1, (sum, player) => {
+  salaryToNumber = (salaryString) => {
+    return parseInt(salaryString.replace(/\$|\,/g, ''));
+  }
+
+  salaryOfTeam = (team) => {
+    return _.reduce(team, (sum, player) => {
       return sum + this.salaryToNumber(player.salary);
     }, 0);
+  }
 
-    let teamTwoIncoming = _.reduce(props.incoming.team2, (sum, player) => {
-      return sum + this.salaryToNumber(player.salary);
-    }, 0);
+  isTrade = () => {
+    let check = 0;
 
-    if((teamOneIncoming * 1.25) + 100000 < teamTwoIncoming) {
-      return false;
+    this.props.incomingPlayers.forEach((teamIncoming) => {
+      if(teamIncoming.length > 0) {
+        ++check;
+      }
+    });
+
+    return check > 0;
+  }
+
+  determineValidity = () => {
+    let valid = true;
+
+    for(var i = 0; i < this.props.incomingPlayers.length; i++) {
+      let incomingSalary = this.salaryOfTeam(this.props.incomingPlayers[i]);
+      let outgoingSalary = this.salaryOfTeam(this.props.outgoingPlayers[i]);
+
+      // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
+      if((incomingSalary * 1.25) + 100000 < outgoingSalary) {
+        valid = false;
+        break;
+      }
     }
-    else if((teamTwoIncoming * 1.25) + 100000 < teamOneIncoming) {
-      return false;
-    }
-    return true;
+
+    return valid;
   }
 
   render() {
+    let isTrade = this.isTrade();
+
     let style = { visibility: 'hidden' };
     let div = <div style={style}>Hidden</div>;
+    if(!isTrade) {
+      return div;
+    }
 
-    if(this.state.validity === 'valid') {
+    let validity = this.determineValidity();
+    console.log(validity);
+
+    if(validity) {
       style = {
         position: 'relative',
         color: 'green',
@@ -42,7 +70,7 @@ export default class Check extends Component {
       };
       div = <div style={style}>Valid Trade ✓</div>;
     }
-    else if(this.state.validity === 'invalid') {
+    else {
       style = {
         position: 'relative',
         color: 'red',
@@ -76,5 +104,6 @@ export default class Check extends Component {
 
 Check.propTypes = {
   incomingPlayers: PropTypes.array,
+  outgoingPlayers: PropTypes.array,
   selectedTeams: PropTypes.array
 };

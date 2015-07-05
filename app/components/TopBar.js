@@ -71,6 +71,7 @@ export default class TopBar extends Component {
         </div>
         <Check
           incomingPlayers={this.props.incomingPlayers}
+          outgoingPlayers={this.props.outgoingPlayers}
           selectedTeams={this.props.selectedTeams}
         />
       </div>
@@ -84,5 +85,6 @@ TopBar.contextTypes = {
 
 TopBar.propTypes = {
   incomingPlayers: PropTypes.array,
+  outgoingPlayers: PropTypes.array,
   selectedTeams: PropTypes.array
 };

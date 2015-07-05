@@ -173,20 +173,4 @@ export default class TradeStore extends Store {
 
     return this.state.teams[allTeamNames[0]];
   }
-
-  salaryToNumber = (salaryString) => {
-    return parseInt(salaryString.replace(/\$|\,/g, ''));
-  }
-
-  isTrade = (incoming) => {
-    let check = 0;
-
-    _.forEach(incoming, (incomingPlayer) => {
-      if(incomingPlayer.length > 0) {
-        ++check;
-      }
-    });
-
-    return check > 0;
-  }
 }

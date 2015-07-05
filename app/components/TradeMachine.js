@@ -58,6 +58,7 @@ export default class TradeMachine extends Component {
           teams={this.props.teams}
           selectedTeams={this.props.selectedTeams}
           incomingPlayers={this.props.incomingPlayers}
+          outgoingPlayers={this.props.outgoingPlayers}
         />
         {
           this.props.selectedTeams.map((team, index) => {
