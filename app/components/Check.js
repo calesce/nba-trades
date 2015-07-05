@@ -5,10 +5,6 @@ export default class Check extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      validity: 'valid'
-    };
   }
 
   salaryToNumber = (salaryString) => {
@@ -22,28 +18,31 @@ export default class Check extends Component {
   }
 
   isTrade = () => {
-    let check = 0;
+    let check = false;
 
     this.props.incomingPlayers.forEach((teamIncoming) => {
       if(teamIncoming.length > 0) {
-        ++check;
+        check = true;
       }
     });
 
-    return check > 0;
+    return check;
   }
 
   determineValidity = () => {
-    let valid = true;
+    let valid = {
+      valid: true,
+      teams: []
+    };
 
     for(var i = 0; i < this.props.incomingPlayers.length; i++) {
       let incomingSalary = this.salaryOfTeam(this.props.incomingPlayers[i]);
       let outgoingSalary = this.salaryOfTeam(this.props.outgoingPlayers[i]);
 
       // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
-      if((incomingSalary * 1.25) + 100000 < outgoingSalary) {
-        valid = false;
-        break;
+      if(incomingSalary > (outgoingSalary * 1.25) + 100000) {
+        valid.valid = false;
+        valid.teams.push(i);
       }
     }
 
@@ -59,10 +58,8 @@ export default class Check extends Component {
       return div;
     }
 
-    let validity = this.determineValidity();
-    console.log(validity);
-
-    if(validity) {
+    let { valid, teams } = this.determineValidity();
+    if(valid) {
       style = {
         position: 'relative',
         color: 'green',
@@ -93,12 +90,7 @@ export default class Check extends Component {
       textAlign: 'center'
     };
 
-    if(this.state.validity) {
-      return <div style={checkStyle}>{div}</div>;
-    }
-    else {
-      return <div></div>;
-    }
+    return <div style={checkStyle}>{div}</div>;
   }
 }
 
