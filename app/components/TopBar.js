@@ -6,6 +6,16 @@ import Check from './Check';
 
 export default class TopBar extends Component {
 
+  static contextTypes = {
+    flux: PropTypes.object
+  };
+
+  static propTypes = {
+    incomingPlayers: PropTypes.array,
+    outgoingPlayers: PropTypes.array,
+    selectedTeams: PropTypes.array
+  };
+
   constructor(props) {
     super(props);
   }
@@ -78,13 +88,3 @@ export default class TopBar extends Component {
     );
   }
 }
-
-TopBar.contextTypes = {
-  flux: PropTypes.object
-};
-
-TopBar.propTypes = {
-  incomingPlayers: PropTypes.array,
-  outgoingPlayers: PropTypes.array,
-  selectedTeams: PropTypes.array
-};

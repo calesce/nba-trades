@@ -4,6 +4,15 @@ import Select from 'react-select';
 
 export default class TeamSelect extends Component {
 
+  static contextTypes = {
+    flux: PropTypes.object
+  };
+
+  static propTypes = {
+    teamName: PropTypes.string,
+    teams: PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
   }
@@ -62,12 +71,3 @@ export default class TeamSelect extends Component {
     );
   }
 }
-
-TeamSelect.propTypes = {
-  teamName: PropTypes.string,
-  teams: PropTypes.array.isRequired
-};
-
-TeamSelect.contextTypes = {
-  flux: PropTypes.object
-};

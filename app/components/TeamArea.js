@@ -8,6 +8,17 @@ import IncomingArea from './IncomingArea';
 
 export default class TeamArea extends React.Component {
 
+  static contextTypes = {
+    flux: PropTypes.object
+  };
+
+  static propTypes = {
+    outgoingPlayers: PropTypes.array.isRequired,
+    incomingPlayers: PropTypes.array.isRequired,
+    team: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired
+  };
+
   constructor(props) {
     super(props);
   }
@@ -134,14 +145,3 @@ export default class TeamArea extends React.Component {
     );
   }
 }
-
-TeamArea.propTypes = {
-  outgoingPlayers: PropTypes.array.isRequired,
-  incomingPlayers: PropTypes.array.isRequired,
-  team: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired
-};
-
-TeamArea.contextTypes = {
-  flux: PropTypes.object
-};

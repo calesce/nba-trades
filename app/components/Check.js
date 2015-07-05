@@ -3,6 +3,12 @@ import _ from 'lodash';
 
 export default class Check extends Component {
 
+  static propTypes = {
+    incomingPlayers: PropTypes.array,
+    outgoingPlayers: PropTypes.array,
+    selectedTeams: PropTypes.array
+  };
+
   constructor(props) {
     super(props);
   }
@@ -93,9 +99,3 @@ export default class Check extends Component {
     return <div style={checkStyle}>{div}</div>;
   }
 }
-
-Check.propTypes = {
-  incomingPlayers: PropTypes.array,
-  outgoingPlayers: PropTypes.array,
-  selectedTeams: PropTypes.array
-};

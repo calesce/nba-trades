@@ -4,6 +4,11 @@ import Player from './Player';
 
 export default class PlayerList extends Component {
 
+  static propTypes = {
+    roster: PropTypes.array.isRequired,
+    team: PropTypes.string
+  };
+
   constructor(props) {
     super(props);
   }
@@ -43,8 +48,3 @@ export default class PlayerList extends Component {
     );
   }
 }
-
-PlayerList.propTypes = {
-  roster: PropTypes.array.isRequired,
-  team: PropTypes.string
-};

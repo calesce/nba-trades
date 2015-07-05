@@ -30,6 +30,10 @@ function collect(connect, monitor) {
 @DropTarget('player', playerTarget, collect)
 export default class TradeMachine extends Component {
 
+  static propTypes = {
+    teams: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
   }
@@ -79,7 +83,3 @@ export default class TradeMachine extends Component {
     );
   }
 }
-
-TradeMachine.propTypes = {
-  teams: PropTypes.object
-};

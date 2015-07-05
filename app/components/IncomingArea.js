@@ -24,6 +24,10 @@ function collect(connect, monitor) {
 @DropTarget('player', playerTarget, collect)
 export default class IncomingArea extends Component {
 
+  static propTypes = {
+    players: PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
   }
@@ -71,10 +75,5 @@ export default class IncomingArea extends Component {
     else {
       return connectDropTarget(<div style={style}></div>);
     }
-
   }
 }
-
-IncomingArea.propTypes = {
-  players: PropTypes.array.isRequired
-};

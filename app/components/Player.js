@@ -26,6 +26,13 @@ const playerSource = {
 }))
 export default class Player {
 
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    salary: PropTypes.string.isRequired,
+    teamName: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired
+  };
+
   constructor(props) {
   }
 
@@ -84,10 +91,3 @@ export default class Player {
     );
   }
 }
-
-Player.propTypes = {
-  name: PropTypes.string.isRequired,
-  salary: PropTypes.string.isRequired,
-  teamName: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired
-};
