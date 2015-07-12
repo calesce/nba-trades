@@ -57,7 +57,8 @@ export default class Check extends Component {
 
       let potentialSalary = this.salaryToNumber(this.props.selectedTeams[i].totalSalary) + incomingSalary;
       // 1. Any team under the cap can take any amount in up to the cap level + $100,000
-      // 2. Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
+      // 2. Teams under tax but over cap. I think it's 150% but we'll see. Most cases
+      // 3. Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
       if(potentialSalary < (this.props.salaryCap + 100000)) {
         valid.valid = true;
       }

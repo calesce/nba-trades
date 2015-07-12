@@ -13,10 +13,6 @@ export default class TeamSelect extends Component {
     teams: PropTypes.array.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   teamSelected = (name) => {
     this.context.flux.getActions('trade').teamSelected(name, this.props.number);
   }

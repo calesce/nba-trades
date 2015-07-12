@@ -19,10 +19,6 @@ export default class TeamArea extends React.Component {
     index: PropTypes.number.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   rosterMinusOutgoing = () => {
     if(this.props.outgoingPlayers.length === 0) {
       return this.props.team.players;

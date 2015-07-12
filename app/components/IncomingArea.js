@@ -28,10 +28,6 @@ export default class IncomingArea extends Component {
     players: PropTypes.array.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   getDropSize = () => {
     const len = Math.ceil(this.props.players.length / 4) * 150;
 

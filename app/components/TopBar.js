@@ -16,10 +16,6 @@ export default class TopBar extends Component {
     selectedTeams: PropTypes.array
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   addTeam = () => {
     this.context.flux.getActions('trade').teamAdded();
   }
@@ -83,6 +79,8 @@ export default class TopBar extends Component {
           incomingPlayers={this.props.incomingPlayers}
           outgoingPlayers={this.props.outgoingPlayers}
           selectedTeams={this.props.selectedTeams}
+          salaryCap={66000000}
+          luxuryTax={74000000}
         />
       </div>
     );

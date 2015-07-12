@@ -9,10 +9,6 @@ export default class PlayerList extends Component {
     team: PropTypes.string
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let style = {
       width: '100%',

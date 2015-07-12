@@ -33,9 +33,6 @@ export default class Player {
     imageUrl: PropTypes.string.isRequired
   };
 
-  constructor(props) {
-  }
-
   formatTeamName = () => {
     return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
   }

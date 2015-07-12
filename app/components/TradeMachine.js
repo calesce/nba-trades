@@ -34,10 +34,6 @@ export default class TradeMachine extends Component {
     teams: PropTypes.object
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { connectDropTarget } = this.props;
 
