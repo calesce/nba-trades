@@ -17,18 +17,17 @@ export default class TradeStore extends Store {
     this.state = {
       teams: [],
       selectedTeams: [],
-      incomingPlayers: [[], [], [], []],
-      outgoingPlayers: [[], [], [], []]
+      incomingPlayers: [[], []],
+      outgoingPlayers: [[], []]
     };
   }
 
   handleInitialPayload = (teams) => {
     this.setState({
       teams,
-      selectedTeams: [ teams.Warriors, teams.Cavaliers ],
-      incomingPlayers: [[], [], [], []],
-      outgoingPlayers: [[], [], [], []],
-      validity: undefined
+      selectedTeams: [ teams.Hawks, teams.Bucks ],
+      incomingPlayers: [[], []],
+      outgoingPlayers: [[], []]
     });
   }
 
@@ -45,10 +44,14 @@ export default class TradeStore extends Store {
       selectedTeams[teamNumber] = this.state.teams[teamName];
     }
 
+    let emptyArrays = selectedTeams.map((team) => {
+      return [];
+    });
+
     this.setState({ selectedTeams });
     this.setState({
-      incomingPlayers: [[], [], [], []],
-      outgoingPlayers: [[], [], [], []]
+      incomingPlayers: emptyArrays,
+      outgoingPlayers: emptyArrays
     });
   }
 
@@ -143,19 +146,27 @@ export default class TradeStore extends Store {
     let selectedTeams = _.cloneDeep(this.state.selectedTeams);
     selectedTeams.splice(teamNumber, 1);
 
+    let emptyArrays = selectedTeams.map((team) => {
+      return [];
+    });
+
     this.setState({ selectedTeams });
     this.setState({
-      incomingPlayers: [[], [], [], []],
-      outgoingPlayers: [[], [], [], []]
+      incomingPlayers: emptyArrays,
+      outgoingPlayers: emptyArrays
     });
   }
 
   handleTeamAdded = () => {
     let selectedTeams = _.cloneDeep(this.state.selectedTeams);
     let teamToAdd = this.getFirstTeamNotSelected();
+    let { incomingPlayers, outgoingPlayers } = _.cloneDeep(this.state);
 
     selectedTeams.push(teamToAdd);
-    this.setState({ selectedTeams });
+    incomingPlayers.push([]);
+    outgoingPlayers.push([]);
+
+    this.setState({ selectedTeams, incomingPlayers, outgoingPlayers });
   }
 
   getFirstTeamNotSelected = () => {
