@@ -6,11 +6,17 @@ export default class Check extends Component {
   static propTypes = {
     incomingPlayers: PropTypes.array,
     outgoingPlayers: PropTypes.array,
-    selectedTeams: PropTypes.array
+    selectedTeams: PropTypes.array,
+    salaryCap: PropTypes.number,
+    luxuryTax: PropTypes.number
   };
 
-  constructor(props) {
-    super(props);
+  isUnderCap = (salary) => {
+    return salary < this.props.salaryCap;
+  }
+
+  isUnderTax = (team) => {
+    return this.salaryOfTeam(team) < this.props.luxuryTax;
   }
 
   salaryToNumber = (salaryString) => {
@@ -23,7 +29,12 @@ export default class Check extends Component {
     }, 0);
   }
 
+  potentialSalary = (currentSalary, incomingSalary) => {
+    return currentSalary + incomingSalary;
+  }
+
   isTrade = () => {
+    // TODO this can be shorter, refactor
     let check = false;
 
     this.props.incomingPlayers.forEach((teamIncoming) => {
@@ -37,20 +48,24 @@ export default class Check extends Component {
 
   determineValidity = () => {
     let valid = {
-      valid: true,
       teams: []
     };
 
-    for(var i = 0; i < this.props.incomingPlayers.length; i++) {
-      let incomingSalary = this.salaryOfTeam(this.props.incomingPlayers[i]);
-      let outgoingSalary = this.salaryOfTeam(this.props.outgoingPlayers[i]);
+    this.props.incomingPlayers.forEach((team, i) => {
+      let incomingSalary = this.salaryOfTeam(team);
+      let outgoingSalary = this.salaryOfTeam(team);
 
-      // Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
-      if(incomingSalary > (outgoingSalary * 1.25) + 100000) {
+      let potentialSalary = this.salaryToNumber(this.props.selectedTeams[i].totalSalary) + incomingSalary;
+      // 1. Any team under the cap can take any amount in up to the cap level + $100,000
+      // 2. Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
+      if(potentialSalary < (this.props.salaryCap + 100000)) {
+        valid.valid = true;
+      }
+      else if(incomingSalary > (outgoingSalary * 1.25) + 100000) {
         valid.valid = false;
         valid.teams.push(i);
       }
-    }
+    });
 
     return valid;
   }
@@ -58,31 +73,30 @@ export default class Check extends Component {
   render() {
     let isTrade = this.isTrade();
 
-    let style = { visibility: 'hidden' };
-    let div = <div style={style}>Hidden</div>;
+    let div = <div style={{visibility: 'hidden'}}>Hidden</div>;
     if(!isTrade) {
       return div;
     }
 
     let { valid, teams } = this.determineValidity();
     if(valid) {
-      style = {
+      let greenStyle = {
         position: 'relative',
         color: 'green',
         top: 3
       };
-      div = <div style={style}>Valid Trade ✓</div>;
+      div = <div style={greenStyle}>Valid Trade ✓</div>;
     }
     else {
-      style = {
+      let redStyle = {
         position: 'relative',
         color: 'red',
         top: 3
       };
-      div = <div style={style}>Invalid Trade ✕</div>;
+      div = <div style={redStyle}>Invalid Trade ✕</div>;
     }
 
-    let checkStyle = {
+    let style = {
       position: 'absolute',
       right: '1%',
       top: 22,
@@ -96,6 +110,6 @@ export default class Check extends Component {
       textAlign: 'center'
     };
 
-    return <div style={checkStyle}>{div}</div>;
+    return <div style={style}>{div}</div>;
   }
 }
