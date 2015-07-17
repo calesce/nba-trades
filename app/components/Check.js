@@ -47,28 +47,50 @@ export default class Check extends Component {
   }
 
   determineValidity = () => {
-    let valid = {
-      teams: []
-    };
+    // this should probably be a reduce
+    return _.reduce(this.props.selectedTeams, (check, team, i) => {
+      let incomingSalary = this.salaryOfTeam(this.props.incomingPlayers[i]);
+      let outgoingSalary = this.salaryOfTeam(this.props.outgoingPlayers[i]);
 
-    this.props.incomingPlayers.forEach((team, i) => {
-      let incomingSalary = this.salaryOfTeam(team);
-      let outgoingSalary = this.salaryOfTeam(team);
+      let potentialSalary = this.salaryToNumber(team.totalSalary) + incomingSalary;
+      let underTax = (potentialSalary < this.props.luxuryTax);
 
-      let potentialSalary = this.salaryToNumber(this.props.selectedTeams[i].totalSalary) + incomingSalary;
+      let teams = _.cloneDeep(check.teams);
+      let targetSalary = (incomingSalary - (outgoingSalary * 1.25 + 100000));
+      teams.push(`${team.teamName} taking in too much salary`);
+
       // 1. Any team under the cap can take any amount in up to the cap level + $100,000
       // 2. Teams under tax but over cap. I think it's 150% but we'll see. Most cases
+      // 2.5. Under 9.8M in incoming: 150+100 else : 125 + 100000
       // 3. Any team can take back up to 125% of their outgoing salaries + $100,000 no matter what
       if(potentialSalary < (this.props.salaryCap + 100000)) {
-        valid.valid = true;
+        console.log('Potential salary is less than salary cap + 100,000');
+      }
+      else if(underTax && incomingSalary < 98000000) {
+        if(incomingSalary > (outgoingSalary * 1.5) + 100000) {
+          // console.log('under tax and incoming more than 150% + 100,000 of outgoing');
+
+          if(incomingSalary > (outgoingSalary * 1.25) + 100000) {
+
+            return {
+              valid: false,
+              teams: teams
+            };
+          }
+        }
       }
       else if(incomingSalary > (outgoingSalary * 1.25) + 100000) {
-        valid.valid = false;
-        valid.teams.push(i);
-      }
-    });
+        // console.log('incoming is greater than 125% + 100,000 of outgoing');
 
-    return valid;
+        return {
+          valid: false,
+          teams: teams
+        };
+      }
+
+      return check;
+    },
+    { valid: true, teams: [] });
   }
 
   render() {
@@ -79,8 +101,8 @@ export default class Check extends Component {
       return div;
     }
 
-    let { valid, teams } = this.determineValidity();
-    if(valid) {
+    const check = this.determineValidity();
+    if(check.valid) {
       let greenStyle = {
         position: 'relative',
         color: 'green',
@@ -111,6 +133,10 @@ export default class Check extends Component {
       textAlign: 'center'
     };
 
-    return <div style={style}>{div}</div>;
+    return (
+      <div style={style}>
+        {div}
+      </div>
+    );
   }
 }
