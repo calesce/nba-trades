@@ -35,7 +35,6 @@ export default class PlayerList extends Component {
                 salary={player.salary}
                 imageUrl={player.imageUrl}
                 teamName={player.team}
-                flux={this.props.flux}
               />
             );
           })

@@ -9,7 +9,7 @@ const playerTarget = {
     return monitor.getItem().team !== props.teamName;
   },
   drop(props, monitor, component) {
-    props.flux.getActions('trade').playerSelected(monitor.getItem(), props.teamName);
+    props.addPlayer(monitor.getItem(), props.teamName);
   }
 };
 
@@ -63,7 +63,6 @@ export default class IncomingArea extends Component {
         <div style={style}>
           <PlayerList
             roster={this.props.players}
-            flux={this.props.flux}
           />
         </div>
       );

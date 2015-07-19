@@ -1,36 +1,44 @@
-import { Actions } from 'flummox';
+import * as types from '../constants/ActionTypes';
 
-export default class TradeActions extends Actions {
-  async getData() {
-    let response;
+export function handleFetch(teams) {
+  return {
+    type: types.FETCH_NBA_DATA,
+    teams
+  };
+}
 
-    try {
-      const url = 'http://localhost:8080/api';
-      response = await fetch(url);
-      return await response.json();
-    }
-    catch(err) {
-      console.log('ERROR: ' + err);
-    }
-  }
+export function selectTeam(teamName, teamNumber) {
+  return {
+    type: types.SELECT_TEAM,
+    teamName,
+    teamNumber
+  };
+}
 
-  teamSelected(teamName, teamNumber) {
-    return { teamName, teamNumber };
-  }
+export function addTeam() {
+  return {
+    type: types.ADD_TEAM
+  };
+}
 
-  teamAdded() {
-    return null;
-  }
+export function removeTeam(teamNumber) {
+  return {
+    type: types.REMOVE_TEAM,
+    teamNumber
+  };
+}
 
-  teamRemoved(teamNumber) {
-    return teamNumber;
-  }
+export function addPlayer(player, teamName) {
+  return {
+    type: types.ADD_PLAYER,
+    player,
+    teamName
+  };
+}
 
-  playerSelected(player, teamName) {
-    return { player, teamName };
-  }
-
-  playerRemoved(player) {
-    return player;
-  }
+export function removePlayer(player) {
+  return {
+    type: types.REMOVE_PLAYER,
+    player
+  };
 }

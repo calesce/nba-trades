@@ -1,18 +1,35 @@
 import React from 'react';
-import TradeMachine from './components/TradeMachine';
-import FluxComponent from 'flummox/component';
-import Flux from './Flux';
+import App from './containers/App';
 
-(async function initialize() {
-  const flux = new Flux();
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import * as reducers from './reducers';
 
-  const tradeActions = flux.getActions('trade');
-  let data = await tradeActions.getData();
+import * as TradeActions from './actions/TradeActions';
+import * as types from './constants/ActionTypes';
 
-  return React.render(
-    <FluxComponent flux={flux} connectToStores={'trade'}>
-      <TradeMachine />
-    </FluxComponent>,
-    document.getElementById('trades')
-  );
+(function initialize() {
+
+  fetch('http://localhost:8080/api')
+    .then((response) => {
+      return response.json();
+    })
+    .then((teams) => {
+      const reducer = combineReducers(reducers);
+      const store = createStore(reducer);
+
+      // let teams = json;
+      store.dispatch({
+        type: types.FETCH_NBA_DATA,
+        teams
+      });
+
+      return React.render(
+        <App store={store} />,
+        document.getElementById('trades')
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 })();

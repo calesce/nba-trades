@@ -4,21 +4,17 @@ import Select from 'react-select';
 
 export default class TeamSelect extends Component {
 
-  static contextTypes = {
-    flux: PropTypes.object
-  };
-
   static propTypes = {
     teamName: PropTypes.string,
     teams: PropTypes.array.isRequired
   };
 
   teamSelected = (name) => {
-    this.context.flux.getActions('trade').teamSelected(name, this.props.number);
+    this.props.teamSelected(name, this.props.number);
   }
 
-  buttonClicked = (event) => {
-    this.context.flux.getActions('trade').teamRemoved(this.props.number);
+  buttonClicked = () => {
+    this.props.removeTeam(this.props.number);
   }
 
   getSortedTeams = () => {

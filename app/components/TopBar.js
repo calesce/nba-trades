@@ -6,10 +6,6 @@ import Check from './Check';
 
 export default class TopBar extends Component {
 
-  static contextTypes = {
-    flux: PropTypes.object
-  };
-
   static propTypes = {
     incomingPlayers: PropTypes.array,
     outgoingPlayers: PropTypes.array,
@@ -17,7 +13,7 @@ export default class TopBar extends Component {
   };
 
   addTeam = () => {
-    this.context.flux.getActions('trade').teamAdded();
+    this.props.addTeam();
   }
 
   filteredTeams = (index) => {
@@ -69,6 +65,8 @@ export default class TopBar extends Component {
                   number={index}
                   count={teamCount}
                   key={index}
+                  teamSelected={this.props.teamSelected}
+                  removeTeam={this.props.removeTeam}
                 />
               );
             })

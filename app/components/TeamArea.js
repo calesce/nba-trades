@@ -8,15 +8,11 @@ import IncomingArea from './IncomingArea';
 
 export default class TeamArea extends React.Component {
 
-  static contextTypes = {
-    flux: PropTypes.object
-  };
-
   static propTypes = {
-    outgoingPlayers: PropTypes.array.isRequired,
-    incomingPlayers: PropTypes.array.isRequired,
-    team: PropTypes.object.isRequired,
-    index: PropTypes.number.isRequired
+    outgoingPlayers: PropTypes.array,
+    incomingPlayers: PropTypes.array,
+    team: PropTypes.object,
+    index: PropTypes.number
   };
 
   rosterMinusOutgoing = () => {
@@ -129,14 +125,14 @@ export default class TeamArea extends React.Component {
           teamName={this.props.team.teamName}
           teamIndex={this.props.index}
           numTeams={this.props.numTeams}
-          flux={this.context.flux}
+          addPlayer={this.props.addPlayer}
         />
         <div style={nonShrinkStyle}>
           <span>{teamSalary} </span>
           { incomingSalary ? <span style={nonShrinkGreenStyle}>{incomingSalary} </span> : <span></span> }
           { outgoingSalary ? <span style={nonShrinkRedStyle}>{outgoingSalary}</span> : <span></span> }
         </div>
-        <PlayerList roster={roster} team={this.props.team.teamName} flux={this.context.flux} />
+        <PlayerList roster={roster} team={this.props.team.teamName} />
       </div>
     );
   }
