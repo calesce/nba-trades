@@ -2,7 +2,6 @@ import React from 'react';
 import App from './containers/App';
 
 import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
 import * as reducers from './reducers';
 
 import * as TradeActions from './actions/TradeActions';
@@ -18,7 +17,6 @@ import * as types from './constants/ActionTypes';
       const reducer = combineReducers(reducers);
       const store = createStore(reducer);
 
-      // let teams = json;
       store.dispatch({
         type: types.FETCH_NBA_DATA,
         teams

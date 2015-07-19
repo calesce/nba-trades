@@ -35,6 +35,7 @@ else {
 
   var server = new WebpackDevServer(webpack(config), {
     contentBase: 'app',
+    noInfo: true,
     publicPath: config.output.publicPath,
     hot: true,
     historyApiFallback: true,
