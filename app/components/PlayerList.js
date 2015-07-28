@@ -13,8 +13,8 @@ export default class PlayerList extends Component {
     let style = {
       width: '100%',
       display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
+      flexDirection: 'row',
+      flexFlow: 'wrap',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
       alignContent: 'flex-start'

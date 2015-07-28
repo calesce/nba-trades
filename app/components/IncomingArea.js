@@ -29,9 +29,22 @@ export default class IncomingArea extends Component {
   };
 
   getDropSize = () => {
-    const len = Math.ceil(this.props.players.length / 4) * 150;
+    let len = Math.ceil(this.props.players.length / 6) * 150;
+    switch(this.props.numTeams) {
+      case 3:
+        len = Math.ceil(this.props.players.length / 4) * 150;
+        break;
+      case 4:
+        len = Math.ceil(this.props.players.length / 4) * 150;
+        break;
+    }
+    let size = this.props.players.length ? (len + 'px') : '150px';
+    return size;
+  }
 
-    return this.props.players.length ? (len + 'px') : '150px';
+  getHeight = () => {
+    const len = Math.ceil(this.props.players.length / 6) * 150;
+    return 150;
   }
 
   render() {
@@ -42,7 +55,7 @@ export default class IncomingArea extends Component {
       background: 'grey',
       flexBasis,
       height: flexBasis,
-      width: '100%',
+      width: '98%',
       flexShrink: 0,
       display: 'flex',
       flexDirection: 'column',
