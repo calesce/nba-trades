@@ -1,11 +1,29 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import FluxComponent from 'flummox/component';
+import { DropTarget } from 'react-dnd';
 
 import TeamSelect from './TeamSelect';
 import PlayerList from './PlayerList';
 import IncomingArea from './IncomingArea';
 
+const playerTarget = {
+  canDrop(props, monitor) {
+    return monitor.getItem().team !== props.team.teamName;
+  },
+  drop(props, monitor, component) {
+    props.addPlayer(monitor.getItem(), props.team.teamName);
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+  };
+}
+
+@DropTarget('player', playerTarget, collect)
 export default class TeamArea extends React.Component {
 
   static propTypes = {
@@ -97,7 +115,8 @@ export default class TeamArea extends React.Component {
   }
 
   render() {
-    let roster = this.rosterMinusOutgoing();
+    const { connectDropTarget, isOver, canDrop } = this.props;
+
     const style = this.getStyle();
     const nonShrinkStyle = this.getNonShrinkStyle();
 
@@ -117,22 +136,17 @@ export default class TeamArea extends React.Component {
       outgoingSalary = '- ' + this.getSalary(false);
     }
 
-    return (
+    let players = this.rosterMinusOutgoing().concat(this.props.incomingPlayers);
+
+    return connectDropTarget(
       <div style={style}>
         <span style={nonShrinkStyle}>{this.props.team.location}&nbsp;{this.props.team.teamName}</span>
-        <IncomingArea
-          players={this.props.incomingPlayers}
-          teamName={this.props.team.teamName}
-          teamIndex={this.props.index}
-          numTeams={this.props.numTeams}
-          addPlayer={this.props.addPlayer}
-        />
         <div style={nonShrinkStyle}>
           <span>{teamSalary} </span>
-          { incomingSalary ? <span style={nonShrinkGreenStyle}>{incomingSalary} </span> : <span></span> }
+          { incomingSalary ? <span style={nonShrinkGreenStyle}>{incomingSalary}</span> : <span></span> }
           { outgoingSalary ? <span style={nonShrinkRedStyle}>{outgoingSalary}</span> : <span></span> }
         </div>
-        <PlayerList roster={roster} team={this.props.team.teamName} />
+        <PlayerList players={players} teamName={this.props.team.teamName} addPlayer={this.props.addPlayer} />
       </div>
     );
   }

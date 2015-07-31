@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-
 import Player from './Player';
 
 export default class PlayerList extends Component {
 
   static propTypes = {
-    roster: PropTypes.array.isRequired,
-    team: PropTypes.string
+    players: PropTypes.array.isRequired,
+    teamName: PropTypes.string
   };
 
   render() {
@@ -23,9 +22,9 @@ export default class PlayerList extends Component {
     return (
       <div style={style}>
         {
-          this.props.roster.map((player, index) => {
-            if(this.props.team) {
-              player.team = this.props.team;
+          this.props.players.map((player, index) => {
+            if(this.props.teamName && !player.team) {
+              player.team = this.props.teamName;
             }
             return (
               <Player

@@ -43,9 +43,10 @@ export default class Player {
 
     let style = {
       flexShrink: 0,
-      height: '55px',
-      width: '160px',
+      height: '58px',
+      width: '163px',
       margin: '3px',
+      fontSize: '13',
       display: 'inline-block',
       position: 'relative',
       background: teamStyle[className].background,
@@ -63,14 +64,15 @@ export default class Player {
 
     let nameStyle = {
       position: 'absolute',
-      right: '3px',
-      width: '100px',
-      height: '30px'
+      wordWrap: 'break-word',
+      left: '50px',
+      width: '84px',
+      height: '34px'
     };
 
     let salaryStyle = {
       position: 'absolute',
-      right: '3px',
+      left: '50px',
       bottom: '5px',
       width: '100px'
     };
@@ -78,11 +80,12 @@ export default class Player {
     if(isDragging) {
       style.opacity = 0;
     }
+    let name = this.props.name.replace('\\', '').replace('Antetokounmpo', 'Anteto.');
 
     return connectDragSource(
       <div style={style}>
         <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
-        <span style={nameStyle} className="playerName">{this.props.name.replace('\\', '')}</span>
+        <span style={nameStyle} className="playerName">{name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>
       </div>
     );

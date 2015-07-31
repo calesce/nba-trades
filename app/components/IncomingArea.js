@@ -38,7 +38,8 @@ export default class IncomingArea extends Component {
         len = Math.ceil(this.props.players.length / 4) * 150;
         break;
     }
-    let size = this.props.players.length ? (len + 'px') : '150px';
+    let pixels = len + 'px';
+    let size = this.props.players.length ? pixels : '150px';
     return size;
   }
 
