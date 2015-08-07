@@ -62,6 +62,12 @@ export default class Player {
       top: '3px'
     };
 
+    let iconStyle = {
+      position: 'absolute',
+      right: '2px',
+      top: '10px'
+    };
+
     let nameStyle = {
       position: 'absolute',
       wordWrap: 'break-word',
@@ -80,13 +86,15 @@ export default class Player {
     if(isDragging) {
       style.opacity = 0;
     }
-    let name = this.props.name.replace('\\', '').replace('Antetokounmpo', 'Anteto.');
 
+    let iconUrl = `assets/icons/${this.props.teamName.toLowerCase().replace(' ', '_')}.png`;
+    let name = this.props.name.replace('\\', '').replace('Antetokounmpo', 'Anteto.');
     return connectDragSource(
       <div style={style}>
         <img style={imgStyle} src={this.props.imageUrl} height='45px' width='32px' />
         <span style={nameStyle} className="playerName">{name}</span>
         <span style={salaryStyle} className="playerSalary">{this.props.salary}</span>
+        <img style={iconStyle} src={iconUrl} height='30px' width='30px' />
       </div>
     );
   }

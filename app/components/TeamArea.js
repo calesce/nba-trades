@@ -140,7 +140,6 @@ export default class TeamArea extends React.Component {
 
     return connectDropTarget(
       <div style={style}>
-        <span style={nonShrinkStyle}>{this.props.team.location}&nbsp;{this.props.team.teamName}</span>
         <div style={nonShrinkStyle}>
           <span>{teamSalary} </span>
           { incomingSalary ? <span style={nonShrinkGreenStyle}>{incomingSalary}</span> : <span></span> }
