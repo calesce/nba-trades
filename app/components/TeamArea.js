@@ -130,10 +130,10 @@ export default class TeamArea extends React.Component {
     let teamSalary = 'Team Salary: ' + this.props.team.totalSalary;
 
     if(this.props.incomingPlayers.length) {
-      incomingSalary = '+ ' + this.getSalary(true);
+      incomingSalary = ' + ' + this.getSalary(true);
     }
     if(this.props.outgoingPlayers.length) {
-      outgoingSalary = '- ' + this.getSalary(false);
+      outgoingSalary = ' - ' + this.getSalary(false);
     }
 
     let players = this.rosterMinusOutgoing().concat(this.props.incomingPlayers);
