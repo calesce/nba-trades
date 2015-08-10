@@ -33,6 +33,14 @@ export default class Player {
     imageUrl: PropTypes.string.isRequired
   };
 
+  shouldComponentUpdate(nextProps) {
+    if(nextProps.name !== this.props.name || this.props.isDragging === true) {
+      return true;
+    }
+
+    return false;
+  }
+
   formatTeamName = () => {
     return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
   }
