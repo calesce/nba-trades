@@ -12,8 +12,7 @@ if(isProduction) {
   server.use(express.static(path.join(__dirname, '/dist')));
   server.get('/api', salaries);
   server.listen(process.env.PORT);
-}
-else {
+} else {
   var app = express();
 
   var allowCrossDomain = function(req, res, next) {
