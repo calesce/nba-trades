@@ -1,49 +1,43 @@
-var webpack = require('webpack');
+var path = require('path');
 var express = require('express');
+var webpack = require('webpack');
+var config = require('./webpack.config.dev');
+
+var app = express();
+var compiler = webpack(config);
+
 var salaries = require('./lib/salaries');
 var url = require('url');
 var path = require('path');
 
-var isProduction = process.env.NODE_ENV === 'production';
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Origin, Accept');
+  next();
+};
 
-if(isProduction) {
-  var server = express();
+app.use(allowCrossDomain);
 
-  server.use(express.static(path.join(__dirname, '/dist')));
-  server.get('/api', salaries);
-  server.listen(process.env.PORT);
-} else {
-  var app = express();
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
 
-  var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Origin, Accept');
-    next();
-  };
+app.use(require('webpack-hot-middleware')(compiler));
 
-  app.use(allowCrossDomain);
+app.get('/api', allowCrossDomain, salaries);
 
-  app.get('/api', allowCrossDomain, salaries);
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-  app.listen(8080);
+app.listen(3000, 'localhost', function(err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-  var config = require('./webpack.config');
-  var WebpackDevServer = require('webpack-dev-server');
-
-  var server = new WebpackDevServer(webpack(config), {
-    contentBase: 'app',
-    noInfo: true,
-    publicPath: config.output.publicPath,
-    hot: true,
-    historyApiFallback: true,
-    stats: { colors: true }
-  });
-
-  server.listen(3000, 'localhost', function (err, result) {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
+  console.log('Listening at http://localhost:3000');
+});

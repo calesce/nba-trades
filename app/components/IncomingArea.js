@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
 import { DropTarget } from 'react-dnd';
 
 import PlayerList from './PlayerList';
@@ -8,7 +7,7 @@ const playerTarget = {
   canDrop(props, monitor) {
     return monitor.getItem().team !== props.teamName;
   },
-  drop(props, monitor, component) {
+  drop(props, monitor) {
     props.addPlayer(monitor.getItem(), props.teamName);
   }
 };
@@ -21,8 +20,7 @@ function collect(connect, monitor) {
   };
 }
 
-@DropTarget('player', playerTarget, collect)
-export default class IncomingArea extends Component {
+class IncomingArea extends Component {
 
   static propTypes = {
     players: PropTypes.array.isRequired
@@ -41,12 +39,12 @@ export default class IncomingArea extends Component {
     let pixels = len + 'px';
     let size = this.props.players.length ? pixels : '150px';
     return size;
-  }
+  };
 
   getHeight = () => {
-    const len = Math.ceil(this.props.players.length / 6) * 150;
+    // const len = Math.ceil(this.props.players.length / 6) * 150;
     return 150;
-  }
+  };
 
   render() {
     const flexBasis = this.getDropSize();
@@ -86,3 +84,5 @@ export default class IncomingArea extends Component {
     }
   }
 }
+
+export default DropTarget('player', playerTarget, collect)(IncomingArea);

@@ -1,56 +1,41 @@
-import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
-import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import React, { Component } from 'react';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext, DropTarget } from 'react-dnd';
 
 import { bindActionCreators } from 'redux';
-import { Connector } from 'react-redux';
+import { connect } from 'react-redux';
 import * as TradeActions from '../actions/TradeActions';
 
 import TopBar from './TopBar';
 import TeamArea from './TeamArea';
-import Check from './Check';
 
 const playerTarget = {
   canDrop(props, monitor) {
     return monitor.getItem().team !== props.teamName;
   },
-  drop(props, monitor, component) {
+  drop(props, monitor) {
     if(!monitor.didDrop()) {
-      component.removePlayer(monitor.getItem());
+      props.actions.removePlayer(monitor.getItem());
     }
   }
 };
 
-function collect(connect, monitor) {
+function collect(connect1, monitor) {
   return {
-    connectDropTarget: connect.dropTarget(),
+    connectDropTarget: connect1.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),
     canDrop: monitor.canDrop()
   };
 }
 
-@DragDropContext(HTML5Backend)
-@DropTarget('player', playerTarget, collect)
-export default class TradeMachine extends Component {
-
-  static propTypes = {
-    teams: PropTypes.object
-  };
-
+class TradeMachine extends Component {
   render() {
-    return (
-      <Connector select={ state => ({ trades: state.trades }) }>
-        {this.renderApp}
-      </Connector>
-    );
+    return this.renderApp();
   }
 
-  renderApp = ({ trades, dispatch }) => {
-    let { teams, incomingPlayers, outgoingPlayers, selectedTeams } = trades;
+  renderApp = () => {
+    let { teams, incomingPlayers, outgoingPlayers, selectedTeams, actions } = this.props;
     const { connectDropTarget } = this.props;
-    const actions = bindActionCreators(TradeActions, dispatch);
-    this.removePlayer = actions.removePlayer;
 
     let style = {
       fontFamily: 'Gill Sans, Gill Sans MT, Calibri, sans-serif',
@@ -91,5 +76,24 @@ export default class TradeMachine extends Component {
         }
       </div>
     );
-  }
+  };
 }
+
+const mapStateToProps = (state) => {
+  return {
+    incomingPlayers: state.trades.incomingPlayers,
+    outgoingPlayers: state.trades.outgoingPlayers,
+    selectedTeams: state.trades.selectedTeams,
+    teams: state.trades.teams
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(TradeActions, dispatch)
+  };
+};
+
+const tradeMachine = connect(mapStateToProps, mapDispatchToProps)(DropTarget('player', playerTarget, collect)(TradeMachine));
+
+export default DragDropContext(HTML5Backend)(tradeMachine);

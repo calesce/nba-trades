@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
 
-const teamStyle = require('./teamStyles');
+const teamStyle = require('./teamStyles').default;
 
 const Types = {
   PLAYER: 'player'
@@ -13,18 +13,14 @@ const playerSource = {
     return item;
   },
 
-  endDrag(props, monitor, component) {
+  endDrag(props, monitor) {
     if(!monitor.didDrop()) {
       return;
     }
   }
 };
 
-@DragSource(Types.PLAYER, playerSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))
-export default class Player {
+class Player extends Component {
 
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -43,7 +39,7 @@ export default class Player {
 
   formatTeamName = () => {
     return this.props.teamName.toLowerCase().replace(/\ /, '').replace('76', 'six');
-  }
+  };
 
   render() {
     const className = this.formatTeamName();
@@ -61,7 +57,7 @@ export default class Player {
       color: teamStyle[className].color,
       border: teamStyle[className].border,
       cursor: '-webkit-grab',
-      boxShadow: '0 1px 1px rgba(0,0,0,0.4)',
+      boxShadow: '0 1px 1px rgba(0,0,0,0.4)'
     };
 
     let imgStyle = {
@@ -107,3 +103,8 @@ export default class Player {
     );
   }
 }
+
+export default DragSource(Types.PLAYER, playerSource, (connect, monitor) => ({
+   connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))(Player);

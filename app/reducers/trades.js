@@ -23,18 +23,18 @@ function getFirstTeamNotSelected(selectedTeams, teams) {
 }
 
 function getEmptyArrays(selectedTeams) {
-  return selectedTeams.map((team) => {
+  return selectedTeams.map(() => {
     return [];
   });
 }
 
-function getTeamForPlayer(playerName, teams) {
+/*function getTeamForPlayer(playerName, teams) {
   return _.compact(_.map(teams, (team, key) => {
     if(_.findIndex(team.players, 'name', playerName) !== -1) {
       return key;
     }
   }))[0];
-}
+}*/
 
 export default function trades(state = initialState, action) {
   switch(action.type) {

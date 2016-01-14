@@ -14,15 +14,15 @@ export default class TopBar extends Component {
 
   addTeam = () => {
     this.props.addTeam();
-  }
+  };
 
   filteredTeams = (index) => {
     let notMyTeam = this.props.selectedTeams.filter((team, i) => index !== i);
 
-    return _.filter(this.props.teams, (team, i) => {
+    return _.filter(this.props.teams, (team) => {
       return _.findIndex(notMyTeam, 'teamName', team.teamName) === -1;
     });
-  }
+  };
 
   render() {
     let barStyle = {

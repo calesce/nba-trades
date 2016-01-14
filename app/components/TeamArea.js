@@ -2,15 +2,13 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import { DropTarget } from 'react-dnd';
 
-import TeamSelect from './TeamSelect';
 import PlayerList from './PlayerList';
-import IncomingArea from './IncomingArea';
 
 const playerTarget = {
   canDrop(props, monitor) {
     return monitor.getItem().team !== props.team.teamName;
   },
-  drop(props, monitor, component) {
+  drop(props, monitor) {
     props.addPlayer(monitor.getItem(), props.team.teamName);
   }
 };
@@ -23,8 +21,8 @@ function collect(connect, monitor) {
   };
 }
 
-@DropTarget('player', playerTarget, collect)
-export default class TeamArea extends React.Component {
+// @DropTarget('player', playerTarget, collect)
+class TeamArea extends React.Component {
 
   static propTypes = {
     outgoingPlayers: PropTypes.array,
@@ -46,11 +44,11 @@ export default class TeamArea extends React.Component {
     });
 
     return result;
-  }
+  };
 
   hasIncoming = () => {
     return this.props.incomingPlayers.length !== 0;
-  }
+  };
 
   getSalary = (incoming) => {
     let players = incoming ? _.cloneDeep(this.props.incomingPlayers) : _.cloneDeep(this.props.outgoingPlayers);
@@ -68,7 +66,7 @@ export default class TeamArea extends React.Component {
       .value();
 
     return '$' + salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
+  };
 
   getStyle = () => {
     let style = {
@@ -100,7 +98,7 @@ export default class TeamArea extends React.Component {
     }
 
     return style;
-  }
+  };
 
   getNonShrinkStyle = () => {
     return {
@@ -112,10 +110,10 @@ export default class TeamArea extends React.Component {
       cursor: 'text',
       textAlign: 'center'
     };
-  }
+  };
 
   render() {
-    const { connectDropTarget, isOver, canDrop } = this.props;
+    const { connectDropTarget } = this.props;
 
     const style = this.getStyle();
     const nonShrinkStyle = this.getNonShrinkStyle();
@@ -150,3 +148,5 @@ export default class TeamArea extends React.Component {
     );
   }
 }
+
+export default DropTarget('player', playerTarget, collect)(TeamArea);

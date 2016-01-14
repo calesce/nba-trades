@@ -11,11 +11,11 @@ export default class TeamSelect extends Component {
 
   teamSelected = (name) => {
     this.props.teamSelected(name, this.props.number);
-  }
+  };
 
   buttonClicked = () => {
     this.props.removeTeam(this.props.number);
-  }
+  };
 
   getSortedTeams = () => {
     return _.chain(this.props.teams)
@@ -29,7 +29,7 @@ export default class TeamSelect extends Component {
         return team.location;
       })
       .value();
-  }
+  };
 
   render() {
     let teams = this.getSortedTeams();

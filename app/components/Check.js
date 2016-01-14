@@ -13,25 +13,25 @@ export default class Check extends Component {
 
   isUnderCap = (salary) => {
     return salary < this.props.salaryCap;
-  }
+  };
 
   isUnderTax = (team) => {
     return this.salaryOfTeam(team) < this.props.luxuryTax;
-  }
+  };
 
   salaryToNumber = (salaryString) => {
     return parseInt(salaryString.replace(/\$|\,/g, ''));
-  }
+  };
 
   salaryOfTeam = (team) => {
     return _.reduce(team, (sum, player) => {
       return sum + this.salaryToNumber(player.salary);
     }, 0);
-  }
+  };
 
   potentialSalary = (currentSalary, incomingSalary) => {
     return currentSalary + incomingSalary;
-  }
+  };
 
   isTrade = () => {
     // TODO this can be shorter, refactor
@@ -44,7 +44,7 @@ export default class Check extends Component {
     });
 
     return check;
-  }
+  };
 
   determineValidity = () => {
     // this should probably be a reduce
@@ -56,7 +56,7 @@ export default class Check extends Component {
       let underTax = (potentialSalary < this.props.luxuryTax);
 
       let teams = _.cloneDeep(check.teams);
-      let targetSalary = (incomingSalary - (outgoingSalary * 1.25 + 100000));
+      // let targetSalary = (incomingSalary - (outgoingSalary * 1.25 + 100000));
       teams.push(`${team.teamName} taking in too much salary`);
 
       // 1. Any team under the cap can take any amount in up to the cap level + $100,000
@@ -91,7 +91,7 @@ export default class Check extends Component {
       return check;
     },
     { valid: true, teams: [] });
-  }
+  };
 
   render() {
     let isTrade = this.isTrade();
